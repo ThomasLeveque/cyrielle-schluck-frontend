@@ -4,17 +4,17 @@ import { useRouter } from 'next/router';
 
 import Layout from '@components/layout/layout';
 
-interface PostProps {}
+interface ProjectProps {}
 
-const Post: NextPage<PostProps> = () => {
+const Project: NextPage<ProjectProps> = () => {
   const router = useRouter();
-  const { postId } = router.query;
+  const { projectId } = router.query;
 
   return (
-    <Layout title={`Post: ${postId}`}>
-      <h1>Post: {postId}</h1>
+    <Layout title={`Project: ${projectId}`}>
+      <h1>Project: {projectId}</h1>
     </Layout>
   );
 };
 
-export default Post;
+export default Project;
