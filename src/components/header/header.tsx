@@ -7,10 +7,10 @@ const Header: React.FC = () => {
   return (
     <HeaderStyles>
       <Link href="/">
-        <a>Home</a>
+        <a>PROJECTS</a>
       </Link>
-      <Link href="/about">
-        <a>About</a>
+      <Link href="/">
+        <a>+ SUR MOI</a>
       </Link>
     </HeaderStyles>
   );
