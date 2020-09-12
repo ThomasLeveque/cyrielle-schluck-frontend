@@ -52,7 +52,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Libre Franklin', sans-serif, 'Libre Baskerville', serif;
     color: ${(props) => props.theme.colors.black};
     background-color: ${(props) => props.theme.colors.white};
   }
