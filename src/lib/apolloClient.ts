@@ -1,25 +1,25 @@
 import { useMemo } from 'react';
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 
-let apolloClient: ApolloClient<any>;
+let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_URL}` || 'http://localhost:1337',
+      uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql` || 'http://localhost:1337/graphql',
       credentials: 'same-origin',
     }),
     cache: new InMemoryCache(),
   });
 }
 
-export function initializeApollo(initialState = {}) {
+export function initializeApollo(initialState: any = null) {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
-  if (initialState && Object.keys(initialState).length) {
+  if (initialState) {
     // Get existing cache, loaded during client side data fetching
     const existingCache = _apolloClient.extract();
     // Restore the cache using the data passed from getStaticProps/getServerSideProps
@@ -34,7 +34,7 @@ export function initializeApollo(initialState = {}) {
   return _apolloClient;
 }
 
-export function useApollo(initialState: object) {
+export function useApollo(initialState: any) {
   const store = useMemo(() => initializeApollo(initialState), [initialState]);
   return store;
 }
