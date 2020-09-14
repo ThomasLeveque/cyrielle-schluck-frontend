@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 export const GlobalStyles = createGlobalStyle`
+  /* RESET */
   ${reset}
   
   /* http://www.paulirish.com/2012/box-sizing-border-box-ftw/ (2015/04/28)*/
@@ -29,6 +30,7 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
     line-height: inherit;
     -webkit-appearance: none;
+    cursor: pointer;
   }
   /* Fix antialiasing */
   *, *:before, *:after {
@@ -52,9 +54,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Libre Franklin', sans-serif, 'Libre Baskerville', serif;
-    color: ${(props) => props.theme.colors.black};
-    background-color: ${(props) => props.theme.colors.white};
+    font-family: ${(props) => props.theme.fonts.mainFont};
+    font-size: ${(props) => props.theme.vars.bodyFontSize}px;
+    color: ${(props) => props.theme.colors.myBlack};
+    background-color: ${(props) => props.theme.colors.lightGray};
   }
   
   /* Remove all animations and transitions for people that prefer not to see them */
