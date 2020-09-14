@@ -1,17 +1,14 @@
 import React from 'react';
-import Link from 'next/link';
+
+import NavLink from '@components/nav-link/nav-link';
 
 import { HeaderStyles } from './header.styles';
 
 const Header: React.FC = () => {
   return (
     <HeaderStyles>
-      <Link href="/">
-        <a>PROJECTS</a>
-      </Link>
-      <Link href="/">
-        <a>+ SUR MOI</a>
-      </Link>
+      <NavLink href="/">PROJETS</NavLink>
+      <NavLink href="/about-me">+ SUR MOI</NavLink>
     </HeaderStyles>
   );
 };
