@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
 
@@ -10,6 +11,7 @@ import { ProjectsData, Project } from '@interfaces/project.interface';
 import { IndexStyles } from '@styles/pages/index.styles';
 import { H1Styles } from '@styles/texts/h1.styles';
 import { PStyles } from '@styles/texts/p.styles';
+import CustomButton from '@components/custom-button/custom-button';
 
 export const ALL_PROJECTS_QUERY = gql`
   query {
@@ -33,6 +35,7 @@ interface HomeProps {}
 
 const Home: NextPage<HomeProps> = () => {
   const { data } = useQuery<ProjectsData>(ALL_PROJECTS_QUERY);
+  const router = useRouter();
 
   const { projects } = data as ProjectsData;
 
@@ -46,6 +49,7 @@ const Home: NextPage<HomeProps> = () => {
           Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon
           travail ergonomique et graphique afin de lui assurer la meilleure expérience possible.
         </PStyles>
+        <CustomButton text="En savoir plus" onClick={() => router.push('/about-me')} />
         <ul>
           {projects.map((project: Project) => (
             <li key={project.id}>

@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
       <Html lang="fr">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Libre+Franklin:wght@300;400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Libre+Franklin:wght@300;400;700;900&display=swap"
             rel="stylesheet"
           ></link>
           <link rel="icon" href="/favicon.ico" />

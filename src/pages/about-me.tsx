@@ -2,6 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import Layout from '@components/layout/layout';
+import CustomButton from '@components/custom-button/custom-button';
 
 import { AboutMeStyles } from '@styles/pages/about-me.styles';
 import { H1Styles } from '@styles/texts/h1.styles';
@@ -32,6 +33,8 @@ const AboutMe: NextPage<AboutMeProps> = () => {
           les dev);
           <br />- je parle l’anglais couramment.
         </PStyles>
+        <CustomButton text="Voir mon cv" />
+        <CustomButton text="Télécharger mon cv" />
       </AboutMeStyles>
     </Layout>
   );
