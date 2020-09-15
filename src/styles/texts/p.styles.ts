@@ -20,5 +20,5 @@ PStyles.defaultProps = {
   fontSize: 22,
   lineHeight: 42,
   letterSpacing: 0,
-  mb: 90,
+  mb: 0,
 };

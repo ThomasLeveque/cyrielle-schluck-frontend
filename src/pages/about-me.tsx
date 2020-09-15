@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NextPage } from 'next';
+import { ThemeContext } from 'styled-components';
 
 import Layout from '@components/layout/layout';
 import CustomButton from '@components/custom-button/custom-button';
@@ -11,13 +12,15 @@ import { PStyles } from '@styles/texts/p.styles';
 interface AboutMeProps {}
 
 const AboutMe: NextPage<AboutMeProps> = () => {
+  const theme = useContext(ThemeContext);
+
   return (
     <Layout title="About me">
       <AboutMeStyles>
         <H1Styles mb={50}>
           <span>Cyrielle</span>,<br /> Designer UI<span>/</span>UX<span>.</span>
         </H1Styles>
-        <PStyles letterSpacing={1}>
+        <PStyles letterSpacing={1} mb={theme.vars.lSpace}>
           Moi c’est Cyrielle, designer spécialisée en expérience et interface utilisateur.
           <br />
           Mes atouts :<br />
