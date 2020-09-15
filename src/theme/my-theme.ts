@@ -20,6 +20,7 @@ const myTheme: DefaultTheme = {
     lSpace: 90,
     mSpace: 50,
     bodyFontSize: 16,
+    appMaxWidth: 1440,
   },
 };
 

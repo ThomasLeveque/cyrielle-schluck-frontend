@@ -23,6 +23,7 @@ declare module 'styled-components' {
       lSpace: number;
       mSpace: number;
       bodyFontSize: number;
+      appMaxWidth: number;
     };
   }
 }
