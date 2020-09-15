@@ -25,14 +25,14 @@
       "@interfaces/*": [
         "src/interfaces/*"
       ],
-      "@libs/*": [
-        "src/libs/*"
-      ],
       "@styles/*": [
         "src/styles/*"
       ],
       "@lib/*": [
         "src/lib/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ]
     }
   },
