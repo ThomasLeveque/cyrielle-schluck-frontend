@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
+import { ThemeContext } from 'styled-components';
+import { motion, useViewportScroll, useTransform, MotionValue, transform } from 'framer-motion';
 
 import Layout from '@components/layout/layout';
 import { initializeApollo } from '@lib/apolloClient';
-import { ProjectsData, Project } from '@interfaces/project.interface';
+import { Project, ProjectsData } from '@interfaces/project.interface';
+import CustomButton from '@components/custom-button/custom-button';
+import ProjectList from '@components/project-list/project-list';
 
 import { IndexStyles } from '@styles/pages/index.styles';
-import { H1Styles } from '@styles/texts/h1.styles';
 import { PStyles } from '@styles/texts/p.styles';
-import CustomButton from '@components/custom-button/custom-button';
+import { HeadingStyles } from '@styles/texts/heading.styles';
 
 export const ALL_PROJECTS_QUERY = gql`
   query {
@@ -36,31 +38,60 @@ interface HomeProps {}
 const Home: NextPage<HomeProps> = () => {
   const { data } = useQuery<ProjectsData>(ALL_PROJECTS_QUERY);
   const router = useRouter();
+  const theme = useContext(ThemeContext);
+
+  const minScrollY = 100;
+  const maxScrollY = 280;
+  const maxScaleH1 = 0.58;
+  const maxYH1 = -100;
+  const maxYDesc = maxYH1 - theme.vars.lSpace + theme.vars.mSpace;
+
+  useEffect(() => handleInitialStyle(), []);
+
+  const { scrollY } = useViewportScroll();
+  const scaleH1 = useTransform(scrollY, [minScrollY, maxScrollY], [1, maxScaleH1]);
+  const yH1: MotionValue = useTransform(scrollY, [minScrollY, maxScrollY], [0, maxYH1]);
+  const yDesc = useTransform(scrollY, [minScrollY, maxScrollY], [0, maxYDesc]);
 
   const { projects } = data as ProjectsData;
+
+  const handleInitialStyle = () => {
+    const initialScaleH1 = transform(window.scrollY, [minScrollY, maxScrollY], [1, maxScaleH1]);
+    const initialyH1 = transform(window.scrollY, [minScrollY, maxScrollY], [0, maxYH1]);
+    const initialyDesc = transform(window.scrollY, [minScrollY, maxScrollY], [0, maxYDesc]);
+    scaleH1.set(initialScaleH1);
+    yH1.set(initialyH1);
+    yDesc.set(initialyDesc);
+  };
 
   return (
     <Layout title="Home">
       <IndexStyles>
-        <H1Styles>
-          <span>Cyrielle</span>,<br /> Designer UI<span>/</span>UX<span>.</span>
-        </H1Styles>
-        <PStyles letterSpacing={1}>
-          Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon
-          travail ergonomique et graphique afin de lui assurer la meilleure expérience possible.
-        </PStyles>
-        <CustomButton text="En savoir plus" onClick={() => router.push('/about-me')} />
-        <ul>
-          {projects.map((project: Project) => (
-            <li key={project.id}>
-              <Link href="projects/[projectId]" as={`projects/${project.id}`}>
-                <a>{project.name}</a>
-              </Link>
-              <p>Color: {project.color}</p>
-              <p>Desc: {project.shortDesc}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="infos">
+          <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
+            <span>Cyrielle</span>,
+            <div>
+              Designer UI<span>/</span>UX<span>.</span>
+            </div>
+          </HeadingStyles>
+          <motion.div style={{ y: yDesc }}>
+            <PStyles letterSpacing={1} mb={theme.vars.lSpace}>
+              Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de
+              mon travail ergonomique et graphique afin de lui assurer la meilleure expérience
+              possible.
+            </PStyles>
+            <CustomButton text="En savoir plus" onClick={() => router.push('/about-me')} />
+          </motion.div>
+        </div>
+        <ProjectList
+          projects={projects.filter(
+            ({ category }: Project) =>
+              category.name === 'UI Design' || category.name === 'UX + UI Design'
+          )}
+        />
+        <ProjectList
+          projects={projects}
+        />
       </IndexStyles>
     </Layout>
   );

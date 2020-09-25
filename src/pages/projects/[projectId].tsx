@@ -5,7 +5,7 @@ import { ThemeContext } from 'styled-components';
 
 import Layout from '@components/layout/layout';
 
-import { H1Styles } from '@styles/texts/h1.styles';
+import { HeadingStyles } from '@styles/texts/heading.styles';
 
 interface ProjectProps {}
 
@@ -17,9 +17,9 @@ const Project: NextPage<ProjectProps> = () => {
 
   return (
     <Layout title={`Project: ${projectId}`}>
-      <H1Styles fontSize={60} lineHeight={70} mb={0} color={theme.colors.myWhite}>
+      <HeadingStyles as="h1" fontSize={60} lineHeight={70} mb={0} color={theme.colors.myWhite}>
         Project: {projectId}
-      </H1Styles>
+      </HeadingStyles>
     </Layout>
   );
 };

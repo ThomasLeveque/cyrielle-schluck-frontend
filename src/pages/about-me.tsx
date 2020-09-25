@@ -6,7 +6,7 @@ import Layout from '@components/layout/layout';
 import CustomButton from '@components/custom-button/custom-button';
 
 import { AboutMeStyles } from '@styles/pages/about-me.styles';
-import { H1Styles } from '@styles/texts/h1.styles';
+import { HeadingStyles } from '@styles/texts/heading.styles';
 import { PStyles } from '@styles/texts/p.styles';
 
 interface AboutMeProps {}
@@ -17,9 +17,9 @@ const AboutMe: NextPage<AboutMeProps> = () => {
   return (
     <Layout title="About me">
       <AboutMeStyles>
-        <H1Styles mb={50}>
+        <HeadingStyles as="h1" mb={50}>
           <span>Cyrielle</span>,<br /> Designer UI<span>/</span>UX<span>.</span>
-        </H1Styles>
+        </HeadingStyles>
         <PStyles letterSpacing={1} mb={theme.vars.lSpace}>
           Moi c’est Cyrielle, designer spécialisée en expérience et interface utilisateur.
           <br />

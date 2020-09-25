@@ -9,7 +9,7 @@ interface ProjectItemStylesProps {
 export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
   background-color: ${(props) => fixHexaColor(props.bgColor)};
   height: 330px;
-  width: 650px;
+  width: 100%;
 
   &:not(:last-child) {
     margin-bottom: 30px;

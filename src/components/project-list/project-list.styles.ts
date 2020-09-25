@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-interface ProjectListStylesProps {
-  top?: number;
-}
+interface ProjectListStylesProps {}
 
 export const ProjectListStyles = styled.ul<ProjectListStylesProps>``;
 
-ProjectListStyles.defaultProps = {
-  top: 0,
-};
+ProjectListStyles.defaultProps = {};
