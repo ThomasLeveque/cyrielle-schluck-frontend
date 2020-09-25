@@ -3,6 +3,7 @@ import { NextPage, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
+import { useInView } from 'react-intersection-observer';
 import { motion, useViewportScroll, useTransform, MotionValue, transform } from 'framer-motion';
 
 import Layout from '@components/layout/layout';
@@ -64,21 +65,35 @@ const Home: NextPage<HomeProps> = () => {
     yDesc.set(initialyDesc);
   };
 
+  const { ref: projectListRef, entry } = useInView({
+    rootMargin: `-350px`,
+    trackVisibility: true,
+    delay: 100,
+  });
+
   return (
     <Layout title="Home">
       <IndexStyles>
         <div className="infos">
-          <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
-            <span>Cyrielle</span>,
-            <div>
-              Designer UI<span>/</span>UX<span>.</span>
-            </div>
-          </HeadingStyles>
-          <motion.div style={{ y: yDesc }}>
+          {entry?.isIntersecting ? (
+            <HeadingStyles fontSize={60} lineHeight={84} mb={50}>
+              Projets identité visuelle et packaging
+            </HeadingStyles>
+          ) : (
+            <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
+              <span>Cyrielle</span>,
+              <div>
+                Designer UI<span>/</span>UX<span>.</span>
+              </div>
+            </HeadingStyles>
+          )}
+          <motion.div style={{ y: entry?.isIntersecting ? 0 : yDesc }}>
             <PStyles letterSpacing={1} mb={theme.vars.lSpace}>
-              Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de
+              {entry?.isIntersecting
+                ? 'Un master en design graphique a ajouté d’autres cordes à mon arc.'
+                : `Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de
               mon travail ergonomique et graphique afin de lui assurer la meilleure expérience
-              possible.
+              possible.`}
             </PStyles>
             <CustomButton text="En savoir plus" onClick={() => router.push('/about-me')} />
           </motion.div>
@@ -89,9 +104,7 @@ const Home: NextPage<HomeProps> = () => {
               category.name === 'UI Design' || category.name === 'UX + UI Design'
           )}
         />
-        <ProjectList
-          projects={projects}
-        />
+        <ProjectList ref={projectListRef} projects={projects} />
       </IndexStyles>
     </Layout>
   );
