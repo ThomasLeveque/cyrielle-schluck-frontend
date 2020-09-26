@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
+
 import { fixHexaColor } from '@utils/color.util';
+import { textsColorType } from '@interfaces/project.interface';
 
 interface ProjectItemStylesProps {
   bgColor: string;
+  textsColor: textsColorType;
 }
 
 export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
@@ -38,7 +41,7 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
         font-size: 30px;
         line-height: 34px;
         font-family: ${(props) => props.theme.fonts.secondaryFont};
-        color: ${(props) => props.theme.colors.myWhite};
+        color: ${(props) => props.theme.colors[props.textsColor]};
         margin-bottom: 20px;
       }
     }

@@ -19,11 +19,11 @@ const AboutMe: NextPage<AboutMeProps> = () => {
   return (
     <Layout title="About me">
       <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
-        <HeadingStyles as={motion.h1} variants={itemVariants} mb={50}>
-          <span>Cyrielle</span>,
-          <div>
+        <HeadingStyles mb={50}>
+          <motion.span variants={itemVariants}>Cyrielle</motion.span>,
+          <motion.div variants={itemVariants}>
             Designer UI<span>/</span>UX<span>.</span>
-          </div>
+          </motion.div>
         </HeadingStyles>
         <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.lSpace}>
           Moi c’est Cyrielle, designer spécialisée en expérience et interface utilisateur.

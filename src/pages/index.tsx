@@ -32,11 +32,14 @@ export const ALL_PROJECTS_QUERY = gql`
       shortDesc
       desc
       color
+      slug
+      textsColor
       image {
         url
       }
       category {
         name
+        slug
       }
     }
   }
@@ -153,12 +156,12 @@ const Home: NextPage<HomeProps> = () => {
         <ProjectList
           projects={projects.filter(
             ({ category }: Project) =>
-              category.name === 'UI Design' || category.name === 'UX + UI Design'
+              category.slug === 'ui-design' || category.slug === 'ux-ui-design'
           )}
         />
         <ProjectList
           ref={projectListRef}
-          projects={projects.filter(({ category }: Project) => category.name === 'Packaging')}
+          projects={projects.filter(({ category }: Project) => category.slug === 'packaging')}
         />
       </IndexStyles>
     </Layout>

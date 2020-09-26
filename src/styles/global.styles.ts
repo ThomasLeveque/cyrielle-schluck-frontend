@@ -58,6 +58,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: ${(props) => props.theme.vars.bodyFontSize}px;
     color: ${(props) => props.theme.colors.myBlack};
     background-color: ${(props) => props.theme.colors.lightGray};
+    overscroll-behavior-y: none;
   }
   
   /* Remove all animations and transitions for people that prefer not to see them */

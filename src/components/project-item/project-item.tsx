@@ -17,13 +17,19 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <ProjectItemStyles bgColor={project.color}>
+    <ProjectItemStyles bgColor={project.color} textsColor={project.textsColor}>
       <Link href="projects/[projectId]" as={`projects/${project.id}`}>
         <a>
           <div>
             <h4>{project.category?.name}</h4>
             <h3>{project.name}</h3>
-            <PStyles source={fixhyphens(project.shortDesc)} as={ReactMarkdown} fontSize={16} lineHeight={22} color={theme.colors.myWhite}></PStyles>
+            <PStyles
+              source={fixhyphens(project.shortDesc)}
+              as={ReactMarkdown}
+              fontSize={16}
+              lineHeight={22}
+              color={theme.colors[project.textsColor]}
+            ></PStyles>
           </div>
           <img src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`} />
         </a>
