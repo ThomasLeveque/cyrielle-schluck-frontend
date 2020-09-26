@@ -37,9 +37,10 @@ const Footer: React.FC<footerProps> = ({ isProjectPage = false }) => {
         {isProjectPage && (
           <motion.button
             key="nextButton"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
+            variants={buttonVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
             transition={buttonTransition}
           >
             {'PROJET SUIVANT >'}

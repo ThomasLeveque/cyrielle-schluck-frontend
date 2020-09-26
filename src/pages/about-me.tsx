@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { NextPage } from 'next';
 import { ThemeContext } from 'styled-components';
+import { motion } from 'framer-motion';
 
 import Layout from '@components/layout/layout';
 import CustomButton from '@components/custom-button/custom-button';
+import { stagger, itemVariants } from '@animations/global.animation';
 
 import { AboutMeStyles } from '@styles/pages/about-me.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
@@ -16,11 +18,14 @@ const AboutMe: NextPage<AboutMeProps> = () => {
 
   return (
     <Layout title="About me">
-      <AboutMeStyles>
-        <HeadingStyles as="h1" mb={50}>
-          <span>Cyrielle</span>,<br /> Designer UI<span>/</span>UX<span>.</span>
+      <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
+        <HeadingStyles as={motion.h1} variants={itemVariants} mb={50}>
+          <span>Cyrielle</span>,
+          <div>
+            Designer UI<span>/</span>UX<span>.</span>
+          </div>
         </HeadingStyles>
-        <PStyles letterSpacing={1} mb={theme.vars.lSpace}>
+        <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.lSpace}>
           Moi c’est Cyrielle, designer spécialisée en expérience et interface utilisateur.
           <br />
           Mes atouts :<br />
@@ -36,8 +41,10 @@ const AboutMe: NextPage<AboutMeProps> = () => {
           les dev);
           <br />- je parle l’anglais couramment.
         </PStyles>
-        <CustomButton text="Voir mon cv" />
-        <CustomButton text="Télécharger mon cv" />
+        <motion.div variants={itemVariants}>
+          <CustomButton text="Voir mon cv" />
+          <CustomButton text="Télécharger mon cv" />
+        </motion.div>
       </AboutMeStyles>
     </Layout>
   );
