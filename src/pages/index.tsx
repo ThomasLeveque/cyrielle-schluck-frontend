@@ -129,7 +129,9 @@ const Home: NextPage<HomeProps> = () => {
                 exit={exit}
               >
                 <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
-                  <motion.span variants={itemVariants}>Cyrielle</motion.span>,
+                  <motion.div variants={itemVariants}>
+                    <span>Cyrielle</span>,
+                  </motion.div>
                   <motion.div variants={itemVariants}>
                     Designer UI<span>/</span>UX<span>.</span>
                   </motion.div>

@@ -20,7 +20,9 @@ const AboutMe: NextPage<AboutMeProps> = () => {
     <Layout title="About me">
       <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
         <HeadingStyles mb={50}>
-          <motion.span variants={itemVariants}>Cyrielle</motion.span>,
+          <motion.div variants={itemVariants}>
+            <span>Cyrielle</span>,
+          </motion.div>
           <motion.div variants={itemVariants}>
             Designer UI<span>/</span>UX<span>.</span>
           </motion.div>
