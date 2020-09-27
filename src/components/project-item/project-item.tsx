@@ -26,6 +26,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             <PStyles
               source={fixhyphens(project.shortDesc)}
               as={ReactMarkdown}
+              escapeHtml={false}
               fontSize={16}
               lineHeight={22}
               color={theme.colors[project.textsColor]}

@@ -60,6 +60,14 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${(props) => props.theme.colors.lightGray};
     overscroll-behavior-y: none;
   }
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
   
   /* Remove all animations and transitions for people that prefer not to see them */
   @media (prefers-reduced-motion: reduce) {

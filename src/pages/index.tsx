@@ -24,7 +24,7 @@ import { IndexStyles } from '@styles/pages/index.styles';
 import { PStyles } from '@styles/texts/p.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 
-export const ALL_PROJECTS_QUERY = gql`
+const ALL_PROJECTS_QUERY = gql`
   query {
     projects {
       id
