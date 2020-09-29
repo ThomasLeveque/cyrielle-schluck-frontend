@@ -5,9 +5,11 @@ import { motion } from 'framer-motion';
 import { gql, useQuery } from '@apollo/client';
 import { initializeApollo } from '@lib/apolloClient';
 import ReactMarkdown from 'react-markdown';
+import { useInView } from 'react-intersection-observer';
 
 import Layout from '@components/layout/layout';
 import CustomButton from '@components/custom-button/custom-button';
+import RecoList from '@components/reco-list/reco-list';
 import { AboutMeData } from '@interfaces/about-me.interface';
 import { stagger, itemVariants } from '@animations/global.animation';
 
@@ -24,8 +26,10 @@ const ABOUT_ME_QUERY = gql`
       desc
       recos {
         ... on ComponentBlockReco {
+          id
           text
           source
+          sourceUrl
         }
       }
     }
@@ -40,6 +44,11 @@ const AboutMe: NextPage<AboutMeProps> = () => {
 
   const { aboutMe } = data as AboutMeData;
 
+  const { ref, inView } = useInView({
+    threshold: 0.8,
+    triggerOnce: true,
+  });
+
   return (
     <Layout title="About me">
       <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
@@ -49,13 +58,13 @@ const AboutMe: NextPage<AboutMeProps> = () => {
         />
         <HeadingStyles mb={50}>
           <motion.div variants={itemVariants}>
-            <span>Cyrielle</span>,
+            <span className="color-gray">Cyrielle</span>,
           </motion.div>
           <motion.div variants={itemVariants}>
-            Designer UI<span>/</span>UX<span>.</span>
+            Designer UI<span className="color-gray">/</span>UX<span className="color-gray">.</span>
           </motion.div>
         </HeadingStyles>
-        <motion.div variants={itemVariants}>
+        <motion.div className="about-me-desc" variants={itemVariants}>
           <PStyles as={ReactMarkdown} escapeHtml={false} letterSpacing={1} mb={theme.vars.lSpace}>
             {aboutMe.desc}
           </PStyles>
@@ -63,6 +72,9 @@ const AboutMe: NextPage<AboutMeProps> = () => {
         <motion.div variants={itemVariants}>
           <CustomButton text="Voir mon cv" />
           <CustomButton text="Télécharger mon cv" />
+        </motion.div>
+        <motion.div ref={ref} animate={inView ? 'animate' : 'initial'} variants={itemVariants}>
+          <RecoList recos={aboutMe.recos} />
         </motion.div>
       </AboutMeStyles>
     </Layout>

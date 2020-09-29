@@ -6,7 +6,7 @@ export const AboutMeStyles = styled.div`
     margin-bottom: ${(props) => props.theme.vars.mSpace}px;
   }
 
-  ul {
+  .about-me-desc ul {
     li {
       &:before {
         content: '- ';

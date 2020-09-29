@@ -15,7 +15,7 @@ export const HeadingStyles = styled.h1<HeadingStylesProps>`
   margin-bottom: ${(props) => props.mb}px;
   color: ${(props) => (props.color ? props.color : props.theme.colors.myBlack)};
 
-  span {
+  span.color-gray {
     color: ${(props) => props.theme.colors.gray};
   }
 `;

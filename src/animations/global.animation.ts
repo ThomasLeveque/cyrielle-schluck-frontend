@@ -1,10 +1,10 @@
 export const transition = { duration: 0.4, ease: 'easeOut' };
 
 export const itemVariants = {
-  initial: {
+  initial: (yValue: number) => ({
     opacity: 0,
-    y: 20,
-  },
+    y: yValue || 20,
+  }),
   animate: {
     opacity: 1,
     y: 0,
@@ -12,10 +12,20 @@ export const itemVariants = {
   },
 };
 
-export const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
+export const letterVariants = {
+  initial: {
+    opacity: 0,
   },
+  animate: {
+    opacity: 1,
+    transition: { duration: 0 },
+  },
+};
+
+export const stagger = {
+  animate: (staggerValue: number) => ({
+    transition: {
+      staggerChildren: staggerValue || 0.1,
+    },
+  }),
 };

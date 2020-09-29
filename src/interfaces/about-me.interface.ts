@@ -10,7 +10,9 @@ export interface AboutMeData {
   aboutMe: AboutMe;
 }
 
-interface Reco {
+export interface Reco {
+  id: string;
   text: string;
   source: string;
+  sourceUrl?: string;
 }
