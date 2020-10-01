@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import { ThemeContext } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
 import { Project } from '@interfaces/project.interface';
 import { fixhyphens } from '@utils/text.util';
+import { transition } from '@animations/global.animation';
 
 import { ProjectItemStyles } from './project-item.styles';
 import { PStyles } from '@styles/texts/p.styles';
@@ -16,8 +19,21 @@ interface ProjectItemProps {
 const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   const theme = useContext(ThemeContext);
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
   return (
-    <ProjectItemStyles bgColor={project.color} textsColor={project.textsColor}>
+    <ProjectItemStyles
+      ref={ref}
+      as={motion.li}
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 20 }}
+      transition={transition}
+      bgColor={project.color}
+      textsColor={project.textsColor}
+    >
       <Link href="projects/[projectId]" as={`projects/${project.id}`}>
         <a>
           <div>
