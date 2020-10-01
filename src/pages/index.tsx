@@ -87,75 +87,78 @@ const Home: NextPage<HomeProps> = () => {
   return (
     <Layout title="Home">
       <IndexStyles as={motion.section}>
-        {entry && (
-          <AnimatePresence exitBeforeEnter>
-            {entry?.isIntersecting ? (
-              <motion.div
-                className="infos"
-                key="secondaryInfos"
-                animate="animate"
-                initial="initial"
-                variants={stagger}
-                exit={exit}
-              >
-                <HeadingStyles
-                  as={motion.h2}
-                  variants={itemVariants}
-                  fontSize={60}
-                  lineHeight={84}
-                  mb={50}
+        <div className="infos">
+          {entry && (
+            <AnimatePresence exitBeforeEnter>
+              {entry?.isIntersecting ? (
+                <motion.div
+                  key="secondaryInfos"
+                  animate="animate"
+                  initial="initial"
+                  variants={stagger}
+                  exit={exit}
                 >
-                  Projets identité visuelle et packaging
-                </HeadingStyles>
-                <PStyles
-                  as={motion.p}
-                  variants={itemVariants}
-                  letterSpacing={1}
-                  mb={theme.vars.lSpace}
-                >
-                  Un master en design graphique a ajouté d’autres cordes à mon arc.
-                </PStyles>
-                <motion.div variants={itemVariants}>
-                  <CustomButton text="En savoir plus" onClick={() => router.push('/about-me')} />
-                </motion.div>
-              </motion.div>
-            ) : (
-              <motion.div
-                className="infos"
-                key="mainInfos"
-                animate="animate"
-                initial="initial"
-                variants={stagger}
-                exit={exit}
-              >
-                <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
-                  <motion.div variants={itemVariants}>
-                    <span className="color-gray">Cyrielle</span>,
-                  </motion.div>
-                  <motion.div variants={itemVariants}>
-                    Designer UI<span className="color-gray">/</span>UX
-                    <span className="color-gray">.</span>
-                  </motion.div>
-                </HeadingStyles>
-                <motion.div style={{ y: yDesc }}>
+                  <HeadingStyles
+                    as={motion.h2}
+                    variants={itemVariants}
+                    fontSize={60}
+                    lineHeight={84}
+                    mb={50}
+                  >
+                    Projets identité visuelle et packaging
+                  </HeadingStyles>
                   <PStyles
                     as={motion.p}
                     variants={itemVariants}
                     letterSpacing={1}
                     mb={theme.vars.lSpace}
                   >
-                    Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au
-                    centre de mon travail ergonomique et graphique afin de lui assurer la meilleure
-                    expérience possible.
+                    Un master en design graphique a ajouté d’autres cordes à mon arc.
                   </PStyles>
                   <motion.div variants={itemVariants}>
                     <CustomButton text="En savoir plus" onClick={() => router.push('/about-me')} />
                   </motion.div>
                 </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        )}
+              ) : (
+                <motion.div
+                  key="mainInfos"
+                  animate="animate"
+                  initial="initial"
+                  variants={stagger}
+                  exit={exit}
+                >
+                  <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
+                    <motion.div variants={itemVariants}>
+                      <span className="color-gray">Cyrielle</span>,
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
+                      Designer UI<span className="color-gray">/</span>UX
+                      <span className="color-gray">.</span>
+                    </motion.div>
+                  </HeadingStyles>
+                  <motion.div style={{ y: yDesc }}>
+                    <PStyles
+                      as={motion.p}
+                      variants={itemVariants}
+                      letterSpacing={1}
+                      mb={theme.vars.lSpace}
+                    >
+                      Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au
+                      centre de mon travail ergonomique et graphique afin de lui assurer la
+                      meilleure expérience possible.
+                    </PStyles>
+                    <motion.div variants={itemVariants}>
+                      <CustomButton
+                        text="En savoir plus"
+                        onClick={() => router.push('/about-me')}
+                      />
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
+        </div>
         <ProjectList
           projects={projects.filter(
             ({ category }: Project) =>
