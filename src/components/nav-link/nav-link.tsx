@@ -17,7 +17,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   }
 
   return (
-    <Link href={href}>
+    <Link href={href} scroll={false}>
       <NavLinkAStyles className={className}>
         {children}
         <span />
