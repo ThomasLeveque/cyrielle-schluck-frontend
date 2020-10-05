@@ -18,3 +18,7 @@ export interface Project {
 export interface ProjectsData {
   projects: Project[];
 }
+
+export interface ProjectData {
+  projectBySlug: Project;
+}

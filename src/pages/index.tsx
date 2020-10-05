@@ -24,7 +24,7 @@ import { IndexStyles } from '@styles/pages/index.styles';
 import { PStyles } from '@styles/texts/p.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 
-const ALL_PROJECTS_QUERY = gql`
+export const ALL_PROJECTS_QUERY = gql`
   query {
     projects {
       id
@@ -47,10 +47,12 @@ const ALL_PROJECTS_QUERY = gql`
 
 const exit = { opacity: 0, transition: { ...transition, duration: 0.2 } };
 
-interface HomeProps {}
+interface HomePageProps {}
 
-const Home: NextPage<HomeProps> = () => {
-  const { data } = useQuery<ProjectsData>(ALL_PROJECTS_QUERY);
+const HomePage: NextPage<HomePageProps> = () => {
+  const { data, loading } = useQuery<ProjectsData>(ALL_PROJECTS_QUERY);
+  const projects = data?.projects as Project[];
+
   const router = useRouter();
   const theme = useContext(ThemeContext);
 
@@ -67,8 +69,6 @@ const Home: NextPage<HomeProps> = () => {
   const yH1: MotionValue = useTransform(scrollY, [minScrollY, maxScrollY], [0, maxYH1]);
   const yDesc = useTransform(scrollY, [minScrollY, maxScrollY], [0, maxYDesc]);
 
-  const { projects } = data as ProjectsData;
-
   const handleInitialStyle = () => {
     const initialScaleH1 = transform(window.scrollY, [minScrollY, maxScrollY], [1, maxScaleH1]);
     const initialyH1 = transform(window.scrollY, [minScrollY, maxScrollY], [0, maxYH1]);
@@ -83,6 +83,10 @@ const Home: NextPage<HomeProps> = () => {
     trackVisibility: true,
     delay: 100,
   });
+
+  if (loading) {
+    return <Layout title="Loading...">Loading...</Layout>;
+  }
 
   return (
     <Layout title="Home">
@@ -189,4 +193,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Home;
+export default HomePage;

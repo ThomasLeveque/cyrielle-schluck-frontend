@@ -36,9 +36,9 @@ const ABOUT_ME_QUERY = gql`
   }
 `;
 
-interface AboutMeProps {}
+interface AboutMePageProps {}
 
-const AboutMe: NextPage<AboutMeProps> = () => {
+const AboutMePage: NextPage<AboutMePageProps> = () => {
   const { data } = useQuery<AboutMeData>(ABOUT_ME_QUERY);
   const theme = useContext(ThemeContext);
 
@@ -96,4 +96,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default AboutMe;
+export default AboutMePage;

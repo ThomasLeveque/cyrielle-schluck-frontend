@@ -78,4 +78,12 @@ export const GlobalStyles = createGlobalStyle`
       scroll-behavior: auto !important;
     }
   }
+
+  .with-text-list {
+    li {
+      &:before {
+        content: '- ';
+      }
+    }
+  }
 `;

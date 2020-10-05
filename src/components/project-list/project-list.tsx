@@ -13,7 +13,7 @@ const ProjectList = React.forwardRef<HTMLUListElement, ProjectListProps>(({ proj
   return (
     <ProjectListStyles ref={ref}>
       {projects.map((project: Project) => (
-        <ProjectItem project={project} key={project.id} />
+        <ProjectItem project={project} key={project.slug} />
       ))}
     </ProjectListStyles>
   );

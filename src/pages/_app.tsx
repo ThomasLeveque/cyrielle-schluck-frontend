@@ -29,7 +29,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps): JSX.Element => {
         <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
           <Component key={router.route} {...pageProps} />
         </AnimatePresence>
-        <Footer isProjectPage={router.route.includes('projects')} />
+        <Footer />
       </ApolloProvider>
     </ThemeProvider>
   );

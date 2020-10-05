@@ -34,7 +34,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       bgColor={project.color}
       textsColor={project.textsColor}
     >
-      <Link href="projects/[projectId]" as={`projects/${project.id}`}>
+      <Link href={project.slug}>
         <a>
           <div>
             <h4>{project.category?.name}</h4>

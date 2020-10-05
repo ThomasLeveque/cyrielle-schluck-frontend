@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 
 import { FooterStyles } from './footer.styles';
@@ -11,15 +12,16 @@ const buttonVariants: Variants = {
 
 const buttonTransition = { ease: 'easeOut', duration: 0.3 };
 
-interface footerProps {
-  isProjectPage?: boolean;
-}
+interface footerProps {}
 
-const Footer: React.FC<footerProps> = ({ isProjectPage = false }) => {
+const Footer: React.FC<footerProps> = () => {
+  const router = useRouter();
+  const { projectSlug } = router.query;
+
   return (
     <FooterStyles>
       <AnimatePresence>
-        {isProjectPage && (
+        {projectSlug && (
           <motion.button
             key="prevButton"
             variants={buttonVariants}
@@ -34,7 +36,7 @@ const Footer: React.FC<footerProps> = ({ isProjectPage = false }) => {
         <p>
           <span>Contactez-moi :</span> cyrielle.schluck@gmail.com
         </p>
-        {isProjectPage && (
+        {projectSlug && (
           <motion.button
             key="nextButton"
             variants={buttonVariants}
