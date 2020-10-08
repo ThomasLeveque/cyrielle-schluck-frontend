@@ -17,7 +17,7 @@ const PROJECT_QUERY = gql`
       id
       name
       shortDesc
-      desc
+      description
       color
       slug
       textsColor
@@ -27,6 +27,25 @@ const PROJECT_QUERY = gql`
       category {
         name
         slug
+      }
+      projectSteps {
+        ... on ComponentBlockProjectStep {
+          title
+          subtitle
+          description
+          bgColor
+          stepItems {
+            title
+            grid
+            itemImages {
+              size
+              grid
+              image {
+                url
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -44,6 +63,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   });
 
   const project = data?.projectBySlug as Project;
+  console.log(project);
 
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;

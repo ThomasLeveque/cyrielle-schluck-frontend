@@ -4,15 +4,39 @@ import { Image } from './image.interface';
 export type textsColorType = 'myWhite' | 'myBlack';
 
 export interface Project {
-  id?: string;
+  id: string;
   name: string;
   shortDesc: string;
-  desc: string;
+  description: string;
   slug: string;
   textsColor: textsColorType;
-  category: Category;
+  category?: Category;
   image: Image;
   color: string;
+  projectSteps: ProjectStep[];
+}
+
+interface ProjectStep {
+  id: string;
+  title: string;
+  subtitle: string;
+  description?: string;
+  bgColor?: string;
+  stepItems: StepItem[];
+}
+
+interface StepItem {
+  id: string;
+  title?: string;
+  grid: number;
+  itemImages: ItemImage[];
+}
+
+interface ItemImage {
+  id: string;
+  grid?: number;
+  size?: number;
+  image: Image;
 }
 
 export interface ProjectsData {

@@ -52,10 +52,12 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
   return (
     <Layout title="About me">
       <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
-        <motion.img
-          variants={itemVariants}
-          src={`${process.env.NEXT_PUBLIC_API_URL}${aboutMe.image.url}`}
-        />
+        {aboutMe.image && (
+          <motion.img
+            variants={itemVariants}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${aboutMe.image.url}`}
+          />
+        )}
         <HeadingStyles mb={50}>
           <motion.div variants={itemVariants}>
             <span className="color-gray">Cyrielle</span>,
@@ -73,9 +75,11 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
           <CustomButton text="Voir mon cv" />
           <CustomButton text="Télécharger mon cv" />
         </motion.div>
-        <motion.div ref={ref} animate={inView ? 'animate' : 'initial'} variants={itemVariants}>
-          <RecoList recos={aboutMe.recos} />
-        </motion.div>
+        {aboutMe.recos.length > 0 && (
+          <motion.div ref={ref} animate={inView ? 'animate' : 'initial'} variants={itemVariants}>
+            <RecoList recos={aboutMe.recos} />
+          </motion.div>
+        )}
       </AboutMeStyles>
     </Layout>
   );
