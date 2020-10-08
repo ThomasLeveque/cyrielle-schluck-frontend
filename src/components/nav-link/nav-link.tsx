@@ -6,9 +6,10 @@ import { NavLinkAStyles } from './nav-link.styles';
 
 interface NavLinkProps {
   href: string;
+  as?: string;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
+const NavLink: React.FC<NavLinkProps> = ({ href, as, children }) => {
   const router = useRouter();
 
   let className = '';
@@ -17,7 +18,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   }
 
   return (
-    <Link href={href} scroll={false}>
+    <Link href={href} as={as} scroll={false}>
       <NavLinkAStyles className={className}>
         {children}
         <span />
