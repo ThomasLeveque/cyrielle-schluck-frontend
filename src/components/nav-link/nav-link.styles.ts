@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const NavLinkAStyles = styled.a`
   font-size: 14px;
-  color: ${(props) => props.theme.colors.myBlack};
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -25,6 +24,6 @@ export const NavLinkAStyles = styled.a`
     height: 1px;
     width: 100%;
     background-color: ${(props) => props.theme.colors.myBlack};
-    transition: 0.5s ease-out;
+    transition: transform 0.5s ease-out;
   }
 `;

@@ -3,10 +3,15 @@ import React from 'react';
 import NavLink from '@components/nav-link/nav-link';
 
 import { NavStyles } from './nav.styles';
+import { textsColorType } from '@interfaces/project.interface';
 
-const Nav: React.FC = () => {
+interface NavProps {
+  textsColor: textsColorType;
+}
+
+const Nav: React.FC<NavProps> = ({ textsColor }) => {
   return (
-    <NavStyles>
+    <NavStyles textsColor={textsColor}>
       <NavLink href="/">PROJETS</NavLink>
       <NavLink href="/about-me">+ SUR MOI</NavLink>
     </NavStyles>

@@ -66,7 +66,7 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
             Designer UI<span className="color-gray">/</span>UX<span className="color-gray">.</span>
           </motion.div>
         </HeadingStyles>
-        <motion.div className="about-me-desc" variants={itemVariants}>
+        <motion.div className="with-text-list" variants={itemVariants}>
           <PStyles as={ReactMarkdown} escapeHtml={false} letterSpacing={1} mb={theme.vars.xlSpace}>
             {aboutMe.desc}
           </PStyles>

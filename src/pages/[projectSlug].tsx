@@ -102,7 +102,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query({
+  const { data } = await apolloClient.query<ProjectData>({
     query: PROJECT_QUERY,
     variables: { projectSlug: params?.projectSlug },
   });
@@ -111,6 +111,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       projectSlug: params?.projectSlug,
+      textsColor: data.projectBySlug.textsColor,
     },
     revalidate: 1,
   };
