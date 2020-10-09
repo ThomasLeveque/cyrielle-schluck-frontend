@@ -67,7 +67,7 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
           </motion.div>
         </HeadingStyles>
         <motion.div className="about-me-desc" variants={itemVariants}>
-          <PStyles as={ReactMarkdown} escapeHtml={false} letterSpacing={1} mb={theme.vars.lSpace}>
+          <PStyles as={ReactMarkdown} escapeHtml={false} letterSpacing={1} mb={theme.vars.xlSpace}>
             {aboutMe.desc}
           </PStyles>
         </motion.div>

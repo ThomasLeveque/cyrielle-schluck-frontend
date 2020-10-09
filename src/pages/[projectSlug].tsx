@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { GetStaticProps, GetStaticPaths, GetStaticPathsResult, NextPage } from 'next';
-import { useRouter } from 'next/router';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
+import { rgba } from 'polished';
 
 import Layout from '@components/layout/layout';
 import { ProjectData, ProjectsData, Project } from '@interfaces/project.interface';
@@ -10,6 +10,7 @@ import { initializeApollo } from '@lib/apolloClient';
 import { ALL_PROJECTS_QUERY } from '.';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
+import { ProjectStyles } from '@styles/pages/project.styles';
 
 const PROJECT_QUERY = gql`
   query GetProject($projectSlug: String!) {
@@ -63,7 +64,6 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   });
 
   const project = data?.projectBySlug as Project;
-  console.log(project);
 
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
@@ -71,9 +71,30 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
 
   return (
     <Layout title={project.name}>
-      <HeadingStyles as="h1" fontSize={60} lineHeight={70} mb={0} color={theme.colors.myBlack}>
-        {project.name}
-      </HeadingStyles>
+      <ProjectStyles bgColor={project.color}>
+        <header className="full-width">
+          <HeadingStyles
+            as="h2"
+            fontSize={28}
+            lineHeight={34}
+            isUppercase
+            color={rgba(theme.colors.black, 0.15)}
+            fontFamily={theme.fonts.mainFont}
+            mb={5}
+          >
+            {project.category?.name}
+          </HeadingStyles>
+          <HeadingStyles
+            as="h1"
+            fontSize={80}
+            lineHeight={100}
+            mb={0}
+            color={theme.colors[project.textsColor]}
+          >
+            {project.name}
+          </HeadingStyles>
+        </header>
+      </ProjectStyles>
     </Layout>
   );
 };

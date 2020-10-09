@@ -2,15 +2,15 @@ import React from 'react';
 
 import NavLink from '@components/nav-link/nav-link';
 
-import { HeaderStyles } from './header.styles';
+import { NavStyles } from './nav.styles';
 
-const Header: React.FC = () => {
+const Nav: React.FC = () => {
   return (
-    <HeaderStyles>
+    <NavStyles>
       <NavLink href="/">PROJETS</NavLink>
       <NavLink href="/about-me">+ SUR MOI</NavLink>
-    </HeaderStyles>
+    </NavStyles>
   );
 };
 
-export default Header;
+export default Nav;

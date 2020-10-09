@@ -86,4 +86,11 @@ export const GlobalStyles = createGlobalStyle`
       }
     }
   }
+
+  .full-width {
+    margin-left: -${(props) => props.theme.vars.xlSpace}px;
+    margin-right: -${(props) => props.theme.vars.xlSpace}px;
+    padding-left: ${(props) => props.theme.vars.xlSpace}px;
+    padding-right: ${(props) => props.theme.vars.xlSpace}px;
+  }
 `;

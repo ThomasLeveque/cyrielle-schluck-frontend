@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import { rgba } from 'polished';
 
 import { fixHexaColor } from '@utils/color.util';
-import { textsColorType } from '@interfaces/project.interface';
 
 interface ProjectItemStylesProps {
   bgColor: string;
-  textsColor: textsColorType;
 }
 
 export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
@@ -27,23 +24,6 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
 
     > div {
       padding-left: 40px;
-
-      h4 {
-        font-size: 18px;
-        line-height: 21px;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: ${(props) => rgba(props.theme.colors.black, 0.15)};
-        margin-bottom: 10px;
-      }
-
-      h3 {
-        font-size: 30px;
-        line-height: 34px;
-        font-family: ${(props) => props.theme.fonts.secondaryFont};
-        color: ${(props) => props.theme.colors[props.textsColor]};
-        margin-bottom: 20px;
-      }
     }
 
     img {

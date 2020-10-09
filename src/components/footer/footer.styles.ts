@@ -19,7 +19,7 @@ export const FooterStyles = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 ${(props) => props.theme.vars.mSpace}px;
+  padding: 0 ${(props) => props.theme.vars.lSpace}px;
 
   button {
     font-size: 14px;

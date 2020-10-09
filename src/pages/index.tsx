@@ -60,7 +60,7 @@ const HomePage: NextPage<HomePageProps> = () => {
   const maxScrollY = 280;
   const maxScaleH1 = 0.58;
   const maxYH1 = -100;
-  const maxYDesc = maxYH1 - theme.vars.lSpace + theme.vars.mSpace;
+  const maxYDesc = maxYH1 - theme.vars.xlSpace + theme.vars.lSpace;
 
   useEffect(() => handleInitialStyle(), []);
 
@@ -115,7 +115,7 @@ const HomePage: NextPage<HomePageProps> = () => {
                     as={motion.p}
                     variants={itemVariants}
                     letterSpacing={1}
-                    mb={theme.vars.lSpace}
+                    mb={theme.vars.xlSpace}
                   >
                     Un master en design graphique a ajouté d’autres cordes à mon arc.
                   </PStyles>
@@ -145,7 +145,7 @@ const HomePage: NextPage<HomePageProps> = () => {
                       as={motion.p}
                       variants={itemVariants}
                       letterSpacing={1}
-                      mb={theme.vars.lSpace}
+                      mb={theme.vars.xlSpace}
                     >
                       Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au
                       centre de mon travail ergonomique et graphique afin de lui assurer la

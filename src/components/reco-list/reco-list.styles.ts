@@ -6,7 +6,7 @@ const borderSize = 90;
 interface RecoListStylesProps {}
 
 export const RecoListStyles = styled.ul<RecoListStylesProps>`
-  margin-top: ${(props) => props.theme.vars.lSpace}px;
+  margin-top: ${(props) => props.theme.vars.xlSpace}px;
   padding: 20px;
   text-align: center;
   position: relative;

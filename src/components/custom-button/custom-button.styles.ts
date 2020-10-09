@@ -19,7 +19,7 @@ export const CustomButtonStyles = styled.button<CustomButtonStylesProps>`
   position: relative;
 
   &:not(:first-of-type) {
-    margin-left: ${(props) => props.theme.vars.mSpace}px;
+    margin-left: ${(props) => props.theme.vars.lSpace}px;
   }
 
   &:hover {

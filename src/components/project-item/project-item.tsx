@@ -4,6 +4,7 @@ import { ThemeContext } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
+import { rgba } from 'polished';
 
 import { Project } from '@interfaces/project.interface';
 import { fixhyphens } from '@utils/text.util';
@@ -11,6 +12,7 @@ import { transition } from '@animations/global.animation';
 
 import { ProjectItemStyles } from './project-item.styles';
 import { PStyles } from '@styles/texts/p.styles';
+import { HeadingStyles } from '@styles/texts/heading.styles';
 
 interface ProjectItemProps {
   project: Project;
@@ -32,13 +34,30 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 20 }}
       transition={transition}
       bgColor={project.color}
-      textsColor={project.textsColor}
     >
       <Link href="/[projectSlug]" as={`/${project.slug}`} scroll={false}>
         <a>
           <div>
-            <h4>{project.category?.name}</h4>
-            <h3>{project.name}</h3>
+            <HeadingStyles
+              as="h4"
+              fontSize={18}
+              lineHeight={21}
+              mb={10}
+              isUppercase
+              color={rgba(theme.colors.black, 0.15)}
+              fontFamily={theme.fonts.mainFont}
+            >
+              {project.category?.name}
+            </HeadingStyles>
+            <HeadingStyles
+              as="h3"
+              fontSize={30}
+              lineHeight={34}
+              mb={20}
+              color={theme.colors[project.textsColor]}
+            >
+              {project.name}
+            </HeadingStyles>
             <PStyles
               source={fixhyphens(project.shortDesc)}
               as={ReactMarkdown}

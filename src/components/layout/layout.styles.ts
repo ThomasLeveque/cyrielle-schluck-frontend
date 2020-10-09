@@ -5,6 +5,6 @@ export const LayoutStyles = styled.main`
   max-width: 100%;
   width: ${(props) => props.theme.vars.appMaxWidth}px;
   margin: 0 auto;
-  padding: 0 ${(props) => props.theme.vars.lSpace}px
-    ${(props) => math(`${props.theme.vars.mSpace}px + ${props.theme.vars.footerHeight}px`)};
+  padding: 0 ${(props) => props.theme.vars.xlSpace}px
+    ${(props) => math(`${props.theme.vars.lSpace}px + ${props.theme.vars.footerHeight}px`)};
 `;

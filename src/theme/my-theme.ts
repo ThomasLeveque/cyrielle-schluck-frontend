@@ -17,10 +17,14 @@ const myTheme: DefaultTheme = {
   vars: {
     footerHeight: 60,
     footerBorderSize: 4,
-    lSpace: 90,
-    mSpace: 50,
+    xlSpace: 90,
+    lSpace: 50,
+    mSpace: 40,
+    xSpace: 30,
+    xsSpace: 20,
     bodyFontSize: 16,
     appMaxWidth: 1440,
+    topLayoutPadding: 150,
   },
 };
 

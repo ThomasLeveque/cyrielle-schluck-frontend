@@ -6,12 +6,13 @@ export const IndexStyles = styled.section`
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  padding-top: ${(props) => props.theme.vars.topLayoutPadding}px;
 
   .infos {
     position: sticky;
     width: ${infosWidth};
     align-self: flex-start;
-    top: ${(props) => props.theme.vars.mSpace}px;
+    top: ${(props) => props.theme.vars.lSpace}px;
 
     h1 {
       transform-origin: bottom left;
@@ -24,10 +25,10 @@ export const IndexStyles = styled.section`
 
   ul {
     width: 60%;
-    padding-left: ${(props) => props.theme.vars.lSpace}px;
+    padding-left: ${(props) => props.theme.vars.xlSpace}px;
 
     &:first-of-type {
-      margin-top: ${(props) => `calc(248px + ${props.theme.vars.lSpace}px)`};
+      margin-top: ${(props) => `calc(248px + ${props.theme.vars.xlSpace}px)`};
       margin-bottom: 145px;
     }
 
