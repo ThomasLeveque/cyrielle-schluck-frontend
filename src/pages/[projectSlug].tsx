@@ -122,6 +122,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               color={theme.colors[project.textsColor]}
             />
           </div>
+          <img src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`} />
         </header>
       </ProjectStyles>
     </Layout>

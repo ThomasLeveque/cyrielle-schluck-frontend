@@ -61,6 +61,10 @@ export const GlobalStyles = createGlobalStyle`
     overscroll-behavior-y: none;
   }
 
+  img {
+    display: block;
+  }
+
   strong {
     font-weight: 700;
   }
