@@ -58,7 +58,7 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
             src={`${process.env.NEXT_PUBLIC_API_URL}${aboutMe.image.url}`}
           />
         )}
-        <HeadingStyles mb={50}>
+        <HeadingStyles mb={theme.vars.lSpace}>
           <motion.div variants={itemVariants}>
             <span className="color-gray">Cyrielle</span>,
           </motion.div>

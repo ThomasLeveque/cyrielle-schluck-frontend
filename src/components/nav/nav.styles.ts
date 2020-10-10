@@ -10,7 +10,7 @@ export const NavStyles = styled.nav<NavStylesProps>`
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  top: 40px;
+  top: ${(props) => props.theme.vars.mSpace}px;
   z-index: 1000;
   left: ${(props) => props.theme.vars.lSpace}px;
   right: ${(props) => props.theme.vars.lSpace}px;

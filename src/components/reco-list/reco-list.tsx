@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { ThemeContext } from 'styled-components';
 
 import RecoItem from '@components/reco-item/reco-item';
 import { Reco } from '@interfaces/about-me.interface';
@@ -12,6 +13,7 @@ interface RecoListProps {
 }
 
 const RecoList = React.forwardRef<HTMLUListElement, RecoListProps>(({ recos }, ref) => {
+  const theme = useContext(ThemeContext);
   const [activeRecoIndex, setActiveRecoIndex] = useState<number>(0);
   const reco: Reco = recos[activeRecoIndex];
   const letterStagger = 0.05;
@@ -41,7 +43,7 @@ const RecoList = React.forwardRef<HTMLUListElement, RecoListProps>(({ recos }, r
       <div className="border border-left"></div>
       <div className="border border-bottom"></div>
       <div className="border border-right"></div>
-      <HeadingStyles as="h2" fontSize={28} lineHeight={34} mb={30}>
+      <HeadingStyles as="h2" fontSize={28} lineHeight={34} mb={theme.vars.xSpace}>
         ce qu’on dit de moi
       </HeadingStyles>
       <AnimatePresence exitBeforeEnter>

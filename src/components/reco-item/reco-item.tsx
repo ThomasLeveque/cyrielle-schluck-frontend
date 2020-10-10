@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
+import { ThemeContext } from 'styled-components';
 
 import { Reco } from '@interfaces/about-me.interface';
 
@@ -14,6 +15,8 @@ interface RecoItemProps {
 }
 
 const RecoItem: React.FC<RecoItemProps> = ({ reco, letterStagger }) => {
+  const theme = useContext(ThemeContext);
+
   const handleSourceClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
     event.preventDefault();
     if (!reco.sourceUrl) {
@@ -38,7 +41,7 @@ const RecoItem: React.FC<RecoItemProps> = ({ reco, letterStagger }) => {
         custom={letterStagger}
         fontSize={28}
         lineHeight={40}
-        mb={30}
+        mb={theme.vars.xSpace}
       >
         <motion.span variants={letterVariants} className="quote color-gray">
           «

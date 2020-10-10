@@ -16,7 +16,7 @@ export interface Project {
   projectSteps: ProjectStep[];
 }
 
-interface ProjectStep {
+export interface ProjectStep {
   id: string;
   title: string;
   subtitle: string;
@@ -25,14 +25,14 @@ interface ProjectStep {
   stepItems: StepItem[];
 }
 
-interface StepItem {
+export interface StepItem {
   id: string;
   title?: string;
   grid: number;
   itemImages: ItemImage[];
 }
 
-interface ItemImage {
+export interface ItemImage {
   id: string;
   grid?: number;
   size?: number;

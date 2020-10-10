@@ -12,7 +12,7 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
   width: 100%;
 
   &:not(:last-child) {
-    margin-bottom: 30px;
+    margin-bottom: ${(props) => props.theme.vars.xSpace}px;
   }
 
   a {
@@ -23,7 +23,7 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
     align-items: center;
 
     > div {
-      padding-left: 40px;
+      padding-left: ${(props) => props.theme.vars.mSpace}px;
     }
 
     img {

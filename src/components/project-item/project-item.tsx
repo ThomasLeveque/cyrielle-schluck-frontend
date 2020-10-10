@@ -53,7 +53,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
               as="h3"
               fontSize={30}
               lineHeight={34}
-              mb={20}
+              mb={theme.vars.xsSpace}
               color={theme.colors[project.textsColor]}
             >
               {project.name}

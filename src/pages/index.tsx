@@ -107,7 +107,7 @@ const HomePage: NextPage<HomePageProps> = () => {
                     variants={itemVariants}
                     fontSize={60}
                     lineHeight={84}
-                    mb={50}
+                    mb={theme.vars.lSpace}
                   >
                     Projets identité visuelle et packaging
                   </HeadingStyles>

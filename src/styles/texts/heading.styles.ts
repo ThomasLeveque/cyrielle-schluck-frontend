@@ -15,7 +15,7 @@ export const HeadingStyles = styled.h1<HeadingStylesProps>`
   font-weight: ${(props) => props.fontWeight};
   font-size: ${(props) => props.fontSize}px;
   line-height: ${(props) => props.lineHeight}px;
-  margin-bottom: ${(props) => props.mb}px;
+  margin-bottom: ${(props) => props.mb || props.theme.vars.xlSpace}px;
   color: ${(props) => (props.color ? props.color : props.theme.colors.myBlack)};
   text-transform: ${(props) => (props.isUppercase ? 'uppercase' : 'initial')};
 
@@ -27,7 +27,6 @@ export const HeadingStyles = styled.h1<HeadingStylesProps>`
 HeadingStyles.defaultProps = {
   fontSize: 100,
   lineHeight: 124,
-  mb: 90,
   fontWeight: 700,
   isUppercase: false,
 };
