@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths, GetStaticPathsResult, NextPage } from '
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
 import { rgba } from 'polished';
+import ReactMarkdown from 'react-markdown';
 
 import Layout from '@components/layout/layout';
 import { ProjectData, ProjectsData, Project } from '@interfaces/project.interface';
@@ -11,12 +12,15 @@ import { ALL_PROJECTS_QUERY } from '.';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { ProjectStyles } from '@styles/pages/project.styles';
+import { PStyles } from '@styles/texts/p.styles';
 
 const PROJECT_QUERY = gql`
   query GetProject($projectSlug: String!) {
     projectBySlug(slug: $projectSlug) {
       id
       name
+      isShortName
+      formatedName
       shortDesc
       description
       color
@@ -73,26 +77,51 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
     <Layout title={project.name}>
       <ProjectStyles bgColor={project.color}>
         <header className="full-width">
-          <HeadingStyles
-            as="h2"
-            fontSize={28}
-            lineHeight={34}
-            isUppercase
-            color={rgba(theme.colors.black, 0.15)}
-            fontFamily={theme.fonts.mainFont}
-            mb={5}
-          >
-            {project.category?.name}
-          </HeadingStyles>
-          <HeadingStyles
-            as="h1"
-            fontSize={80}
-            lineHeight={100}
-            mb={0}
-            color={theme.colors[project.textsColor]}
-          >
-            {project.name}
-          </HeadingStyles>
+          <div className="header-texts">
+            <div className="header-texts-headings">
+              <HeadingStyles
+                as="h2"
+                fontSize={28}
+                lineHeight={34}
+                isUppercase
+                color={rgba(theme.colors.black, 0.15)}
+                fontFamily={theme.fonts.mainFont}
+                mb={5}
+              >
+                {project.category?.name}
+              </HeadingStyles>
+
+              {project.formatedName ? (
+                <HeadingStyles
+                  source={project.formatedName}
+                  as={ReactMarkdown}
+                  escapeHtml={false}
+                  fontSize={project.isShortName ? 80 : 60}
+                  lineHeight={project.isShortName ? 100 : 70}
+                  mb={0}
+                  color={theme.colors[project.textsColor]}
+                />
+              ) : (
+                <HeadingStyles
+                  as="h1"
+                  fontSize={project.isShortName ? 80 : 60}
+                  lineHeight={project.isShortName ? 100 : 70}
+                  mb={0}
+                  color={theme.colors[project.textsColor]}
+                >
+                  {project.name}
+                </HeadingStyles>
+              )}
+            </div>
+            <PStyles
+              source={project.description}
+              as={ReactMarkdown}
+              escapeHtml={false}
+              fontSize={16}
+              lineHeight={28}
+              color={theme.colors[project.textsColor]}
+            />
+          </div>
         </header>
       </ProjectStyles>
     </Layout>

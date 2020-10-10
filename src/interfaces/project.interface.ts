@@ -6,6 +6,8 @@ export type textsColorType = 'myWhite' | 'myBlack';
 export interface Project {
   id: string;
   name: string;
+  isShortName: boolean;
+  formatedName?: string;
   shortDesc: string;
   description: string;
   slug: string;

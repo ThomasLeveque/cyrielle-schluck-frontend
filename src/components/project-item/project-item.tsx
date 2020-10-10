@@ -65,7 +65,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
               fontSize={16}
               lineHeight={22}
               color={theme.colors[project.textsColor]}
-            ></PStyles>
+            />
           </div>
           <img src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`} />
         </a>
