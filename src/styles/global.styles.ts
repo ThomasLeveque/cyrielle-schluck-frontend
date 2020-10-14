@@ -65,6 +65,11 @@ export const GlobalStyles = createGlobalStyle`
     display: block;
   }
 
+  hr {
+    margin: 0;
+    padding: 0;
+  }
+
   strong {
     font-weight: 700;
   }
@@ -96,5 +101,15 @@ export const GlobalStyles = createGlobalStyle`
     margin-right: -${(props) => props.theme.vars.xlSpace}px;
     padding-left: ${(props) => props.theme.vars.xlSpace}px;
     padding-right: ${(props) => props.theme.vars.xlSpace}px;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -${(props) => props.theme.vars.gridGap / 2}px;
+  }
+
+  .row {
+    padding: ${(props) => props.theme.vars.gridGap / 2}px;
   }
 `;

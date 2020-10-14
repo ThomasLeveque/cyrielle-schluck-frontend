@@ -6,6 +6,7 @@ interface PStylesProps {
   lineHeight?: number;
   letterSpacing?: number;
   mb?: number;
+  mt?: number;
 }
 
 export const PStyles = styled.p<PStylesProps>`
@@ -14,6 +15,7 @@ export const PStyles = styled.p<PStylesProps>`
   line-height: ${(props) => props.lineHeight}px;
   letter-spacing: ${(props) => props.letterSpacing}px;
   margin-bottom: ${(props) => props.mb}px;
+  margin-top: ${(props) => props.mt}px;
 `;
 
 PStyles.defaultProps = {
@@ -21,4 +23,5 @@ PStyles.defaultProps = {
   lineHeight: 42,
   letterSpacing: 0,
   mb: 0,
+  mt: 0,
 };

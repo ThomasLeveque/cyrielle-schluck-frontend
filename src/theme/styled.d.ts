@@ -20,11 +20,13 @@ declare module 'styled-components' {
     vars: {
       footerHeight: number;
       footerBorderSize: number;
+      xxlSpace: number;
       xlSpace: number;
       lSpace: number;
       mSpace: number;
       xSpace: number;
       xsSpace: number;
+      gridGap: number;
       bodyFontSize: number;
       appMaxWidth: number;
       topLayoutPadding: number;

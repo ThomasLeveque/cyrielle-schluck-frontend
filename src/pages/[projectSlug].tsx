@@ -5,6 +5,7 @@ import { ThemeContext } from 'styled-components';
 import { rgba } from 'polished';
 import ReactMarkdown from 'react-markdown';
 
+import ProjectSteps from '@components/project-steps/project-steps';
 import Layout from '@components/layout/layout';
 import { ProjectData, ProjectsData, Project } from '@interfaces/project.interface';
 import { initializeApollo } from '@lib/apolloClient';
@@ -35,14 +36,17 @@ const PROJECT_QUERY = gql`
       }
       projectSteps {
         ... on ComponentBlockProjectStep {
+          id
           title
           subtitle
           description
           bgColor
           stepItems {
+            id
             title
             grid
             itemImages {
+              id
               size
               grid
               image {
@@ -76,7 +80,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   return (
     <Layout title={project.name}>
       <ProjectStyles bgColor={project.color}>
-        <header className="full-width">
+        <header className="full-width page-header">
           <div className="header-texts">
             <div className="header-texts-headings">
               <HeadingStyles
@@ -124,6 +128,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
           </div>
           <img src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`} />
         </header>
+        <ProjectSteps projectSteps={project.projectSteps} />
       </ProjectStyles>
     </Layout>
   );

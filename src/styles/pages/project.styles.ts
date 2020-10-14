@@ -7,9 +7,10 @@ interface ProjectStylesProps {
 }
 
 export const ProjectStyles = styled.div<ProjectStylesProps>`
-  header {
+  header.page-header {
     position: relative;
     padding-top: ${(props) => props.theme.vars.topLayoutPadding}px;
+    margin-bottom: ${(props) => props.theme.vars.xxlSpace}px;
 
     &::after {
       content: '';
