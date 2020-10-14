@@ -12,7 +12,7 @@ import Footer from '@components/footer/footer';
 
 import { GlobalStyles } from '@styles/global.styles';
 
-const handleExitComplete = () => {
+const handleExitComplete = (): void => {
   if (typeof window !== 'undefined') {
     window.scrollTo({ top: 0 });
   }

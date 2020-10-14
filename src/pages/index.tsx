@@ -69,7 +69,7 @@ const HomePage: NextPage<HomePageProps> = () => {
   const yH1: MotionValue = useTransform(scrollY, [minScrollY, maxScrollY], [0, maxYH1]);
   const yDesc = useTransform(scrollY, [minScrollY, maxScrollY], [0, maxYDesc]);
 
-  const handleInitialStyle = () => {
+  const handleInitialStyle = (): void => {
     const initialScaleH1 = transform(window.scrollY, [minScrollY, maxScrollY], [1, maxScaleH1]);
     const initialyH1 = transform(window.scrollY, [minScrollY, maxScrollY], [0, maxYH1]);
     const initialyDesc = transform(window.scrollY, [minScrollY, maxScrollY], [0, maxYDesc]);
@@ -83,6 +83,10 @@ const HomePage: NextPage<HomePageProps> = () => {
     trackVisibility: true,
     delay: 100,
   });
+
+  const gotoAboutMe = (): void => {
+    router.push('/about-me');
+  };
 
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
@@ -120,7 +124,7 @@ const HomePage: NextPage<HomePageProps> = () => {
                     Un master en design graphique a ajouté d’autres cordes à mon arc.
                   </PStyles>
                   <motion.div variants={itemVariants}>
-                    <CustomButton text="En savoir plus" onClick={() => router.push('/about-me')} />
+                    <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
                   </motion.div>
                 </motion.div>
               ) : (
@@ -152,10 +156,7 @@ const HomePage: NextPage<HomePageProps> = () => {
                       meilleure expérience possible.
                     </PStyles>
                     <motion.div variants={itemVariants}>
-                      <CustomButton
-                        text="En savoir plus"
-                        onClick={() => router.push('/about-me')}
-                      />
+                      <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
                     </motion.div>
                   </motion.div>
                 </motion.div>
