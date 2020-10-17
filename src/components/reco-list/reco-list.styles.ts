@@ -5,7 +5,7 @@ const borderSize = 90;
 
 interface RecoListStylesProps {}
 
-export const RecoListStyles = styled.ul<RecoListStylesProps>`
+export const RecoListStyles = styled.section<RecoListStylesProps>`
   margin-top: ${(props) => props.theme.vars.xlSpace}px;
   padding: ${(props) => props.theme.vars.xsSpace}px;
   text-align: center;
@@ -41,12 +41,6 @@ export const RecoListStyles = styled.ul<RecoListStylesProps>`
       bottom: 0;
       height: ${borderSize}px;
     }
-  }
-
-  h2 {
-    font-family: ${(props) => props.theme.fonts.mainFont};
-    text-transform: uppercase;
-    color: ${(props) => rgba(props.theme.colors.black, 0.15)};
   }
 `;
 

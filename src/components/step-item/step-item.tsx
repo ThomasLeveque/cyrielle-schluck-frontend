@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
+import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
 import ItemImages from '@components/item-images/item-images';
 import { StepItem as StepItemType } from '@interfaces/project.interface';
+import { itemVariants } from '@animations/global.animation';
 
 import { StepItemStyles } from './step-item.styles';
 import { PStyles } from '@styles/texts/p.styles';
@@ -13,11 +16,23 @@ interface StepItemProps {
 
 const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
   const theme = useContext(ThemeContext);
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
 
   return (
-    <StepItemStyles className="row" grid={stepItem.grid}>
+    <StepItemStyles
+      as={motion.article}
+      ref={ref}
+      animate={inView ? 'animate' : 'initial'}
+      initial="initial"
+      variants={itemVariants}
+      className="row"
+      grid={stepItem.grid}
+    >
       {stepItem.title && (
-        <header className="step-item-header">
+        <motion.header className="step-item-header">
           <PStyles
             as="h5"
             fontSize={12}
@@ -28,7 +43,7 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
             {stepItem.title}
           </PStyles>
           <hr />
-        </header>
+        </motion.header>
       )}
       <ItemImages itemImages={stepItem.itemImages} />
     </StepItemStyles>

@@ -3,12 +3,18 @@ import { GetStaticProps, GetStaticPaths, GetStaticPathsResult, NextPage } from '
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
 import { rgba } from 'polished';
+import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 
 import ProjectSteps from '@components/project-steps/project-steps';
 import Layout from '@components/layout/layout';
 import { ProjectData, ProjectsData, Project } from '@interfaces/project.interface';
 import { initializeApollo } from '@lib/apolloClient';
+import {
+  delayStaggerChildrenVariants,
+  itemVariants,
+  itemXVariants,
+} from '@animations/global.animation';
 import { ALL_PROJECTS_QUERY } from '.';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
@@ -80,9 +86,14 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   return (
     <Layout title={project.name}>
       <ProjectStyles bgColor={project.color}>
-        <header className="full-width page-header">
+        <motion.header
+          animate="animate"
+          initial="initial"
+          variants={delayStaggerChildrenVariants}
+          className="full-width page-header"
+        >
           <div className="header-texts">
-            <div className="header-texts-headings">
+            <motion.div variants={itemXVariants} custom={-20} className="header-texts-headings">
               <HeadingStyles
                 as="h2"
                 fontSize={28}
@@ -94,7 +105,6 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               >
                 {project.category?.name}
               </HeadingStyles>
-
               {project.formatedName ? (
                 <HeadingStyles
                   source={project.formatedName}
@@ -116,18 +126,23 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                   {project.name}
                 </HeadingStyles>
               )}
-            </div>
-            <PStyles
-              source={project.description}
-              as={ReactMarkdown}
-              escapeHtml={false}
-              fontSize={16}
-              lineHeight={28}
-              color={theme.colors[project.textsColor]}
-            />
+            </motion.div>
+            <motion.div variants={itemXVariants}>
+              <PStyles
+                source={project.description}
+                as={ReactMarkdown}
+                escapeHtml={false}
+                fontSize={16}
+                lineHeight={28}
+                color={theme.colors[project.textsColor]}
+              />
+            </motion.div>
           </div>
-          <img src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`} />
-        </header>
+          <motion.img
+            variants={itemVariants}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`}
+          />
+        </motion.header>
         <ProjectSteps projectSteps={project.projectSteps} />
       </ProjectStyles>
     </Layout>

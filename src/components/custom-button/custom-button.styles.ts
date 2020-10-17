@@ -18,10 +18,6 @@ export const CustomButtonStyles = styled.button<CustomButtonStylesProps>`
   height: 54px;
   position: relative;
 
-  &:not(:first-of-type) {
-    margin-left: ${(props) => props.theme.vars.lSpace}px;
-  }
-
   &:hover {
     .text {
       transform: translateX(-100%);

@@ -3,6 +3,7 @@ import { Image } from './image.interface';
 export interface AboutMe {
   image: Image;
   desc: string;
+  cv: Image;
   recos: Reco[];
 }
 

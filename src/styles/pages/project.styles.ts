@@ -29,7 +29,7 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
       margin-bottom: ${(props) => props.theme.vars.xlSpace}px;
 
       &-headings {
-        margin-right: ${(props) => props.theme.vars.mSpace}px;
+        margin-right: ${(props) => props.theme.vars.lSpace}px;
         white-space: nowrap;
       }
     }

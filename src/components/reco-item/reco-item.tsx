@@ -29,10 +29,10 @@ const RecoItem: React.FC<RecoItemProps> = ({ reco, letterStagger }) => {
 
   return (
     <RecoItemStyles
-      as={motion.li}
+      as={motion.article}
       exit={{ opacity: 0, transition }}
-      animate="animate"
       initial="initial"
+      animate="animate"
       asUrl={!!reco.sourceUrl}
     >
       <HeadingStyles

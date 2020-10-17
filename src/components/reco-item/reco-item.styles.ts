@@ -4,7 +4,7 @@ interface RecoItemStylesProps {
   asUrl: boolean;
 }
 
-export const RecoItemStyles = styled.ul<RecoItemStylesProps>`
+export const RecoItemStyles = styled.article<RecoItemStylesProps>`
   h3 {
     letter-spacing: 1px;
     font-weight: 400;

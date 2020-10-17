@@ -12,6 +12,30 @@ export const itemVariants = {
   },
 };
 
+export const itemXVariants = {
+  initial: (xValue: number) => ({
+    opacity: 0,
+    x: xValue || 20,
+  }),
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition,
+  },
+};
+
+export const delayStaggerChildrenVariants = {
+  initial: (yValue: number) => ({
+    opacity: 0,
+    y: yValue || 20,
+  }),
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { ...transition, delayChildren: .25, staggerChildren: .15 },
+  },
+};
+
 export const letterVariants = {
   initial: {
     opacity: 0,

@@ -12,7 +12,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ text, ...props }) => {
 
   useEffect(() => {
     setButtonWidth(subTextRef?.current?.offsetWidth as number);
-  }, []);
+  }, [subTextRef]);
 
   return (
     <CustomButtonStyles width={buttonWidth} {...props}>

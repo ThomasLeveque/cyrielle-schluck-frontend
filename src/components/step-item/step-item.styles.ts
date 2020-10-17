@@ -4,7 +4,7 @@ interface StepItemStylesProps {
   grid: number;
 }
 
-export const StepItemStyles = styled.div<StepItemStylesProps>`
+export const StepItemStyles = styled.article<StepItemStylesProps>`
   width: calc(100% / ${(props) => props.grid});
   padding: ${(props) => props.theme.vars.gridGap / 2}px;
 
