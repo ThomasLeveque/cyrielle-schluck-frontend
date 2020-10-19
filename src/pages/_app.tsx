@@ -27,7 +27,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps): JSX.Element => {
       <ApolloProvider client={apolloClient}>
         <Nav textsColor={pageProps.textsColor} />
         <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
-          <Component key={router.route} {...pageProps} />
+          <Component key={router.asPath} {...pageProps} />
         </AnimatePresence>
         <Footer />
       </ApolloProvider>

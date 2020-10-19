@@ -190,7 +190,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

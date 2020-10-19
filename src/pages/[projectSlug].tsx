@@ -82,7 +82,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
   }
-
+  
   return (
     <Layout title={project.name}>
       <ProjectStyles bgColor={project.color}>
@@ -163,7 +163,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       projectSlug: params?.projectSlug,
       textsColor: data.projectBySlug.textsColor,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 
