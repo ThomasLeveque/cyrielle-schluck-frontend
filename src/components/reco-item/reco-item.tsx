@@ -40,7 +40,7 @@ const RecoItem: React.FC<RecoItemProps> = ({ reco, letterStagger }) => {
         variants={stagger}
         custom={letterStagger}
         fontSize={28}
-        lineHeight={40}
+        lineHeight={1.4}
         mb={theme.vars.xSpace}
       >
         <motion.span variants={letterVariants} className="quote color-gray">
@@ -60,7 +60,7 @@ const RecoItem: React.FC<RecoItemProps> = ({ reco, letterStagger }) => {
         variants={itemVariants}
         custom={10}
         fontSize={12}
-        lineHeight={15}
+        lineHeight={1.25}
         letterSpacing={0.6}
       >
         Source : <a onClick={handleSourceClick}>{reco.source}</a>

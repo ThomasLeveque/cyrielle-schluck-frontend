@@ -36,7 +36,7 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
           <PStyles
             as="h5"
             fontSize={12}
-            lineHeight={15}
+            lineHeight={1.25}
             mb={theme.vars.xsSpace}
             color={theme.colors.myBlack}
           >

@@ -97,7 +97,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               <HeadingStyles
                 as="h2"
                 fontSize={28}
-                lineHeight={34}
+                lineHeight={1.2}
                 isUppercase
                 color={rgba(theme.colors.black, 0.15)}
                 fontFamily={theme.fonts.mainFont}
@@ -111,7 +111,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                   as={ReactMarkdown}
                   escapeHtml={false}
                   fontSize={project.isShortName ? 80 : 60}
-                  lineHeight={project.isShortName ? 100 : 70}
+                  lineHeight={project.isShortName ? 1.25 : 1.15}
                   mb={0}
                   color={theme.colors[project.textsColor]}
                 />
@@ -119,7 +119,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                 <HeadingStyles
                   as="h1"
                   fontSize={project.isShortName ? 80 : 60}
-                  lineHeight={project.isShortName ? 100 : 70}
+                  lineHeight={project.isShortName ? 1.25 : 1.15}
                   mb={0}
                   color={theme.colors[project.textsColor]}
                 >
@@ -133,7 +133,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                 as={ReactMarkdown}
                 escapeHtml={false}
                 fontSize={16}
-                lineHeight={28}
+                lineHeight={1.75}
                 color={theme.colors[project.textsColor]}
               />
             </motion.div>

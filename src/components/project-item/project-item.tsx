@@ -41,7 +41,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             <HeadingStyles
               as="h4"
               fontSize={18}
-              lineHeight={21}
+              lineHeight={1.15}
               mb={10}
               isUppercase
               color={rgba(theme.colors.black, 0.15)}
@@ -52,7 +52,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             <HeadingStyles
               as="h3"
               fontSize={30}
-              lineHeight={34}
+              lineHeight={1.12}
               mb={theme.vars.xsSpace}
               color={theme.colors[project.textsColor]}
             >
@@ -63,7 +63,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
               as={ReactMarkdown}
               escapeHtml={false}
               fontSize={16}
-              lineHeight={22}
+              lineHeight={1.375}
               color={theme.colors[project.textsColor]}
             />
           </div>

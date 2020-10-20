@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { between } from 'polished';
 
 const infosWidth = '40%';
 

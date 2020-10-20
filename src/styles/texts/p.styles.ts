@@ -12,7 +12,7 @@ interface PStylesProps {
 export const PStyles = styled.p<PStylesProps>`
   font-size: ${(props) => props.fontSize}px;
   color: ${(props) => (props.color ? props.color : props.theme.colors.gray)};
-  line-height: ${(props) => props.lineHeight}px;
+  line-height: ${(props) => props.lineHeight};
   letter-spacing: ${(props) => props.letterSpacing}px;
   margin-bottom: ${(props) => props.mb}px;
   margin-top: ${(props) => props.mt}px;
@@ -20,7 +20,7 @@ export const PStyles = styled.p<PStylesProps>`
 
 PStyles.defaultProps = {
   fontSize: 22,
-  lineHeight: 42,
+  lineHeight: 1.9,
   letterSpacing: 0,
   mb: 0,
   mt: 0,

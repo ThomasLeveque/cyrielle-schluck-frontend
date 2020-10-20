@@ -36,7 +36,7 @@ const ProjectStep: React.FC<ProjectStepProps> = ({ projectStep }) => {
         <HeadingStyles
           as="h4"
           fontSize={28}
-          lineHeight={34}
+          lineHeight={1.2}
           isUppercase
           color={rgba(theme.colors.black, 0.15)}
           fontFamily={theme.fonts.mainFont}
@@ -44,7 +44,7 @@ const ProjectStep: React.FC<ProjectStepProps> = ({ projectStep }) => {
         >
           {projectStep.subtitle}
         </HeadingStyles>
-        <HeadingStyles as="h3" fontSize={80} lineHeight={90} mb={0}>
+        <HeadingStyles as="h3" fontSize={80} lineHeight={1.125} mb={0}>
           {projectStep.title}
         </HeadingStyles>
         {projectStep.description && (
@@ -53,7 +53,7 @@ const ProjectStep: React.FC<ProjectStepProps> = ({ projectStep }) => {
             className="with-text-list"
             escapeHtml={false}
             fontSize={18}
-            lineHeight={30}
+            lineHeight={1.65}
             letterSpacing={0.8}
             mt={theme.vars.lSpace}
           >

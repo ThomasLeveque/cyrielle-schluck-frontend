@@ -31,5 +31,12 @@ declare module 'styled-components' {
       appMaxWidth: number;
       topLayoutPadding: number;
     };
+    breakpoints: {
+      mobile: string;
+      tablet: string;
+      desktop: string;
+      lgDesktop: string;
+      maxDesktop: string;
+    };
   }
 }

@@ -110,7 +110,7 @@ const HomePage: NextPage<HomePageProps> = () => {
                     as={motion.h2}
                     variants={itemVariants}
                     fontSize={60}
-                    lineHeight={84}
+                    lineHeight={1.4}
                     mb={theme.vars.lSpace}
                   >
                     Projets identité visuelle et packaging

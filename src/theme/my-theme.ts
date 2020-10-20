@@ -28,6 +28,13 @@ const myTheme: DefaultTheme = {
     appMaxWidth: 1440,
     topLayoutPadding: 150,
   },
+  breakpoints: {
+    mobile: '576px',
+    tablet: '768px',
+    desktop: '992px',
+    lgDesktop: '1200px',
+    maxDesktop: '1440px',
+  },
 };
 
 export { myTheme };

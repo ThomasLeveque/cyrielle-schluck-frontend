@@ -66,7 +66,7 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
       <HeadingStyles
         as="h2"
         fontSize={28}
-        lineHeight={34}
+        lineHeight={1.2}
         mb={theme.vars.xSpace}
         color={rgba(theme.colors.black, 0.15)}
         fontFamily={theme.fonts.mainFont}
