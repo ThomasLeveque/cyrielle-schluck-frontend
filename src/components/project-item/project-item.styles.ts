@@ -23,12 +23,12 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
     align-items: center;
 
     > div {
-      padding-left: ${(props) => props.theme.vars.mSpace}px;
+      padding: 0 ${(props) => props.theme.vars.mSpace}px;
+      min-width: 300px;
     }
 
     img {
       width: 400px;
-      margin-right: -10%;
     }
   }
 `;
