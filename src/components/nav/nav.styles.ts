@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { down } from 'styled-breakpoints';
 
 import { textsColorType } from '@interfaces/project.interface';
 
@@ -14,6 +15,11 @@ export const NavStyles = styled.nav<NavStylesProps>`
   z-index: 1000;
   left: ${(props) => props.theme.vars.lSpace}px;
   right: ${(props) => props.theme.vars.lSpace}px;
+
+  ${down('mobile')} {
+    top: ${(props) => props.theme.vars.lSpace}px;
+    justify-content: center;
+  }
 
   a {
     color: ${(props) => props.theme.colors[props.textsColor] || props.theme.colors.myBlack};

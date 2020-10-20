@@ -8,6 +8,7 @@ interface HeadingStylesProps {
   fontFamily?: string;
   fontWeight?: number;
   isUppercase?: boolean;
+  letterSpacing?: number;
 }
 
 export const HeadingStyles = styled.h1<HeadingStylesProps>`
@@ -16,6 +17,7 @@ export const HeadingStyles = styled.h1<HeadingStylesProps>`
   font-size: ${(props) => props.fontSize}px;
   line-height: ${(props) => props.lineHeight};
   margin-bottom: ${(props) => props.mb}px;
+  letter-spacing: ${(props) => props.letterSpacing}px;
   color: ${(props) => (props.color ? props.color : props.theme.colors.myBlack)};
   text-transform: ${(props) => (props.isUppercase ? 'uppercase' : 'initial')};
 
@@ -28,6 +30,7 @@ HeadingStyles.defaultProps = {
   fontSize: 100,
   lineHeight: 1.25,
   mb: 90,
+  letterSpacing: 0,
   fontWeight: 700,
   isUppercase: false,
 };

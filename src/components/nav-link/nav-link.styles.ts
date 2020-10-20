@@ -1,3 +1,4 @@
+import { up } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const NavLinkAStyles = styled.a`
@@ -7,9 +8,11 @@ export const NavLinkAStyles = styled.a`
   overflow: hidden;
   cursor: pointer;
 
-  &:hover {
-    span {
-      transform: translateX(100%);
+  ${up('desktop')} {
+    &:hover {
+      span {
+        transform: translateX(100%);
+      }
     }
   }
 

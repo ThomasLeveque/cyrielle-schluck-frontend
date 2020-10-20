@@ -41,6 +41,8 @@ const RecoItem: React.FC<RecoItemProps> = ({ reco, letterStagger }) => {
         custom={letterStagger}
         fontSize={28}
         lineHeight={1.4}
+        fontWeight={400}
+        letterSpacing={1}
         mb={theme.vars.xSpace}
       >
         <motion.span variants={letterVariants} className="quote color-gray">

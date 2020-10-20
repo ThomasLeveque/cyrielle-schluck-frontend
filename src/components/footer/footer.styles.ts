@@ -38,6 +38,7 @@ export const FooterStyles = styled.footer`
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     margin-top: ${(props) => math(`${props.theme.vars.footerBorderSize}px / 2`)};
+    text-align: center;
 
     span {
       color: ${(props) => props.theme.colors.gray};

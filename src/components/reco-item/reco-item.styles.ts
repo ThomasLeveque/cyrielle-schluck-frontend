@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 interface RecoItemStylesProps {
@@ -6,16 +7,13 @@ interface RecoItemStylesProps {
 
 export const RecoItemStyles = styled.article<RecoItemStylesProps>`
   h3 {
-    letter-spacing: 1px;
-    font-weight: 400;
     font-style: italic;
 
-    span.quote {
-      font-family: ${(props) => props.theme.fonts.mainFont};
-      font-weight: 400;
-      font-size: 28px;
-      line-height: 34px;
+    ${down('mobile')} {
+      font-size: 18px;
+    }
 
+    span.quote {
       &:first-of-type {
         margin-right: 10px;
       }

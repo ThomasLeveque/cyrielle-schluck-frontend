@@ -17,6 +17,7 @@ export const CustomButtonStyles = styled.button<CustomButtonStylesProps>`
   min-width: 200px;
   height: 54px;
   position: relative;
+  max-width: 100%;
 
   &:hover {
     .text {

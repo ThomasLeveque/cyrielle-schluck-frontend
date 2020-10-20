@@ -29,7 +29,7 @@ const myTheme: DefaultTheme = {
     topLayoutPadding: 150,
   },
   breakpoints: {
-    mobile: '576px',
+    mobile: '320px',
     tablet: '768px',
     desktop: '992px',
     lgDesktop: '1200px',

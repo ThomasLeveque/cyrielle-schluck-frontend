@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { gql, useQuery } from '@apollo/client';
 import { initializeApollo } from '@lib/apolloClient';
 import ReactMarkdown from 'react-markdown';
+import { useMediaQuery } from 'react-responsive';
 
 import Layout from '@components/layout/layout';
 import CustomButton from '@components/custom-button/custom-button';
@@ -16,6 +17,7 @@ import downloadResource from '@lib/downloadResource';
 import { AboutMeStyles } from '@styles/pages/about-me.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { PStyles } from '@styles/texts/p.styles';
+import Mobile from '@components/responsive/mobile';
 
 const ABOUT_ME_QUERY = gql`
   query {
@@ -74,10 +76,9 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
             {aboutMe.desc}
           </PStyles>
         </motion.div>
-        <motion.div variants={itemVariants}>
+        <motion.div variants={itemVariants} className="buttons">
           <CustomButton onClick={handleCVReveal} text="Voir mon cv" />
           <CustomButton
-            style={{ marginLeft: theme.vars.lSpace }}
             onClick={() => downloadResource(cvUrl, 'Cyrielle-Schluck-CV')}
             text="Télécharger mon cv"
           />
