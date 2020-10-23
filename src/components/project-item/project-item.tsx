@@ -9,6 +9,8 @@ import { rgba } from 'polished';
 import { Project } from '@interfaces/project.interface';
 import { fixhyphens } from '@utils/text.util';
 import { transition } from '@animations/global.animation';
+import NotMobile from '@components/responsive/not-mobile';
+import Mobile from '@components/responsive/mobile';
 
 import { ProjectItemStyles } from './project-item.styles';
 import { PStyles } from '@styles/texts/p.styles';
@@ -49,23 +51,49 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             >
               {project.category?.name}
             </HeadingStyles>
-            <HeadingStyles
-              as="h3"
-              fontSize={30}
-              lineHeight={1.12}
-              mb={theme.vars.xsSpace}
-              color={theme.colors[project.textsColor]}
-            >
-              {project.name}
-            </HeadingStyles>
-            <PStyles
-              source={fixhyphens(project.shortDesc)}
-              as={ReactMarkdown}
-              escapeHtml={false}
-              fontSize={16}
-              lineHeight={1.375}
-              color={theme.colors[project.textsColor]}
-            />
+            <NotMobile>
+              <HeadingStyles
+                as="h3"
+                fontSize={30}
+                lineHeight={1.4}
+                mb={theme.vars.xsSpace}
+                color={theme.colors[project.textsColor]}
+              >
+                {project.name}
+              </HeadingStyles>
+              <PStyles
+                source={fixhyphens(project.shortDesc)}
+                as={ReactMarkdown}
+                escapeHtml={false}
+                fontSize={16}
+                lineHeight={1.375}
+                color={theme.colors[project.textsColor]}
+              />
+            </NotMobile>
+            <Mobile>
+              {project.mobileName ? (
+                <HeadingStyles
+                  className="mobile-name"
+                  source={project.mobileName}
+                  as={ReactMarkdown}
+                  escapeHtml={false}
+                  fontSize={30}
+                  lineHeight={1.4}
+                  mb={theme.vars.xsSpace}
+                  color={theme.colors[project.textsColor]}
+                />
+              ) : (
+                <HeadingStyles
+                  as="h3"
+                  fontSize={30}
+                  lineHeight={1.4}
+                  mb={theme.vars.xsSpace}
+                  color={theme.colors[project.textsColor]}
+                >
+                  {project.name}
+                </HeadingStyles>
+              )}
+            </Mobile>
           </div>
           <img src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`} />
         </a>

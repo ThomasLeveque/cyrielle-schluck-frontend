@@ -67,7 +67,7 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
         as="h2"
         fontSize={28}
         lineHeight={1.2}
-        mb={theme.vars.xSpace}
+        mb={theme.vars.sSpace}
         color={rgba(theme.colors.black, 0.15)}
         fontFamily={theme.fonts.mainFont}
         isUppercase

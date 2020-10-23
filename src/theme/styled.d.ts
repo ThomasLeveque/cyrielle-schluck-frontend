@@ -18,13 +18,14 @@ declare module 'styled-components' {
       secondaryFont: string;
     };
     vars: {
+      homeInfosDesktopWidth: string;
       footerHeight: number;
       footerBorderSize: number;
       xxlSpace: number;
       xlSpace: number;
       lSpace: number;
       mSpace: number;
-      xSpace: number;
+      sSpace: number;
       xsSpace: number;
       gridGap: number;
       bodyFontSize: number;

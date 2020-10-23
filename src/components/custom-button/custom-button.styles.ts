@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { up } from 'styled-breakpoints';
 
 interface CustomButtonStylesProps {
   width: number;
@@ -19,17 +20,19 @@ export const CustomButtonStyles = styled.button<CustomButtonStylesProps>`
   position: relative;
   max-width: 100%;
 
-  &:hover {
-    .text {
-      transform: translateX(-100%);
+  ${up('desktop')} {
+    &:hover {
+      .text {
+        transform: translateX(-100%);
 
-      span {
-        transform: translateX(100%);
+        span {
+          transform: translateX(100%);
+        }
       }
-    }
 
-    .sub-text {
-      transform: translate(0, -50%);
+      .sub-text {
+        transform: translate(0, -50%);
+      }
     }
   }
 

@@ -17,7 +17,6 @@ import downloadResource from '@lib/downloadResource';
 import { AboutMeStyles } from '@styles/pages/about-me.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { PStyles } from '@styles/texts/p.styles';
-import Mobile from '@components/responsive/mobile';
 
 const ABOUT_ME_QUERY = gql`
   query {

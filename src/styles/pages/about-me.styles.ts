@@ -10,7 +10,7 @@ export const AboutMeStyles = styled.div`
 
     ${down('mobile')} {
       width: 130px;
-      margin-bottom: ${(props) => props.theme.vars.xSpace}px;
+      margin-bottom: ${(props) => props.theme.vars.sSpace}px;
     }
   }
 
@@ -21,7 +21,7 @@ export const AboutMeStyles = styled.div`
 
     ${down('mobile')} {
       font-size: 30px;
-      margin-bottom: ${(props) => props.theme.vars.xSpace}px;
+      margin-bottom: ${(props) => props.theme.vars.sSpace}px;
     }
   }
 
@@ -40,7 +40,7 @@ export const AboutMeStyles = styled.div`
       margin-left: ${(props) => props.theme.vars.lSpace}px;
 
       ${down('mobile')} {
-        margin-top: ${(props) => props.theme.vars.xSpace}px;
+        margin-top: ${(props) => props.theme.vars.sSpace}px;
         margin-left: 0;
       }
     }

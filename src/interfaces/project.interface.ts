@@ -8,6 +8,7 @@ export interface Project {
   name: string;
   isShortName: boolean;
   formatedName?: string;
+  mobileName?: string;
   shortDesc: string;
   description: string;
   slug: string;
