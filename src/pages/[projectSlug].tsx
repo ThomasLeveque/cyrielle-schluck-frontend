@@ -16,6 +16,8 @@ import {
   itemXVariants,
 } from '@animations/global.animation';
 import { ALL_PROJECTS_QUERY } from '.';
+import NotMobile from '@components/responsive/not-mobile';
+import Mobile from '@components/responsive/mobile';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { ProjectStyles } from '@styles/pages/project.styles';
@@ -34,6 +36,9 @@ const PROJECT_QUERY = gql`
       slug
       textsColor
       image {
+        url
+      }
+      mobileImage {
         url
       }
       category {
@@ -55,6 +60,9 @@ const PROJECT_QUERY = gql`
               id
               size
               grid
+              mobileGrid
+              isSwipable
+              tabletGrid
               image {
                 url
               }
@@ -82,7 +90,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
   }
-  
+
   return (
     <Layout title={project.name}>
       <ProjectStyles bgColor={project.color}>
@@ -105,27 +113,40 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               >
                 {project.category?.name}
               </HeadingStyles>
-              {project.formatedName ? (
-                <HeadingStyles
-                  source={project.formatedName}
-                  as={ReactMarkdown}
-                  escapeHtml={false}
-                  fontSize={project.isShortName ? 80 : 60}
-                  lineHeight={project.isShortName ? 1.25 : 1.15}
-                  mb={0}
-                  color={theme.colors[project.textsColor]}
-                />
-              ) : (
+              <NotMobile>
+                {project.formatedName ? (
+                  <HeadingStyles
+                    source={project.formatedName}
+                    as={ReactMarkdown}
+                    escapeHtml={false}
+                    fontSize={project.isShortName ? 80 : 60}
+                    lineHeight={project.isShortName ? 1.25 : 1.15}
+                    mb={0}
+                    color={theme.colors[project.textsColor]}
+                  />
+                ) : (
+                  <HeadingStyles
+                    as="h1"
+                    fontSize={project.isShortName ? 80 : 60}
+                    lineHeight={project.isShortName ? 1.25 : 1.15}
+                    mb={0}
+                    color={theme.colors[project.textsColor]}
+                  >
+                    {project.name}
+                  </HeadingStyles>
+                )}
+              </NotMobile>
+              <Mobile>
                 <HeadingStyles
                   as="h1"
-                  fontSize={project.isShortName ? 80 : 60}
-                  lineHeight={project.isShortName ? 1.25 : 1.15}
+                  fontSize={40}
+                  lineHeight={1.3}
                   mb={0}
                   color={theme.colors[project.textsColor]}
                 >
                   {project.name}
                 </HeadingStyles>
-              )}
+              </Mobile>
             </motion.div>
             <motion.div variants={itemXVariants}>
               <PStyles
@@ -138,10 +159,25 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               />
             </motion.div>
           </div>
-          <motion.img
-            variants={itemVariants}
-            src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`}
-          />
+          <NotMobile>
+            <motion.img
+              variants={itemVariants}
+              src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`}
+            />
+          </NotMobile>
+          <Mobile>
+            {project.mobileImage ? (
+              <motion.img
+                variants={itemVariants}
+                src={`${process.env.NEXT_PUBLIC_API_URL}${project.mobileImage.url}`}
+              />
+            ) : (
+              <motion.img
+                variants={itemVariants}
+                src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`}
+              />
+            )}
+          </Mobile>
         </motion.header>
         <ProjectSteps projectSteps={project.projectSteps} />
       </ProjectStyles>

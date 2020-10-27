@@ -15,6 +15,7 @@ export interface Project {
   textsColor: textsColorType;
   category?: Category;
   image: Image;
+  mobileImage: Image;
   color: string;
   projectSteps: ProjectStep[];
 }
@@ -38,7 +39,10 @@ export interface StepItem {
 export interface ItemImage {
   id: string;
   grid?: number;
+  tabletGrid?: number;
+  mobileGrid?: number;
   size?: number;
+  isSwipable: boolean;
   image: Image;
 }
 

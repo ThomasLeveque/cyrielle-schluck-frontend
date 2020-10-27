@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { between, down } from 'styled-breakpoints';
 import reset from 'styled-reset';
 
 export const GlobalStyles = createGlobalStyle`
@@ -101,6 +102,20 @@ export const GlobalStyles = createGlobalStyle`
     margin-right: -${(props) => props.theme.vars.xlSpace}px;
     padding-left: ${(props) => props.theme.vars.xlSpace}px;
     padding-right: ${(props) => props.theme.vars.xlSpace}px;
+
+    ${between('tablet', 'desktop')} {
+      margin-left: -${(props) => props.theme.vars.lSpace}px;
+      margin-right: -${(props) => props.theme.vars.lSpace}px;
+      padding-left: ${(props) => props.theme.vars.lSpace}px;
+      padding-right: ${(props) => props.theme.vars.lSpace}px;
+    }
+
+    ${down('mobile')} {
+      margin-left: -${(props) => props.theme.vars.sSpace}px;
+      margin-right: -${(props) => props.theme.vars.sSpace}px;
+      padding-left: ${(props) => props.theme.vars.sSpace}px;
+      padding-right: ${(props) => props.theme.vars.sSpace}px;
+    }
   }
 
   .container {

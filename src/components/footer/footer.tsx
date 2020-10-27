@@ -4,9 +4,13 @@ import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery, gql } from '@apollo/client';
 
-import { buttonVariants, buttonTransition } from '@animations/footer.animation';
+import { buttonYVariants, buttonXVariants, buttonTransition } from '@animations/footer.animation';
 import { initializeApollo } from '@lib/apolloClient';
 import { Project, ProjectsData } from '@interfaces/project.interface';
+import NextButton from '../../../public/static/next.svg';
+import PrevButton from '../../../public/static/previous.svg';
+import NotMobile from '@components/responsive/not-mobile';
+import Mobile from '@components/responsive/mobile';
 
 import { FooterStyles } from './footer.styles';
 
@@ -56,33 +60,68 @@ const Footer: React.FC<footerProps> = () => {
     <FooterStyles>
       <AnimatePresence>
         {projectSlug && (
-          <motion.button
-            key="prevButton"
-            variants={buttonVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={buttonTransition}
-            onClick={handlePreviousProject}
-          >
-            {'< PROJET PRÉCÉDENT'}
-          </motion.button>
+          <React.Fragment key="prevButtonWrapper">
+            <Mobile>
+              <motion.button
+                key="prevMobileButton"
+                variants={buttonXVariants}
+                custom={-5}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={buttonTransition}
+                onClick={handlePreviousProject}
+              >
+                <PrevButton />
+              </motion.button>
+            </Mobile>
+            <NotMobile>
+              <motion.button
+                key="prevNotMobileButton"
+                variants={buttonYVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={buttonTransition}
+                onClick={handlePreviousProject}
+              >
+                {'< PROJET PRÉCÉDENT'}
+              </motion.button>
+            </NotMobile>
+          </React.Fragment>
         )}
         <p>
-          <span>Contactez-moi :</span> cyrielle.schluck@gmail.com
+          <span>Contactez-moi : </span>cyrielle.schluck@gmail.com
         </p>
         {projectSlug && (
-          <motion.button
-            key="nextButton"
-            variants={buttonVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={buttonTransition}
-            onClick={handleNextProject}
-          >
-            {'PROJET SUIVANT >'}
-          </motion.button>
+          <React.Fragment key="nextButtonWrapper">
+            <Mobile>
+              <motion.button
+                key="nextMobileButton"
+                variants={buttonXVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={buttonTransition}
+                onClick={handlePreviousProject}
+              >
+                <NextButton />
+              </motion.button>
+            </Mobile>
+            <NotMobile>
+              <motion.button
+                key="nextNotMobileButton"
+                variants={buttonYVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={buttonTransition}
+                onClick={handleNextProject}
+              >
+                {'PROJET SUIVANT >'}
+              </motion.button>
+            </NotMobile>
+          </React.Fragment>
         )}
       </AnimatePresence>
     </FooterStyles>

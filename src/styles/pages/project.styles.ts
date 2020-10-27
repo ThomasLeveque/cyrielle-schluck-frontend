@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { fixHexaColor } from '@utils/color.util';
+import { down, only } from 'styled-breakpoints';
 
 interface ProjectStylesProps {
   bgColor: string;
@@ -28,9 +29,52 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
       display: flex;
       margin-bottom: ${(props) => props.theme.vars.xlSpace}px;
 
+      ${down('tablet')} {
+        flex-direction: column;
+        margin-bottom: ${(props) => props.theme.vars.lSpace}px;
+      }
+
+      ${down('mobile')} {
+        margin-bottom: ${(props) => props.theme.vars.mSpace}px;
+      }
+
       &-headings {
         margin-right: ${(props) => props.theme.vars.lSpace}px;
         white-space: nowrap;
+
+        ${down('tablet')} {
+          margin-right: 0;
+          margin-bottom: ${(props) => props.theme.vars.mSpace}px;
+          white-space: normal;
+        }
+
+        ${down('mobile')} {
+          margin-bottom: ${(props) => props.theme.vars.xsSpace}px;
+        }
+
+        h2 {
+          ${down('tablet')} {
+            margin-bottom: 15px;
+          }
+
+          ${down('mobile')} {
+            margin-bottom: 10px;
+            font-size: 18px;
+          }
+        }
+
+        h1 {
+          ${only('tablet')} {
+            font-size: 60px;
+          }
+        }
+      }
+
+      p {
+        ${down('mobile')} {
+          font-size: 14px;
+          line-height: 2;
+        }
       }
     }
 
@@ -38,7 +82,6 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
       width: 800px;
       max-width: 100%;
       margin: 0 auto;
-      margin-top: ${(props) => props.theme.vars.xlSpace}px;
     }
   }
 `;

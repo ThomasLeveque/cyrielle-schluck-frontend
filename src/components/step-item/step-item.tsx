@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from 'styled-components';
 import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 import ItemImages from '@components/item-images/item-images';
 import { StepItem as StepItemType } from '@interfaces/project.interface';
@@ -16,16 +16,23 @@ interface StepItemProps {
 
 const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
   const theme = useContext(ThemeContext);
+  const stepItemAnimation = useAnimation();
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.4,
     triggerOnce: true,
   });
+
+  useEffect(() => {
+    if (inView) {
+      stepItemAnimation.start('animate');
+    }
+  }, [stepItemAnimation, inView]);
 
   return (
     <StepItemStyles
       as={motion.article}
       ref={ref}
-      animate={inView ? 'animate' : 'initial'}
+      animate={stepItemAnimation}
       initial="initial"
       variants={itemVariants}
       className="row"
