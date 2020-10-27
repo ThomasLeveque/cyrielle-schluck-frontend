@@ -25,7 +25,8 @@ export const ItemImageStyles = styled.li<ItemImageStylesProps>`
   }
 
   ${up('tablet')} {
-    max-width: ${(props) => (props.size ? `calc(100% / ${props.itemsLength})` : 'none')};
+    max-width: ${(props) =>
+      props.size && !props.grid ? `calc(100% / ${props.itemsLength})` : 'none'};
   }
 
   ${down('mobile')} {

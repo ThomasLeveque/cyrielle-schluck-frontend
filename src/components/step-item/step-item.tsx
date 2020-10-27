@@ -32,7 +32,7 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
     <StepItemStyles
       as={motion.article}
       ref={ref}
-      animate={stepItemAnimation}
+      animate="animate"
       initial="initial"
       variants={itemVariants}
       className="row"
