@@ -11,6 +11,8 @@ import { fixhyphens } from '@utils/text.util';
 import { transition } from '@animations/global.animation';
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile from '@components/responsive/mobile';
+import MyImage from '@components/my-image/my-image';
+import { fixEnvUrl } from '@utils/env-url.util';
 
 import { ProjectItemStyles } from './project-item.styles';
 import { PStyles } from '@styles/texts/p.styles';
@@ -28,6 +30,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
     threshold: 0.5,
   });
 
+  const projectItemImageUrl = fixEnvUrl(project.image.url);
+
   return (
     <ProjectItemStyles
       ref={ref}
@@ -37,7 +41,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       transition={transition}
       bgColor={project.color}
     >
-      <Link href="/[projectSlug]" as={`/${project.slug}`} scroll={false}>
+      <Link href={`/${project.slug}`} scroll={false}>
         <a>
           <div>
             <HeadingStyles
@@ -95,7 +99,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
               )}
             </Mobile>
           </div>
-          <img src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`} />
+          <MyImage src={projectItemImageUrl} />
         </a>
       </Link>
     </ProjectItemStyles>

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { gql, useQuery } from '@apollo/client';
 import { initializeApollo } from '@lib/apolloClient';
 import ReactMarkdown from 'react-markdown';
-import { useMediaQuery } from 'react-responsive';
 
 import Layout from '@components/layout/layout';
 import CustomButton from '@components/custom-button/custom-button';
@@ -13,6 +12,8 @@ import RecoList from '@components/reco-list/reco-list';
 import { AboutMeData } from '@interfaces/about-me.interface';
 import { stagger, itemVariants } from '@animations/global.animation';
 import downloadResource from '@lib/downloadResource';
+import { fixEnvUrl } from '@utils/env-url.util';
+import MyImage from '@components/my-image/my-image';
 
 import { AboutMeStyles } from '@styles/pages/about-me.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
@@ -47,7 +48,9 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
   const theme = useContext(ThemeContext);
   const { aboutMe } = data as AboutMeData;
 
-  const cvUrl = `${process.env.NEXT_PUBLIC_API_URL}${aboutMe.cv.url}`;
+  const cvUrl = fixEnvUrl(aboutMe.cv.url);
+
+  const aboutMeImageUrl = fixEnvUrl(aboutMe.image.url);
 
   const handleCVReveal = (): void => {
     window.open(cvUrl, '_blank');
@@ -57,10 +60,9 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
     <Layout title="About me">
       <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
         {aboutMe.image && (
-          <motion.img
-            variants={itemVariants}
-            src={`${process.env.NEXT_PUBLIC_API_URL}${aboutMe.image.url}`}
-          />
+          <motion.div variants={itemVariants}>
+            <MyImage src={aboutMeImageUrl} />
+          </motion.div>
         )}
         <HeadingStyles mb={theme.vars.lSpace}>
           <motion.div variants={itemVariants}>

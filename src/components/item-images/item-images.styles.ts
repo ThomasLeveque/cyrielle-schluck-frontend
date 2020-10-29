@@ -22,6 +22,7 @@ export const ItemImagesStyles = styled.ul<ItemImagesStylesProps>`
 
       &[disabled] {
         opacity: 0;
+        pointer-events: none;
       }
 
       &.next-button {

@@ -35,6 +35,7 @@ export const FooterStyles = styled.footer`
     color: ${(props) => props.theme.colors.gray};
     transition: 0.3s ease-out;
     margin-top: ${(props) => math(`${props.theme.vars.footerBorderSize}px / 2`)};
+    z-index: 100;
 
     ${only('tablet')} {
       font-size: 13px;
@@ -46,9 +47,13 @@ export const FooterStyles = styled.footer`
   }
 
   p {
-    padding: 0 ${(props) => props.theme.vars.xsSpace}px;
+    padding: 0 ${(props) => props.theme.vars.mSpace}px;
     margin-top: ${(props) => math(`${props.theme.vars.footerBorderSize}px / 2`)};
     text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
 
     ${only('tablet')} {
       font-size: 15px;

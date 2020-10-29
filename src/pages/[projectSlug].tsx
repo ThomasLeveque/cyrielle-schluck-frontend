@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Image from 'next/image';
 import { GetStaticProps, GetStaticPaths, GetStaticPathsResult, NextPage } from 'next';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
@@ -18,6 +19,8 @@ import {
 import { ALL_PROJECTS_QUERY } from '.';
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile from '@components/responsive/mobile';
+import MyImage from '@components/my-image/my-image';
+import { fixEnvUrl } from '@utils/env-url.util';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { ProjectStyles } from '@styles/pages/project.styles';
@@ -86,6 +89,24 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   });
 
   const project = data?.projectBySlug as Project;
+
+  const projectImageUrl = fixEnvUrl(project.image.url);
+  const projectMobileImageUrl = fixEnvUrl(project.mobileImage?.url);
+
+  const renderProjectImage = () => (
+    <motion.div variants={itemVariants}>
+      <NotMobile>
+        <MyImage src={projectImageUrl} />
+      </NotMobile>
+      <Mobile>
+        {project.mobileImage ? (
+          <MyImage src={projectMobileImageUrl} />
+        ) : (
+          <MyImage src={projectImageUrl} />
+        )}
+      </Mobile>
+    </motion.div>
+  );
 
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
@@ -159,25 +180,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               />
             </motion.div>
           </div>
-          <NotMobile>
-            <motion.img
-              variants={itemVariants}
-              src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`}
-            />
-          </NotMobile>
-          <Mobile>
-            {project.mobileImage ? (
-              <motion.img
-                variants={itemVariants}
-                src={`${process.env.NEXT_PUBLIC_API_URL}${project.mobileImage.url}`}
-              />
-            ) : (
-              <motion.img
-                variants={itemVariants}
-                src={`${process.env.NEXT_PUBLIC_API_URL}${project.image.url}`}
-              />
-            )}
-          </Mobile>
+          {renderProjectImage()}
         </motion.header>
         <ProjectSteps projectSteps={project.projectSteps} />
       </ProjectStyles>

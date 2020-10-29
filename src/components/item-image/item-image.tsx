@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { ItemImage as ItemImageType } from '@interfaces/project.interface';
+import MyImage from '@components/my-image/my-image';
+import { fixEnvUrl } from '@utils/env-url.util';
 
 import { ItemImageStyles } from './item-image.styles';
 
@@ -10,6 +12,8 @@ interface ItemImageProps {
 }
 
 const ItemImage: React.FC<ItemImageProps> = ({ itemImage, itemsLength }) => {
+  const itemImageUrl = fixEnvUrl(itemImage.image.url);
+
   return (
     <ItemImageStyles
       className="row"
@@ -19,7 +23,7 @@ const ItemImage: React.FC<ItemImageProps> = ({ itemImage, itemsLength }) => {
       size={itemImage.size}
       itemsLength={itemsLength}
     >
-      <img src={`${process.env.NEXT_PUBLIC_API_URL}${itemImage.image.url}`} />
+      <MyImage src={itemImageUrl} />
     </ItemImageStyles>
   );
 };
