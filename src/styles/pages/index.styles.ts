@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import { math, fluidRange } from 'polished';
-import { down } from 'styled-breakpoints';
+import { down, up } from 'styled-breakpoints';
 
 export const IndexStyles = styled.div`
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
   padding-top: ${(props) => props.theme.vars.topLayoutPadding}px;
+
+  ${up('desktop')} {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   header.home-infos-not-desktop-header {
     h1,
