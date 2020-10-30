@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { gql, useQuery } from '@apollo/client';
 import { initializeApollo } from '@lib/apolloClient';
 import ReactMarkdown from 'react-markdown';
+import { useMediaQuery } from 'react-responsive';
 
 import Layout from '@components/layout/layout';
 import CustomButton from '@components/custom-button/custom-button';
@@ -14,6 +15,7 @@ import { stagger, itemVariants } from '@animations/global.animation';
 import downloadResource from '@lib/downloadResource';
 import { fixEnvUrl } from '@utils/env-url.util';
 import MyImage from '@components/my-image/my-image';
+import { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 
 import { AboutMeStyles } from '@styles/pages/about-me.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
@@ -56,12 +58,18 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
     window.open(cvUrl, '_blank');
   };
 
+  const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
+
   return (
     <Layout title="About me">
       <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
         {aboutMe.image && (
           <motion.div variants={itemVariants}>
-            <MyImage src={aboutMeImageUrl} />
+            <MyImage
+              width={isMobile ? 130 : 200}
+              height={isMobile ? 130 : 200}
+              src={aboutMeImageUrl}
+            />
           </motion.div>
         )}
         <HeadingStyles mb={theme.vars.lSpace}>

@@ -32,6 +32,8 @@ export const ALL_PROJECTS_QUERY = gql`
       slug
       textsColor
       image {
+        width
+        height
         url
       }
       category {

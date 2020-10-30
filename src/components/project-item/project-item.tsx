@@ -99,7 +99,11 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
               )}
             </Mobile>
           </div>
-          <MyImage src={projectItemImageUrl} />
+          <MyImage
+            width={project.image.width}
+            height={project.image.height}
+            src={projectItemImageUrl}
+          />
         </a>
       </Link>
     </ProjectItemStyles>

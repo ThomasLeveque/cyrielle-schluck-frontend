@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import Image from 'next/image';
 import { GetStaticProps, GetStaticPaths, GetStaticPathsResult, NextPage } from 'next';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
 import { rgba } from 'polished';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import { useMediaQuery } from 'react-responsive';
 
 import ProjectSteps from '@components/project-steps/project-steps';
 import Layout from '@components/layout/layout';
@@ -18,7 +18,7 @@ import {
 } from '@animations/global.animation';
 import { ALL_PROJECTS_QUERY } from '.';
 import NotMobile from '@components/responsive/not-mobile';
-import Mobile from '@components/responsive/mobile';
+import Mobile, { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 import MyImage from '@components/my-image/my-image';
 import { fixEnvUrl } from '@utils/env-url.util';
 
@@ -39,9 +39,13 @@ const PROJECT_QUERY = gql`
       slug
       textsColor
       image {
+        width
+        height
         url
       }
       mobileImage {
+        width
+        height
         url
       }
       category {
@@ -67,6 +71,8 @@ const PROJECT_QUERY = gql`
               isSwipable
               tabletGrid
               image {
+                width
+                height
                 url
               }
             }
@@ -93,20 +99,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   const projectImageUrl = fixEnvUrl(project.image.url);
   const projectMobileImageUrl = fixEnvUrl(project.mobileImage?.url);
 
-  const renderProjectImage = () => (
-    <motion.div variants={itemVariants}>
-      <NotMobile>
-        <MyImage src={projectImageUrl} />
-      </NotMobile>
-      <Mobile>
-        {project.mobileImage ? (
-          <MyImage src={projectMobileImageUrl} />
-        ) : (
-          <MyImage src={projectImageUrl} />
-        )}
-      </Mobile>
-    </motion.div>
-  );
+  const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
 
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
@@ -180,7 +173,21 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               />
             </motion.div>
           </div>
-          {renderProjectImage()}
+          <motion.div variants={itemVariants}>
+            {project.mobileImage && isMobile ? (
+              <MyImage
+                width={project.mobileImage.width}
+                height={project.mobileImage.height}
+                src={projectMobileImageUrl}
+              />
+            ) : (
+              <MyImage
+                width={project.image.width}
+                height={project.image.height}
+                src={projectImageUrl}
+              />
+            )}
+          </motion.div>
         </motion.header>
         <ProjectSteps projectSteps={project.projectSteps} />
       </ProjectStyles>

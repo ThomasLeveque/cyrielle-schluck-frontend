@@ -23,7 +23,7 @@ const ItemImage: React.FC<ItemImageProps> = ({ itemImage, itemsLength }) => {
       size={itemImage.size}
       itemsLength={itemsLength}
     >
-      <MyImage src={itemImageUrl} />
+      <MyImage width={itemImage.image.width} height={itemImage.image.height} src={itemImageUrl} />
     </ItemImageStyles>
   );
 };
