@@ -18,7 +18,7 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
   const theme = useContext(ThemeContext);
   const stepItemAnimation = useAnimation();
   const { ref, inView } = useInView({
-    threshold: 0.4,
+    rootMargin: '-150px 0px',
     triggerOnce: true,
   });
 
@@ -32,9 +32,10 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
     <StepItemStyles
       as={motion.article}
       ref={ref}
-      animate="animate"
+      animate={stepItemAnimation}
       initial="initial"
       variants={itemVariants}
+      custom={40}
       className="row"
       grid={stepItem.grid}
     >
