@@ -6,16 +6,9 @@ import { transition } from '@animations/global.animation';
 
 import { LayoutStyles } from './layout.styles';
 
-interface LayoutProps {
-  title: string;
-}
-
-const Layout: React.FC<LayoutProps> = ({ title, children }) => {
+const Layout: React.FC = ({ children }) => {
   return (
     <LayoutStyles as={motion.main} exit={{ opacity: 0, transition }}>
-      <Head>
-        <title>{title}</title>
-      </Head>
       {children}
     </LayoutStyles>
   );

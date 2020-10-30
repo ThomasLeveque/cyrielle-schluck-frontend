@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GetStaticProps, NextPage } from 'next';
+import { NextSeo, NextSeoProps } from 'next-seo';
 import { ThemeContext } from 'styled-components';
 import { motion } from 'framer-motion';
 import { gql, useQuery } from '@apollo/client';
@@ -26,6 +27,7 @@ const ABOUT_ME_QUERY = gql`
     aboutMe {
       image {
         url
+        alternativeText
       }
       desc
       cv {
@@ -60,8 +62,14 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
 
   const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
 
+  const SEO: NextSeoProps = {
+    title: 'Plus sur moi',
+    description: 'Moi c’est Cyrielle, designer spécialisée en expérience et interface utilisateur.',
+  };
+
   return (
-    <Layout title="About me">
+    <Layout>
+      <NextSeo {...SEO} />
       <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
         {aboutMe.image && (
           <motion.div variants={itemVariants}>
@@ -69,6 +77,7 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
               width={isMobile ? 130 : 200}
               height={isMobile ? 130 : 200}
               src={aboutMeImageUrl}
+              alt={aboutMe.image.alternativeText}
             />
           </motion.div>
         )}
@@ -109,7 +118,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
     },
-    revalidate: 60,
+    revalidate: 30,
   };
 };
 

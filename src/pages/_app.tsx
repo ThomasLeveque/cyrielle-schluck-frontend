@@ -3,6 +3,9 @@ import { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { AnimatePresence } from 'framer-motion';
 
+import { DefaultSeo } from 'next-seo';
+import SEO from '../../next-seo.config';
+
 import { ThemeProvider } from 'styled-components';
 import { myTheme } from '../theme/my-theme';
 
@@ -24,6 +27,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps): JSX.Element => {
   return (
     <ThemeProvider theme={myTheme}>
       <GlobalStyles />
+      <DefaultSeo {...SEO} />
       <ApolloProvider client={apolloClient}>
         <Nav textsColor={pageProps.textsColor} />
         <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>

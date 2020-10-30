@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GetStaticProps, GetStaticPaths, GetStaticPathsResult, NextPage } from 'next';
+import { NextSeo, NextSeoProps } from 'next-seo';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
 import { rgba } from 'polished';
@@ -42,11 +43,13 @@ const PROJECT_QUERY = gql`
         width
         height
         url
+        alternativeText
       }
       mobileImage {
         width
         height
         url
+        alternativeText
       }
       category {
         name
@@ -74,6 +77,7 @@ const PROJECT_QUERY = gql`
                 width
                 height
                 url
+                alternativeText
               }
             }
           }
@@ -101,12 +105,18 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
 
   const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
 
+  const SEO: NextSeoProps = {
+    title: project.name,
+    description: project.shortDesc,
+  };
+
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
   }
 
   return (
-    <Layout title={project.name}>
+    <Layout>
+      <NextSeo {...SEO} />
       <ProjectStyles bgColor={project.color}>
         <motion.header
           animate="animate"
@@ -179,12 +189,14 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                 width={project.mobileImage.width}
                 height={project.mobileImage.height}
                 src={projectMobileImageUrl}
+                alt={project.mobileImage.alternativeText}
               />
             ) : (
               <MyImage
                 width={project.image.width}
                 height={project.image.height}
                 src={projectImageUrl}
+                alt={project.image.alternativeText}
               />
             )}
           </motion.div>
@@ -209,7 +221,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       projectSlug: params?.projectSlug,
       textsColor: data.projectBySlug.textsColor,
     },
-    revalidate: 60,
+    revalidate: 30,
   };
 };
 

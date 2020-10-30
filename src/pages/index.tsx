@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
+import { NextSeo, NextSeoProps } from 'next-seo';
 import { useRouter } from 'next/router';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
@@ -39,6 +40,7 @@ export const ALL_PROJECTS_QUERY = gql`
         width
         height
         url
+        alternativeText
       }
       category {
         name
@@ -95,12 +97,19 @@ const HomePage: NextPage<HomePageProps> = () => {
     }
   }, [secondTitleMobileAnimation, secondTitleMobileInView]);
 
+  const SEO: NextSeoProps = {
+    title: 'Mes projets',
+    description:
+      'Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon travail ergonomique et graphique afin de lui assurer la meilleure expérience possible.',
+  };
+
   if (loading) {
     return <Layout title="Loading...">Loading...</Layout>;
   }
 
   return (
-    <Layout title="Home">
+    <Layout>
+      <NextSeo {...SEO} />
       <IndexStyles>
         <Desktop>
           <HomeInfosDesktop gotoAboutMe={gotoAboutMe} entry={entry} />
@@ -207,7 +216,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
     },
-    revalidate: 60,
+    revalidate: 30,
   };
 };
 
