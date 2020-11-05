@@ -128,19 +128,4 @@ const Footer: React.FC<footerProps> = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: ALL_PROJECTS_SLUG_QUERY,
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-    revalidate: 30,
-  };
-};
-
 export default Footer;
