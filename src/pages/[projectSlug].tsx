@@ -111,7 +111,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   };
 
   if (loading) {
-    return <Layout title="Loading...">Loading...</Layout>;
+    return <Layout>Loading...</Layout>;
   }
 
   return (

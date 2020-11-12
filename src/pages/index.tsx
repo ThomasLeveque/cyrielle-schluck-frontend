@@ -66,7 +66,7 @@ const HomePage: NextPage<HomePageProps> = () => {
   });
 
   const gotoAboutMe = (): void => {
-    router.push('/about-me');
+    router.push('/plus-sur-moi');
   };
 
   const firstTitleMobileAnimation = useAnimation();
@@ -104,7 +104,7 @@ const HomePage: NextPage<HomePageProps> = () => {
   };
 
   if (loading) {
-    return <Layout title="Loading...">Loading...</Layout>;
+    return <Layout>Loading...</Layout>;
   }
 
   return (

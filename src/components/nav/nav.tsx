@@ -13,7 +13,7 @@ const Nav: React.FC<NavProps> = ({ textsColor }) => {
   return (
     <NavStyles textsColor={textsColor}>
       <NavLink href="/">PROJETS</NavLink>
-      <NavLink href="/about-me">+ SUR MOI</NavLink>
+      <NavLink href="/plus-sur-moi">+ SUR MOI</NavLink>
     </NavStyles>
   );
 };

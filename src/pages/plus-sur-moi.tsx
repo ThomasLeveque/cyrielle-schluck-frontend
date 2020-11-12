@@ -48,7 +48,7 @@ const ABOUT_ME_QUERY = gql`
 interface AboutMePageProps {}
 
 const AboutMePage: NextPage<AboutMePageProps> = () => {
-  const { data } = useQuery<AboutMeData>(ABOUT_ME_QUERY);
+  const { data, loading } = useQuery<AboutMeData>(ABOUT_ME_QUERY);
   const theme = useContext(ThemeContext);
   const { aboutMe } = data as AboutMeData;
 
@@ -66,6 +66,10 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
     title: 'Plus sur moi',
     description: 'Moi c’est Cyrielle, designer spécialisée en expérience et interface utilisateur.',
   };
+
+  if (loading) {
+    return <Layout>Loading...</Layout>;
+  }
 
   return (
     <Layout>
