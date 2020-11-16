@@ -21,6 +21,7 @@ import { ALL_PROJECTS_QUERY } from '.';
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile, { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 import MyImage from '@components/my-image/my-image';
+import { ALL_PROJECTS_SLUG_QUERY } from '@components/footer/footer';
 import { fixEnvUrl } from '@utils/env-url.util';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
@@ -214,6 +215,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     query: PROJECT_QUERY,
     variables: { projectSlug: params?.projectSlug },
   });
+
+  await apolloClient.query({ query: ALL_PROJECTS_SLUG_QUERY });
 
   return {
     props: {
