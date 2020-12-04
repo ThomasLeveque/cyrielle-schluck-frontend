@@ -1,16 +1,15 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery, gql } from '@apollo/client';
 
-import { buttonYVariants, buttonXVariants, buttonTransition } from '@animations/footer.animation';
-import { initializeApollo } from '@lib/apolloClient';
-import { Project, ProjectsData } from '@interfaces/project.interface';
-import NextButton from '../../../public/static/next.svg';
-import PrevButton from '../../../public/static/previous.svg';
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile from '@components/responsive/mobile';
+import { buttonYVariants, buttonXVariants, buttonTransition } from '@animations/footer.animation';
+import { Project, ProjectsData } from '@interfaces/project.interface';
+
+import NextButton from '../../../public/static/next.svg';
+import PrevButton from '../../../public/static/previous.svg';
 
 import { FooterStyles } from './footer.styles';
 

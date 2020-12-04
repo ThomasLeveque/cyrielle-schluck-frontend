@@ -74,6 +74,8 @@ const PROJECT_QUERY = gql`
               mobileGrid
               isSwipable
               tabletGrid
+              topSpace
+              mobileTopSpace
               image {
                 width
                 height

@@ -28,6 +28,7 @@ declare module 'styled-components' {
       sSpace: number;
       xsSpace: number;
       gridGap: number;
+      gridSize: number;
       bodyFontSize: number;
       appMaxWidth: number;
       topLayoutPadding: number;

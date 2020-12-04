@@ -44,6 +44,8 @@ export interface ItemImage {
   size?: number;
   isSwipable: boolean;
   image: Image;
+  topSpace: number;
+  mobileTopSpace: number;
 }
 
 export interface ProjectsData {

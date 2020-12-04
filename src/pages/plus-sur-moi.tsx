@@ -52,9 +52,9 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
   const theme = useContext(ThemeContext);
   const { aboutMe } = data as AboutMeData;
 
-  const cvUrl = fixEnvUrl(aboutMe.cv.url);
+  const cvUrl = fixEnvUrl(aboutMe.cv?.url);
 
-  const aboutMeImageUrl = fixEnvUrl(aboutMe.image.url);
+  const aboutMeImageUrl = fixEnvUrl(aboutMe.image?.url);
 
   const handleCVReveal = (): void => {
     window.open(cvUrl, '_blank');

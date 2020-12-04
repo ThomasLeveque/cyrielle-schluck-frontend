@@ -25,6 +25,7 @@ const myTheme: DefaultTheme = {
     sSpace: 30,
     xsSpace: 20,
     gridGap: 20,
+    gridSize: 12,
     bodyFontSize: 16,
     appMaxWidth: 1440,
     topLayoutPadding: 150,

@@ -7,20 +7,24 @@ interface ItemImageStylesProps {
   tabletGrid?: number;
   size?: number;
   itemsLength?: number;
+  topSpace: number;
+  mobileTopSpace: number;
 }
 
 export const ItemImageStyles = styled.li<ItemImageStylesProps>`
-  width: ${(props) => (props.grid ? `calc(100% / ${props.grid})` : 'auto')};
+  width: ${(props) =>
+    props.grid ? `calc(100% * ${props.grid} / ${props.theme.vars.gridSize})` : 'auto'};
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: ${(props) => (props.topSpace ? props.topSpace : 0)}px;
 
   ${only('tablet')} {
     width: ${(props) =>
       props.tabletGrid
-        ? `calc(100% / ${props.tabletGrid})`
+        ? `calc(100% * ${props.tabletGrid} / ${props.theme.vars.gridSize})`
         : props.grid
-        ? `calc(100% / ${props.grid})`
+        ? `calc(100% * ${props.grid} / ${props.theme.vars.gridSize})`
         : 'auto'};
   }
 
@@ -31,6 +35,8 @@ export const ItemImageStyles = styled.li<ItemImageStylesProps>`
 
   ${down('mobile')} {
     width: ${(props) => (props.mobileGrid ? `calc(100% / ${props.mobileGrid})` : '100%')};
+    margin-top: ${(props) =>
+      props.mobileTopSpace ? props.mobileTopSpace : props.topSpace ? props.topSpace : 0}px;
   }
 
   img {

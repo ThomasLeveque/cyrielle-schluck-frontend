@@ -4,12 +4,13 @@ import { useSwipeable } from 'react-swipeable';
 import { ThemeContext } from 'styled-components';
 
 import ItemImage from '@components/item-image/item-image';
-import { ItemImage as ItemImageType } from '@interfaces/project.interface';
-import NextButton from '../../../public/static/next.svg';
-import PrevButton from '../../../public/static/previous.svg';
 import Mobile from '@components/responsive/mobile';
 import NotMobile from '@components/responsive/not-mobile';
+import { ItemImage as ItemImageType } from '@interfaces/project.interface';
 import { transition } from '@animations/global.animation';
+
+import NextButton from '../../../public/static/next.svg';
+import PrevButton from '../../../public/static/previous.svg';
 
 import { ItemImagesStyles } from './item-images.styles';
 
@@ -19,7 +20,7 @@ interface ItemImagesProps {
 
 const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
   const [position, setPosition] = useState<number>(0);
-  const theme = useContext(ThemeContext)
+  const theme = useContext(ThemeContext);
   const handlers = useSwipeable({
     onSwiped: (event) => {
       if (event.dir === 'Left') {
@@ -40,7 +41,7 @@ const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
   );
 
   const afterSwipableImage: ItemImageType[] = itemImages.slice(
-    itemImages.indexOf(swipableImages[swipableImages.length])
+    itemImages.indexOf(swipableImages[swipableImages.length - 1]) + 1
   );
 
   const nextPosition = () => {

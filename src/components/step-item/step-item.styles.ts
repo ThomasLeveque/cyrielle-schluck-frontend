@@ -6,7 +6,7 @@ interface StepItemStylesProps {
 }
 
 export const StepItemStyles = styled.article<StepItemStylesProps>`
-  width: calc(100% / ${(props) => props.grid});
+  width: ${(props) => `calc(100% * ${props.grid} / ${props.theme.vars.gridSize})`};
   padding: ${(props) => props.theme.vars.gridGap / 2}px;
 
   ${down('mobile')} {
