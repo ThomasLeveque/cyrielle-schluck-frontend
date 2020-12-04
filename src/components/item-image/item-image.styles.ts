@@ -34,7 +34,10 @@ export const ItemImageStyles = styled.li<ItemImageStylesProps>`
   }
 
   ${down('mobile')} {
-    width: ${(props) => (props.mobileGrid ? `calc(100% / ${props.mobileGrid})` : '100%')};
+    width: ${(props) =>
+      props.mobileGrid
+        ? `calc(100% * ${props.mobileGrid} / ${props.theme.vars.gridSize})`
+        : '100%'};
     margin-top: ${(props) =>
       props.mobileTopSpace ? props.mobileTopSpace : props.topSpace ? props.topSpace : 0}px;
   }
