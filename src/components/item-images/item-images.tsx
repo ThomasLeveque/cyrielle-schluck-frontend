@@ -77,7 +77,12 @@ const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
             ))}
           </ItemImagesStyles>
         ) : (
-          <ItemImagesStyles as="div" totalSwipableImages={swipableImages.length}>
+          <ItemImagesStyles
+            as="div"
+            totalSwipableImages={swipableImages.length}
+            aditionnalSvgTop={swipableImages[0].topSpace / 2}
+            aditionnalMobileSvgTop={swipableImages[0].mobileTopSpace / 2}
+          >
             <ul className="container">
               {beforeSwipableImage.map((itemImage: ItemImageType) => (
                 <ItemImage

@@ -24,6 +24,7 @@ const ItemImage: React.FC<ItemImageProps> = ({ itemImage, itemsLength }) => {
       itemsLength={itemsLength}
       topSpace={itemImage.topSpace}
       mobileTopSpace={itemImage.mobileTopSpace}
+      customGridSize={itemImage.customGridSize}
     >
       <MyImage
         width={itemImage.image.width}

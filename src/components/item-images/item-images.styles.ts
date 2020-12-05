@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 interface ItemImagesStylesProps {
   totalSwipableImages?: number;
+  aditionnalSvgTop?: number;
+  aditionnalMobileSvgTop?: number;
 }
 
 export const ItemImagesStyles = styled.ul<ItemImagesStylesProps>`
@@ -14,7 +16,10 @@ export const ItemImagesStyles = styled.ul<ItemImagesStylesProps>`
 
     svg {
       position: absolute;
-      top: 50%;
+      top: ${(props) =>
+        `calc(50% + ${
+          props.aditionnalMobileSvgTop ? props.aditionnalMobileSvgTop : props.aditionnalSvgTop
+        }px)`};
       transform: translateY(-50%);
       cursor: pointer;
       transition: opacity 0.4s ease-out;

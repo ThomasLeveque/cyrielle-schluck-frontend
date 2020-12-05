@@ -9,11 +9,16 @@ interface ItemImageStylesProps {
   itemsLength?: number;
   topSpace: number;
   mobileTopSpace: number;
+  customGridSize: number;
 }
 
 export const ItemImageStyles = styled.li<ItemImageStylesProps>`
   width: ${(props) =>
-    props.grid ? `calc(100% * ${props.grid} / ${props.theme.vars.gridSize})` : 'auto'};
+    props.grid
+      ? `calc(100% * ${props.grid} / ${
+          props.customGridSize ? props.customGridSize : props.theme.vars.gridSize
+        })`
+      : 'auto'};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +29,9 @@ export const ItemImageStyles = styled.li<ItemImageStylesProps>`
       props.tabletGrid
         ? `calc(100% * ${props.tabletGrid} / ${props.theme.vars.gridSize})`
         : props.grid
-        ? `calc(100% * ${props.grid} / ${props.theme.vars.gridSize})`
+        ? `calc(100% * ${props.grid} / ${
+            props.customGridSize ? props.customGridSize : props.theme.vars.gridSize
+          })`
         : 'auto'};
   }
 

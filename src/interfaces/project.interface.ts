@@ -46,6 +46,7 @@ export interface ItemImage {
   image: Image;
   topSpace: number;
   mobileTopSpace: number;
+  customGridSize: number;
 }
 
 export interface ProjectsData {

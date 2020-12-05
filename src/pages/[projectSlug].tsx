@@ -76,6 +76,7 @@ const PROJECT_QUERY = gql`
               tabletGrid
               topSpace
               mobileTopSpace
+              customGridSize
               image {
                 width
                 height
