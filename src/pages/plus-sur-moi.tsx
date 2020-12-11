@@ -82,6 +82,7 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
               height={isMobile ? 130 : 200}
               src={aboutMeImageUrl}
               alt={aboutMe.image.alternativeText}
+              priority
             />
           </motion.div>
         )}

@@ -4,7 +4,7 @@ import { down } from 'styled-breakpoints';
 export const AboutMeStyles = styled.div`
   padding-top: ${(props) => props.theme.vars.topLayoutPadding}px;
 
-  img {
+  .img {
     width: 200px;
     margin-bottom: ${(props) => props.theme.vars.lSpace}px;
 

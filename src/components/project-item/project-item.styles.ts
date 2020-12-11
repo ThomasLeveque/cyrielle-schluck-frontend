@@ -60,7 +60,7 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
       }
     }
 
-    img {
+    .img {
       width: 400px;
       margin-right: ${(props) => props.theme.vars.mSpace}px;
 

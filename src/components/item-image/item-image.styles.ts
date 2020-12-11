@@ -49,7 +49,7 @@ export const ItemImageStyles = styled.li<ItemImageStylesProps>`
       props.mobileTopSpace ? props.mobileTopSpace : props.topSpace ? props.topSpace : 0}px;
   }
 
-  img {
+  .img {
     width: ${(props) => (props.size ? `${props.size}px` : '100%')};
     max-width: 100%;
 

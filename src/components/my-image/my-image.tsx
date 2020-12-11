@@ -6,14 +6,26 @@ interface MyImageProps {
   alt?: string;
   width: number;
   height: number;
+  priority?: boolean;
 }
 
-const MyImage: React.FC<MyImageProps> = ({ src, alt, width, height, ...props }) => {
+const MyImage: React.FC<MyImageProps> = ({
+  src,
+  alt,
+  width,
+  height,
+  priority = false,
+  ...props
+}) => {
   if (process.env.NODE_ENV !== 'development') {
-    return <Image width={width} height={height} src={src} alt={alt} {...props} />;
+    return (
+      <div className="img">
+        <Image width={width} height={height} src={src} alt={alt} priority={priority} {...props} />
+      </div>
+    );
   }
 
-  return <img src={src} alt={alt} {...props} />;
+  return <img className="img" src={src} alt={alt} {...props} />;
 };
 
 export default MyImage;

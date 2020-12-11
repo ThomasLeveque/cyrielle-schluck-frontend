@@ -12,6 +12,9 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
     position: relative;
     padding-top: ${(props) => props.theme.vars.topLayoutPadding}px;
     margin-bottom: ${(props) => props.theme.vars.xxlSpace}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &::after {
       content: '';
@@ -19,8 +22,7 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
       position: absolute;
       top: 0;
       bottom: ${(props) => props.theme.vars.xlSpace}px;
-      left: 0;
-      right: 0;
+      width: 100vw;
       display: block;
       background-color: ${(props) => fixHexaColor(props.bgColor)};
     }
@@ -78,7 +80,7 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
       }
     }
 
-    img {
+    .img {
       width: 800px;
       max-width: 100%;
       margin: 0 auto;

@@ -104,6 +104,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
             height={project.image.height}
             src={projectItemImageUrl}
             alt={project.image.alternativeText}
+            priority
           />
         </a>
       </Link>

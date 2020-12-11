@@ -194,6 +194,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                 height={project.mobileImage.height}
                 src={projectMobileImageUrl}
                 alt={project.mobileImage.alternativeText}
+                priority
               />
             ) : (
               <MyImage
@@ -201,6 +202,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                 height={project.image.height}
                 src={projectImageUrl}
                 alt={project.image.alternativeText}
+                priority
               />
             )}
           </motion.div>

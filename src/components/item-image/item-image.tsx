@@ -12,7 +12,7 @@ interface ItemImageProps {
 }
 
 const ItemImage: React.FC<ItemImageProps> = ({ itemImage, itemsLength }) => {
-  const itemImageUrl = fixEnvUrl(itemImage.image.url);
+  const itemImageUrl = fixEnvUrl(itemImage.image?.url);
 
   return (
     <ItemImageStyles
@@ -27,10 +27,10 @@ const ItemImage: React.FC<ItemImageProps> = ({ itemImage, itemsLength }) => {
       customGridSize={itemImage.customGridSize}
     >
       <MyImage
-        width={itemImage.image.width}
-        height={itemImage.image.height}
+        width={itemImage.image?.width}
+        height={itemImage.image?.height}
         src={itemImageUrl}
-        alt={itemImage.image.alternativeText}
+        alt={itemImage.image?.alternativeText}
       />
     </ItemImageStyles>
   );
