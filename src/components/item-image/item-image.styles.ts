@@ -46,7 +46,7 @@ export const ItemImageStyles = styled.li<ItemImageStylesProps>`
         ? `calc(100% * ${props.mobileGrid} / ${props.theme.vars.gridSize})`
         : '100%'};
     margin-top: ${(props) =>
-      props.mobileTopSpace ? props.mobileTopSpace : props.topSpace ? props.topSpace : 0}px;
+      props.mobileTopSpace !== null ? props.mobileTopSpace : props.topSpace ? props.topSpace : 0}px;
   }
 
   .img {

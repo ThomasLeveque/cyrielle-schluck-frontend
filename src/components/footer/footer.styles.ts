@@ -21,6 +21,7 @@ export const FooterStyles = styled.footer`
   justify-content: space-between;
   align-items: center;
   padding: 0 ${(props) => props.theme.vars.lSpace}px;
+  z-index: 999;
 
   ${only('tablet')} {
     padding: 0 ${(props) => props.theme.vars.sSpace}px;
