@@ -18,7 +18,7 @@ import { fixEnvUrl } from '@utils/env-url.util';
 import MyImage from '@components/my-image/my-image';
 import { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 
-import { AboutMeStyles } from '@styles/pages/about-me.styles';
+import { AboutMeStyles } from '@styles/pages/plus-sur-moi.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { PStyles } from '@styles/texts/p.styles';
 
@@ -99,6 +99,7 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
             {aboutMe.desc}
           </PStyles>
         </motion.div>
+        {aboutMe.recos.length > 0 && <RecoList recos={aboutMe.recos} />}
         <motion.div variants={itemVariants} className="buttons">
           <CustomButton onClick={handleCVReveal} text="Voir mon cv" />
           <CustomButton
@@ -106,7 +107,6 @@ const AboutMePage: NextPage<AboutMePageProps> = () => {
             text="Télécharger mon cv"
           />
         </motion.div>
-        {aboutMe.recos.length > 0 && <RecoList recos={aboutMe.recos} />}
       </AboutMeStyles>
     </Layout>
   );

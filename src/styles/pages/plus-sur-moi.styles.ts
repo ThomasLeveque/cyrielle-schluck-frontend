@@ -28,7 +28,6 @@ export const AboutMeStyles = styled.div`
   .with-text-list > div {
     ${down('mobile')} {
       font-size: 16px;
-      margin-bottom: ${(props) => props.theme.vars.lSpace}px;
     }
   }
 

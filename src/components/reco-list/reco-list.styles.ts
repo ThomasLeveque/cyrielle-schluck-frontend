@@ -1,18 +1,19 @@
 import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
+const borderMultiplicator = 3;
+
 interface RecoListStylesProps {}
 
 export const RecoListStyles = styled.section<RecoListStylesProps>`
-  margin-top: ${(props) => props.theme.vars.xlSpace}px;
-  padding: ${(props) => props.theme.vars.xsSpace}px;
+  margin-bottom: ${(props) => props.theme.vars.xlSpace}px;
+  padding: ${(props) => props.theme.vars.sSpace}px ${(props) => props.theme.vars.lSpace}px;
   text-align: center;
   position: relative;
 
   ${down('mobile')} {
     margin-top: ${(props) => props.theme.vars.lSpace}px;
-    padding-top: ${(props) => props.theme.vars.lSpace}px;
-    padding-bottom: ${(props) => props.theme.vars.lSpace}px;
+    padding: ${(props) => props.theme.vars.lSpace}px ${(props) => props.theme.vars.xsSpace}px;
   }
 
   h2 {
@@ -29,10 +30,10 @@ export const RecoListStyles = styled.section<RecoListStylesProps>`
       height: 2px;
       top: 0;
       left: 0;
-      width: ${(props) => props.theme.vars.xlSpace}px;
+      width: ${(props) => props.theme.vars.xlSpace * borderMultiplicator}px;
 
       ${down('mobile')} {
-        width: ${(props) => props.theme.vars.lSpace}px;
+        width: ${(props) => props.theme.vars.lSpace * borderMultiplicator}px;
       }
     }
 
@@ -51,10 +52,10 @@ export const RecoListStyles = styled.section<RecoListStylesProps>`
       height: 2px;
       bottom: 0;
       right: 0;
-      width: ${(props) => props.theme.vars.xlSpace}px;
+      width: ${(props) => props.theme.vars.xlSpace * borderMultiplicator}px;
 
       ${down('mobile')} {
-        width: ${(props) => props.theme.vars.lSpace}px;
+        width: ${(props) => props.theme.vars.lSpace * borderMultiplicator}px;
       }
     }
 

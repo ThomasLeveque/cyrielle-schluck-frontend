@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeContext } from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import { rgba } from 'polished';
@@ -18,13 +18,16 @@ interface RecoListProps {
 const RecoList: React.FC<RecoListProps> = ({ recos }) => {
   const theme = useContext(ThemeContext);
   const [activeRecoIndex, setActiveRecoIndex] = useState<number>(0);
-  const reco: Reco = recos[activeRecoIndex];
-  const letterStagger = 0.05;
-  const recoListAnimation = useAnimation();
+  const letterStagger = 0.03;
   const { ref, inView } = useInView({
-    threshold: 0.8,
+    threshold: 0.2,
     triggerOnce: true,
   });
+
+  const reco: Reco | null = useMemo(() => (inView ? recos[activeRecoIndex] : null), [
+    activeRecoIndex,
+    inView,
+  ]);
 
   const getNextRecoIndex = (prevIndex: number): number => {
     if (prevIndex === recos.length - 1) {
@@ -34,31 +37,22 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
   };
 
   const getIntervalTime = (): number => {
-    return letterStagger * 1000 * recos[activeRecoIndex].text.length + 3000;
+    return letterStagger * 1000 * recos[activeRecoIndex].text.length + 5000;
   };
 
   useEffect(() => {
-    if (inView) {
-      recoListAnimation.start('animate');
+    if (!inView) {
+      return;
     }
-  }, [recoListAnimation, inView]);
-
-  useEffect(() => {
     const intervalTime = getIntervalTime();
     const interval = setInterval(() => {
       setActiveRecoIndex(getNextRecoIndex);
     }, intervalTime);
     return () => clearInterval(interval);
-  }, [getIntervalTime]);
+  }, [getIntervalTime, inView]);
 
   return (
-    <RecoListStyles
-      as={motion.section}
-      ref={ref}
-      initial="initial"
-      animate={recoListAnimation}
-      variants={itemVariants}
-    >
+    <RecoListStyles as={motion.section} ref={ref} initial="initial" variants={itemVariants}>
       <div className="border border-top"></div>
       <div className="border border-left"></div>
       <div className="border border-bottom"></div>
@@ -75,7 +69,7 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
         ce qu’on dit de moi
       </HeadingStyles>
       <AnimatePresence exitBeforeEnter>
-        <RecoItem letterStagger={letterStagger} reco={reco} key={`${reco.text}-${reco.id}`} />
+        {reco && <RecoItem letterStagger={letterStagger} reco={reco} key={activeRecoIndex} />}
       </AnimatePresence>
     </RecoListStyles>
   );
