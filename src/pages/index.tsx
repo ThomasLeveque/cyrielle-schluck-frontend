@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import { NextSeo, NextSeoProps } from 'next-seo';
 import { useRouter } from 'next/router';
@@ -12,11 +12,7 @@ import { initializeApollo } from '@lib/apolloClient';
 import { Project, ProjectsData } from '@interfaces/project.interface';
 import CustomButton from '@components/custom-button/custom-button';
 import ProjectList from '@components/project-list/project-list';
-import {
-  itemVariants,
-  itemVariantsDelay,
-  staggerChildrenDefault,
-} from '@animations/global.animation';
+import { itemVariantsDelay, staggerChildrenDefault } from '@animations/global.animation';
 import Desktop from '@components/responsive/desktop';
 import HomeInfosDesktop from '@components/home-infos-desktop/home-infos-desktop';
 import NotDesktop from '@components/responsive/not-desktop';
@@ -97,6 +93,20 @@ const HomePage: NextPage<HomePageProps> = () => {
     }
   }, [secondTitleMobileAnimation, secondTitleMobileInView]);
 
+  const UIUXDesignProjects = useMemo(
+    () =>
+      projects.filter(
+        ({ category }: Project) =>
+          category?.slug === 'ui-design' || category?.slug === 'ux-ui-design'
+      ),
+    [projects]
+  );
+
+  const packagingProjects = useMemo(
+    () => projects.filter(({ category }: Project) => category?.slug === 'packaging'),
+    [projects]
+  );
+
   const SEO: NextSeoProps = {
     title: 'Mes projets',
     description:
@@ -155,12 +165,7 @@ const HomePage: NextPage<HomePageProps> = () => {
             </motion.div>
           </motion.header>
         </NotDesktop>
-        <ProjectList
-          projects={projects.filter(
-            ({ category }: Project) =>
-              category?.slug === 'ui-design' || category?.slug === 'ux-ui-design'
-          )}
-        />
+        <ProjectList projects={UIUXDesignProjects} />
         <NotDesktop>
           <motion.header
             className="home-infos-not-desktop-header"
@@ -196,10 +201,7 @@ const HomePage: NextPage<HomePageProps> = () => {
             </motion.div>
           </motion.header>
         </NotDesktop>
-        <ProjectList
-          ref={projectListRef}
-          projects={projects.filter(({ category }: Project) => category?.slug === 'packaging')}
-        />
+        <ProjectList ref={projectListRef} projects={packagingProjects} />
       </IndexStyles>
     </Layout>
   );

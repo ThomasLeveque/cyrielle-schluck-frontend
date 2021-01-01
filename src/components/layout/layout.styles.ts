@@ -7,7 +7,7 @@ export const LayoutStyles = styled.main`
   width: ${(props) => props.theme.vars.appMaxWidth}px;
   margin: 0 auto;
   padding: 0 ${(props) => props.theme.vars.xlSpace}px
-    ${(props) => math(`${props.theme.vars.lSpace}px + ${props.theme.vars.footerHeight}px`)};
+    ${(props) => math(`${props.theme.vars.xlSpace}px + ${props.theme.vars.footerHeight}px`)};
 
   ${between('tablet', 'desktop')} {
     padding-right: ${(props) => props.theme.vars.lSpace}px;
