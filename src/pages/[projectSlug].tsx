@@ -22,7 +22,7 @@ import NotMobile from '@components/responsive/not-mobile';
 import Mobile, { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 import MyImage from '@components/my-image/my-image';
 import { ALL_PROJECTS_SLUG_QUERY } from '@components/footer/footer';
-import { fixEnvUrl } from '@utils/env-url.util';
+import { fixImgUrl } from '@utils/env-url.util';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { ProjectStyles } from '@styles/pages/project.styles';
@@ -104,8 +104,8 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
 
   const project = data?.projectBySlug as Project;
 
-  const projectImageUrl = fixEnvUrl(project.image.url);
-  const projectMobileImageUrl = fixEnvUrl(project.mobileImage?.url);
+  const projectImageUrl = fixImgUrl(project.image.url);
+  const projectMobileImageUrl = fixImgUrl(project.mobileImage?.url);
 
   const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
 
@@ -227,6 +227,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       initialApolloState: apolloClient.cache.extract(),
       projectSlug: params?.projectSlug,
+      // Used in _app.js and passed to the Nav component
       textsColor: data.projectBySlug.textsColor,
     },
     revalidate: 30,
@@ -250,7 +251,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 

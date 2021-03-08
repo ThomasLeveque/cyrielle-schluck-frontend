@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 const borderMultiplicator = 3;
 
-interface RecoListStylesProps {}
-
-export const RecoListStyles = styled.section<RecoListStylesProps>`
+export const RecoListStyles = styled.section`
   margin-bottom: ${(props) => props.theme.vars.xlSpace}px;
   padding: ${(props) => props.theme.vars.sSpace}px ${(props) => props.theme.vars.lSpace}px;
   text-align: center;

@@ -21,9 +21,7 @@ export const ALL_PROJECTS_SLUG_QUERY = gql`
   }
 `;
 
-interface footerProps {}
-
-const Footer: React.FC<footerProps> = () => {
+const Footer: React.FC = () => {
   const router = useRouter();
   const { projectSlug } = router.query;
 

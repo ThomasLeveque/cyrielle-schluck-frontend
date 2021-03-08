@@ -12,7 +12,7 @@ import { transition } from '@animations/global.animation';
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile from '@components/responsive/mobile';
 import MyImage from '@components/my-image/my-image';
-import { fixEnvUrl } from '@utils/env-url.util';
+import { fixImgUrl } from '@utils/env-url.util';
 
 import { ProjectItemStyles } from './project-item.styles';
 import { PStyles } from '@styles/texts/p.styles';
@@ -30,7 +30,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
     threshold: 0.5,
   });
 
-  const projectItemImageUrl = fixEnvUrl(project.image.url);
+  const projectItemImageUrl = fixImgUrl(project.image.url);
 
   return (
     <ProjectItemStyles
@@ -42,6 +42,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       bgColor={project.color}
     >
       <Link href={`/${project.slug}`} scroll={false}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <div>
             <HeadingStyles

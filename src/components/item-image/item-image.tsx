@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ItemImage as ItemImageType } from '@interfaces/project.interface';
 import MyImage from '@components/my-image/my-image';
-import { fixEnvUrl } from '@utils/env-url.util';
+import { fixImgUrl } from '@utils/env-url.util';
 
 import { ItemImageStyles } from './item-image.styles';
 
@@ -12,7 +12,7 @@ interface ItemImageProps {
 }
 
 const ItemImage: React.FC<ItemImageProps> = ({ itemImage, itemsLength }) => {
-  const itemImageUrl = fixEnvUrl(itemImage.image?.url);
+  const itemImageUrl = fixImgUrl(itemImage.image?.url);
 
   return (
     <ItemImageStyles

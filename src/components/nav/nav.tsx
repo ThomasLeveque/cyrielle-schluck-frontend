@@ -1,9 +1,9 @@
 import React from 'react';
 
 import NavLink from '@components/nav-link/nav-link';
+import { textsColorType } from '@interfaces/project.interface';
 
 import { NavStyles } from './nav.styles';
-import { textsColorType } from '@interfaces/project.interface';
 
 interface NavProps {
   textsColor: textsColorType;

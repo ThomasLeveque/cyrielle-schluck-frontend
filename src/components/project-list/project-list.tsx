@@ -19,4 +19,6 @@ const ProjectList = React.forwardRef<HTMLUListElement, ProjectListProps>(({ proj
   );
 });
 
+ProjectList.displayName = 'ProjectList';
+
 export default ProjectList;

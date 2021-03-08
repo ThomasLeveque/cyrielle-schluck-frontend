@@ -65,7 +65,10 @@ const RecoItem: React.FC<RecoItemProps> = ({ reco, letterStagger }) => {
         lineHeight={1.25}
         letterSpacing={0.6}
       >
-        Source : <a onClick={handleSourceClick}>{reco.source}</a>
+        Source : {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a href="#" onClick={handleSourceClick}>
+          {reco.source}
+        </a>
       </PStyles>
     </RecoItemStyles>
   );

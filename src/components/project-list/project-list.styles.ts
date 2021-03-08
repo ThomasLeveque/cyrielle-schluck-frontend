@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-interface ProjectListStylesProps {}
-
-export const ProjectListStyles = styled.ul<ProjectListStylesProps>``;
+export const ProjectListStyles = styled.ul``;
 
 ProjectListStyles.defaultProps = {};

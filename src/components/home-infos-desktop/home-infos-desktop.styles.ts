@@ -1,9 +1,7 @@
 import { fluidRange } from 'polished';
 import styled from 'styled-components';
 
-interface HomeInfosDesktopStylesProps {}
-
-export const HomeInfosDesktopStyles = styled.section<HomeInfosDesktopStylesProps>`
+export const HomeInfosDesktopStyles = styled.section`
   position: sticky;
   width: ${(props) => props.theme.vars.homeInfosDesktopWidth};
   align-self: flex-start;

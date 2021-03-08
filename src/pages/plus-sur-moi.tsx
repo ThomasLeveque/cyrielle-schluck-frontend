@@ -14,7 +14,7 @@ import RecoList from '@components/reco-list/reco-list';
 import { AboutMeData } from '@interfaces/about-me.interface';
 import { stagger, itemVariants } from '@animations/global.animation';
 import downloadResource from '@lib/downloadResource';
-import { fixEnvUrl } from '@utils/env-url.util';
+import { fixImgUrl } from '@utils/env-url.util';
 import MyImage from '@components/my-image/my-image';
 import { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 
@@ -45,16 +45,14 @@ const ABOUT_ME_QUERY = gql`
   }
 `;
 
-interface AboutMePageProps {}
-
-const AboutMePage: NextPage<AboutMePageProps> = () => {
+const AboutMePage: NextPage = () => {
   const { data, loading } = useQuery<AboutMeData>(ABOUT_ME_QUERY);
   const theme = useContext(ThemeContext);
   const { aboutMe } = data as AboutMeData;
 
-  const cvUrl = fixEnvUrl(aboutMe.cv?.url);
+  const cvUrl = fixImgUrl(aboutMe.cv?.url);
 
-  const aboutMeImageUrl = fixEnvUrl(aboutMe.image?.url);
+  const aboutMeImageUrl = fixImgUrl(aboutMe.image?.url);
 
   const handleCVReveal = (): void => {
     window.open(cvUrl, '_blank');

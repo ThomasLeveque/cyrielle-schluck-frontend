@@ -46,9 +46,7 @@ export const ALL_PROJECTS_QUERY = gql`
   }
 `;
 
-interface HomePageProps {}
-
-const HomePage: NextPage<HomePageProps> = () => {
+const HomePage: NextPage = () => {
   const { data, loading } = useQuery<ProjectsData>(ALL_PROJECTS_QUERY);
   const projects = data?.projects as Project[];
 
