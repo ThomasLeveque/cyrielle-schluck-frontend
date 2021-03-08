@@ -9,16 +9,14 @@ interface ProjectListProps {
   projects: Project[];
 }
 
-const ProjectList = React.forwardRef<HTMLUListElement, ProjectListProps>(({ projects }, ref) => {
+const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   return (
-    <ProjectListStyles ref={ref}>
+    <ProjectListStyles className="secure-bottom-space">
       {projects.map((project: Project) => (
         <ProjectItem project={project} key={project.slug} />
       ))}
     </ProjectListStyles>
   );
-});
-
-ProjectList.displayName = 'ProjectList';
+};
 
 export default ProjectList;

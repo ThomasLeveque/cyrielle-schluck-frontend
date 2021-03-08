@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import { NextSeo, NextSeoProps } from 'next-seo';
 import { useRouter } from 'next/router';
@@ -53,19 +53,13 @@ const HomePage: NextPage = () => {
   const router = useRouter();
   const theme = useContext(ThemeContext);
 
-  const { ref: projectListRef, entry } = useInView({
-    rootMargin: `-350px 0px`,
-    trackVisibility: true,
-    delay: 100,
-  });
-
   const gotoAboutMe = (): void => {
     router.push('/plus-sur-moi');
   };
 
   const firstTitleMobileAnimation = useAnimation();
   const { ref: firstTitleMobileRef, inView: firstTitleMobileInView } = useInView({
-    threshold: 0.8,
+    threshold: 0.4,
     triggerOnce: true,
     trackVisibility: true,
     delay: 100,
@@ -76,34 +70,6 @@ const HomePage: NextPage = () => {
       firstTitleMobileAnimation.start('animate');
     }
   }, [firstTitleMobileAnimation, firstTitleMobileInView]);
-
-  const secondTitleMobileAnimation = useAnimation();
-  const { ref: secondTitleMobileRef, inView: secondTitleMobileInView } = useInView({
-    threshold: 0.8,
-    triggerOnce: true,
-    trackVisibility: true,
-    delay: 100,
-  });
-
-  useEffect(() => {
-    if (secondTitleMobileInView) {
-      secondTitleMobileAnimation.start('animate');
-    }
-  }, [secondTitleMobileAnimation, secondTitleMobileInView]);
-
-  const UIUXDesignProjects = useMemo(
-    () =>
-      projects.filter(
-        ({ category }: Project) =>
-          category?.slug === 'ui-design' || category?.slug === 'ux-ui-design'
-      ),
-    [projects]
-  );
-
-  const packagingProjects = useMemo(
-    () => projects.filter(({ category }: Project) => category?.slug === 'packaging'),
-    [projects]
-  );
 
   const SEO: NextSeoProps = {
     title: 'Mes projets',
@@ -120,7 +86,7 @@ const HomePage: NextPage = () => {
       <NextSeo {...SEO} />
       <IndexStyles>
         <Desktop>
-          <HomeInfosDesktop gotoAboutMe={gotoAboutMe} entry={entry} />
+          <HomeInfosDesktop gotoAboutMe={gotoAboutMe} />
         </Desktop>
         <NotDesktop>
           <motion.header
@@ -163,43 +129,7 @@ const HomePage: NextPage = () => {
             </motion.div>
           </motion.header>
         </NotDesktop>
-        <ProjectList projects={UIUXDesignProjects} />
-        <NotDesktop>
-          <motion.header
-            className="home-infos-not-desktop-header"
-            initial="initial"
-            animate="animate"
-            ref={secondTitleMobileRef}
-          >
-            <HeadingStyles
-              as={motion.h2}
-              variants={itemVariantsDelay}
-              animate={secondTitleMobileAnimation}
-              fontSize={70}
-              mb={theme.vars.lSpace}
-            >
-              Projets identité visuelle et packaging
-            </HeadingStyles>
-            <PStyles
-              as={motion.p}
-              variants={itemVariantsDelay}
-              animate={secondTitleMobileAnimation}
-              custom={staggerChildrenDefault}
-              letterSpacing={1}
-              mb={theme.vars.lSpace}
-            >
-              Un master en design graphique a ajouté d’autres cordes à mon arc.
-            </PStyles>
-            <motion.div
-              variants={itemVariantsDelay}
-              animate={secondTitleMobileAnimation}
-              custom={staggerChildrenDefault * 2}
-            >
-              <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
-            </motion.div>
-          </motion.header>
-        </NotDesktop>
-        <ProjectList ref={projectListRef} projects={packagingProjects} />
+        <ProjectList projects={projects} />
       </IndexStyles>
     </Layout>
   );

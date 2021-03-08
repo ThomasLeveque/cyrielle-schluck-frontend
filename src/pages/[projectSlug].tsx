@@ -121,7 +121,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   return (
     <Layout>
       <NextSeo {...SEO} />
-      <ProjectStyles bgColor={project.color}>
+      <ProjectStyles bgColor={project.color} className="secure-bottom-space">
         <motion.header
           animate="animate"
           initial="initial"

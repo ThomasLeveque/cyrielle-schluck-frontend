@@ -32,46 +32,28 @@ export const IndexStyles = styled.div`
     width: 60%;
     padding-left: ${(props) => props.theme.vars.xlSpace}px;
 
+    ${(props) =>
+      fluidRange(
+        {
+          prop: 'margin-top',
+          fromSize: math(`174px + ${props.theme.vars.xlSpace}px`),
+          toSize: math(`248px + ${props.theme.vars.xlSpace}px`),
+        },
+        props.theme.breakpoints.desktop,
+        props.theme.breakpoints.maxDesktop
+      )}
+
+    ${down('tablet')} {
+      margin-top: ${(props) => props.theme.vars.lSpace}px;
+    }
+
+    ${down('mobile')} {
+      margin-top: ${(props) => props.theme.vars.mSpace}px;
+    }
+
     ${down('tablet')} {
       width: 100%;
       padding-left: 0;
-    }
-
-    &:first-of-type {
-      ${(props) =>
-        fluidRange(
-          {
-            prop: 'margin-top',
-            fromSize: math(`174px + ${props.theme.vars.xlSpace}px`),
-            toSize: math(`248px + ${props.theme.vars.xlSpace}px`),
-          },
-          props.theme.breakpoints.desktop,
-          props.theme.breakpoints.maxDesktop
-        )}
-
-      margin-bottom: 145px;
-
-      ${down('tablet')} {
-        margin: ${(props) => props.theme.vars.xlSpace}px 0;
-      }
-
-      ${down('mobile')} {
-        margin-top: ${(props) => props.theme.vars.mSpace}px;
-        margin-bottom: ${(props) => props.theme.vars.xlSpace}px;
-      }
-    }
-
-    &:last-of-type {
-      margin-left: ${(props) => props.theme.vars.homeInfosDesktopWidth};
-
-      ${down('tablet')} {
-        margin-left: 0;
-        margin-top: ${(props) => props.theme.vars.xlSpace}px;
-      }
-
-      ${down('mobile')} {
-        margin-top: ${(props) => props.theme.vars.mSpace}px;
-      }
     }
   }
 `;

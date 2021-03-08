@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { between, down } from 'styled-breakpoints';
 import reset from 'styled-reset';
+import { math } from 'polished';
 
 export const GlobalStyles = createGlobalStyle`
   /* RESET */
@@ -115,6 +116,21 @@ export const GlobalStyles = createGlobalStyle`
       margin-right: -${(props) => props.theme.vars.sSpace}px;
       padding-left: ${(props) => props.theme.vars.sSpace}px;
       padding-right: ${(props) => props.theme.vars.sSpace}px;
+    }
+  }
+
+  .secure-bottom-space {
+    padding-bottom: ${(props) =>
+      math(`${props.theme.vars.xlSpace}px + ${props.theme.vars.footerHeight}px`)};
+
+    ${down('tablet')} {
+      padding-bottom: ${(props) =>
+        math(`${props.theme.vars.lSpace}px + ${props.theme.vars.footerHeight}px`)};
+    }
+
+    ${down('mobile')} {
+      padding-bottom: ${(props) =>
+        math(`${props.theme.vars.mSpace}px + ${props.theme.vars.footerHeight}px`)};
     }
   }
 

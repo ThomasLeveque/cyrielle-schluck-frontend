@@ -72,7 +72,13 @@ const AboutMePage: NextPage = () => {
   return (
     <Layout>
       <NextSeo {...SEO} />
-      <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger}>
+      <AboutMeStyles
+        as={motion.div}
+        initial="initial"
+        animate="animate"
+        variants={stagger}
+        className="secure-bottom-space"
+      >
         {aboutMe.image && (
           <motion.div variants={itemVariants}>
             <MyImage
