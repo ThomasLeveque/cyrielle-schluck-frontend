@@ -80,10 +80,17 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
       }
     }
 
-    .img {
-      width: 800px;
-      max-width: 100%;
-      margin: 0 auto;
+    .header-image {
+      width: 100%;
+
+      .img {
+        width: 800px;
+        max-width: 100%;
+
+        & > * {
+          margin: 0 auto;
+        }
+      }
     }
   }
 `;

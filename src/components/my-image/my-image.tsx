@@ -9,23 +9,13 @@ interface MyImageProps {
   priority?: boolean;
 }
 
-const MyImage: React.FC<MyImageProps> = ({
-  src,
-  alt,
-  width,
-  height,
-  priority = false,
-  ...props
-}) => {
-  if (process.env.NODE_ENV !== 'development') {
-    return (
-      <div className="img">
-        <Image width={width} height={height} src={src} alt={alt} priority={priority} {...props} />
-      </div>
-    );
-  }
-
-  return <img className="img" src={src} alt={alt} {...props} />;
-};
+const MyImage: React.FC<MyImageProps> = ({ src, alt, width, height, priority = false, ...props }) =>
+  process.env.NODE_ENV !== 'development' ? (
+    <div className="img">
+      <Image width={width} height={height} src={src} alt={alt} priority={priority} {...props} />
+    </div>
+  ) : (
+    <img className="img" src={src} alt={alt} {...props} />
+  );
 
 export default MyImage;

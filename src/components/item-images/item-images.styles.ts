@@ -53,6 +53,10 @@ export const ItemImagesStyles = styled.ul<ItemImagesStylesProps>`
           width: calc(100vw - ${(props) => props.theme.vars.sSpace * 2}px);
           padding: 0;
           margin-right: ${(props) => props.theme.vars.sSpace}px;
+
+          .img > * {
+            margin: 0 auto;
+          }
         }
       }
     }

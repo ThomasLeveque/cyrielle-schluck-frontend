@@ -187,7 +187,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
               />
             </motion.div>
           </div>
-          <motion.div variants={itemVariants}>
+          <motion.div className="header-image" variants={itemVariants}>
             {project.mobileImage && isMobile ? (
               <MyImage
                 width={project.mobileImage.width}
