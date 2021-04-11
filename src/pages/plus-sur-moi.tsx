@@ -61,7 +61,7 @@ const AboutMePage: NextPage = () => {
   const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
 
   const SEO: NextSeoProps = {
-    title: 'Plus sur moi',
+    title: 'Plus sur moi - Cyrielle Schluck',
     description: 'Moi c’est Cyrielle, designer spécialisée en expérience et interface utilisateur.',
   };
 

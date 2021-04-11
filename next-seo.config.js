@@ -1,3 +1,5 @@
 export default {
-  titleTemplate: 'Cyrielle Schluck | %s',
+  title: 'Cyrielle Schluck - Mes projets',
+  description:
+    'Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon travail ergonomique et graphique afin de lui assurer la meilleure expérience possible.',
 };

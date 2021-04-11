@@ -110,7 +110,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
 
   const SEO: NextSeoProps = {
-    title: project.name,
+    title: `Cyrielle Schluck - ${project.name}`,
     description: project.shortDesc,
   };
 
