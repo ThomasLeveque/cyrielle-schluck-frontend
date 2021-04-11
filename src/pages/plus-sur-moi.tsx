@@ -50,7 +50,7 @@ const AboutMePage: NextPage = () => {
   const theme = useContext(ThemeContext);
   const { aboutMe } = data as AboutMeData;
 
-  const cvUrl = fixImgUrl(aboutMe.cv?.url);
+  const cvUrl = '/cv-c-schluck.pdf';
 
   const aboutMeImageUrl = fixImgUrl(aboutMe.image?.url);
 
