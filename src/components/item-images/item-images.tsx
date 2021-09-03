@@ -82,7 +82,7 @@ const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
               ))}
             </ul>
             <div className="swipable-container">
-              <PrevButton className="prev-button" disabled={position === 0} onClick={prevPosition} />
+              <PrevButton className="prev-button" aria-hidden={position === 0} onClick={prevPosition} />
               <div {...handlers} className="swipable-row">
                 <motion.ul
                   className="container"
@@ -96,7 +96,7 @@ const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
                   ))}
                 </motion.ul>
               </div>
-              <NextButton className="next-button" disabled={position === swipableImages.length - 1} onClick={nextPosition} />
+              <NextButton className="next-button" aria-hidden={position === swipableImages.length - 1} onClick={nextPosition} />
             </div>
             <ul className="container">
               {afterSwipableImage.map((itemImage: ItemImageType) => (

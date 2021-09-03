@@ -16,16 +16,13 @@ export const ItemImagesStyles = styled.ul<ItemImagesStylesProps>`
 
     svg {
       position: absolute;
-      top: ${(props) =>
-        `calc(50% + ${
-          props.aditionnalMobileSvgTop ? props.aditionnalMobileSvgTop : props.aditionnalSvgTop
-        }px)`};
+      top: ${(props) => `calc(50% + ${props.aditionnalMobileSvgTop ? props.aditionnalMobileSvgTop : props.aditionnalSvgTop}px)`};
       transform: translateY(-50%);
       cursor: pointer;
       transition: opacity 0.4s ease-out;
       z-index: 100;
 
-      &[disabled] {
+      &[aria-hidden='true'] {
         opacity: 0;
         pointer-events: none;
       }
