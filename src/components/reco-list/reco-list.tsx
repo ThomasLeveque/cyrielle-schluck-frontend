@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useState, useEffect, useContext, useMemo, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeContext } from 'styled-components';
 import { useInView } from 'react-intersection-observer';
@@ -24,21 +24,21 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
     triggerOnce: true,
   });
 
-  const reco: Reco | null = useMemo(() => (inView ? recos[activeRecoIndex] : null), [
-    activeRecoIndex,
-    inView,
-  ]);
+  const reco: Reco | null = useMemo(() => (inView ? recos[activeRecoIndex] : null), [activeRecoIndex, inView, recos]);
 
-  const getNextRecoIndex = (prevIndex: number): number => {
-    if (prevIndex === recos.length - 1) {
-      return 0;
-    }
-    return prevIndex + 1;
-  };
+  const getNextRecoIndex = useCallback(
+    (prevIndex: number): number => {
+      if (prevIndex === recos.length - 1) {
+        return 0;
+      }
+      return prevIndex + 1;
+    },
+    [recos]
+  );
 
-  const getIntervalTime = (): number => {
+  const getIntervalTime = useCallback((): number => {
     return letterStagger * 1000 * recos[activeRecoIndex].text.length + 5000;
-  };
+  }, [letterStagger, recos, activeRecoIndex]);
 
   useEffect(() => {
     if (!inView) {
@@ -49,10 +49,10 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
       setActiveRecoIndex(getNextRecoIndex);
     }, intervalTime);
     return () => clearInterval(interval);
-  }, [getIntervalTime, inView]);
+  }, [getIntervalTime, inView, getNextRecoIndex]);
 
   return (
-    <RecoListStyles as={motion.section} ref={ref} initial="initial" variants={itemVariants}>
+    <RecoListStyles as={motion.section} ref={ref} initial="initial" animate="animate" variants={itemVariants}>
       <div className="border border-top"></div>
       <div className="border border-left"></div>
       <div className="border border-bottom"></div>

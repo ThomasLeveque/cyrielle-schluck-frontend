@@ -9,8 +9,8 @@ import NotMobile from '@components/responsive/not-mobile';
 import { ItemImage as ItemImageType } from '@interfaces/project.interface';
 import { transition } from '@animations/global.animation';
 
-import NextButton from '../../../public/static/next.svg';
-import PrevButton from '../../../public/static/previous.svg';
+import NextButton from '@components/icons/next-button';
+import PrevButton from '@components/icons/previous-button';
 
 import { ItemImagesStyles } from './item-images.styles';
 
@@ -31,18 +31,11 @@ const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
     },
   });
 
-  const swipableImages: ItemImageType[] = itemImages.filter(
-    (itemImage: ItemImageType) => itemImage.isSwipable
-  );
+  const swipableImages: ItemImageType[] = itemImages.filter((itemImage: ItemImageType) => itemImage.isSwipable);
 
-  const beforeSwipableImage: ItemImageType[] = itemImages.slice(
-    0,
-    itemImages.indexOf(swipableImages[0])
-  );
+  const beforeSwipableImage: ItemImageType[] = itemImages.slice(0, itemImages.indexOf(swipableImages[0]));
 
-  const afterSwipableImage: ItemImageType[] = itemImages.slice(
-    itemImages.indexOf(swipableImages[swipableImages.length - 1]) + 1
-  );
+  const afterSwipableImage: ItemImageType[] = itemImages.slice(itemImages.indexOf(swipableImages[swipableImages.length - 1]) + 1);
 
   const nextPosition = () => {
     if (position === swipableImages.length - 1) {
@@ -85,19 +78,11 @@ const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
           >
             <ul className="container">
               {beforeSwipableImage.map((itemImage: ItemImageType) => (
-                <ItemImage
-                  itemsLength={itemImages.length}
-                  key={itemImage.id}
-                  itemImage={itemImage}
-                />
+                <ItemImage itemsLength={itemImages.length} key={itemImage.id} itemImage={itemImage} />
               ))}
             </ul>
             <div className="swipable-container">
-              <PrevButton
-                className="prev-button"
-                disabled={position === 0}
-                onClick={prevPosition}
-              />
+              <PrevButton className="prev-button" disabled={position === 0} onClick={prevPosition} />
               <div {...handlers} className="swipable-row">
                 <motion.ul
                   className="container"
@@ -107,27 +92,15 @@ const ItemImages: React.FC<ItemImagesProps> = ({ itemImages }) => {
                   transition={transition}
                 >
                   {swipableImages.map((itemImage: ItemImageType) => (
-                    <ItemImage
-                      itemsLength={itemImages.length}
-                      key={itemImage.id}
-                      itemImage={itemImage}
-                    />
+                    <ItemImage itemsLength={itemImages.length} key={itemImage.id} itemImage={itemImage} />
                   ))}
                 </motion.ul>
               </div>
-              <NextButton
-                className="next-button"
-                disabled={position === swipableImages.length - 1}
-                onClick={nextPosition}
-              />
+              <NextButton className="next-button" disabled={position === swipableImages.length - 1} onClick={nextPosition} />
             </div>
             <ul className="container">
               {afterSwipableImage.map((itemImage: ItemImageType) => (
-                <ItemImage
-                  itemsLength={itemImages.length}
-                  key={itemImage.id}
-                  itemImage={itemImage}
-                />
+                <ItemImage itemsLength={itemImages.length} key={itemImage.id} itemImage={itemImage} />
               ))}
             </ul>
           </ItemImagesStyles>

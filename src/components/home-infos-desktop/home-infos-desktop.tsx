@@ -22,6 +22,7 @@ const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe }) => {
   const maxYH1 = -100;
   const maxYDesc = maxYH1 - theme.vars.xlSpace + theme.vars.lSpace;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => handleInitialStyle(), []);
 
   const { scrollY } = useViewportScroll();
@@ -52,8 +53,8 @@ const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe }) => {
         </HeadingStyles>
         <motion.div style={{ y: yDesc }}>
           <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.xlSpace}>
-            Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon
-            travail ergonomique et graphique afin de lui assurer la meilleure expérience possible.
+            Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon travail ergonomique et graphique afin
+            de lui assurer la meilleure expérience possible.
           </PStyles>
           <motion.div variants={itemVariants}>
             <CustomButton text="En savoir plus" onClick={gotoAboutMe} />

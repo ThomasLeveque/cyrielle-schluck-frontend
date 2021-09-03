@@ -8,8 +8,8 @@ import Mobile from '@components/responsive/mobile';
 import { buttonYVariants, buttonXVariants, buttonTransition } from '@animations/footer.animation';
 import { Project, ProjectsData } from '@interfaces/project.interface';
 
-import NextButton from '../../../public/static/next.svg';
-import PrevButton from '../../../public/static/previous.svg';
+import NextButton from '@components/icons/next-button';
+import PrevButton from '@components/icons/previous-button';
 
 import { FooterStyles } from './footer.styles';
 
