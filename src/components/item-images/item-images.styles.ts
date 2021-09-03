@@ -54,8 +54,9 @@ export const ItemImagesStyles = styled.ul<ItemImagesStylesProps>`
           padding: 0;
           margin-right: ${(props) => props.theme.vars.sSpace}px;
 
-          .img > * {
-            margin: 0 auto;
+          .img {
+            display: flex;
+            justify-content: center;
           }
         }
       }

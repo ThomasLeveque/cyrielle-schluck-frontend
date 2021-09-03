@@ -44,7 +44,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
       <Link href={`/${project.slug}`} scroll={false}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
-          <div>
+          <div className="data">
             <HeadingStyles
               as="h4"
               fontSize={18}

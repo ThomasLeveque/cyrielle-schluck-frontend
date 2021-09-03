@@ -28,7 +28,7 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
     align-items: center;
     justify-content: space-between;
 
-    > div {
+    .data {
       padding: 0 ${(props) => props.theme.vars.mSpace}px;
       min-width: 350px;
 
@@ -61,15 +61,15 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
     }
 
     .img {
-      width: 400px;
+      min-width: 400px;
       margin-right: ${(props) => props.theme.vars.mSpace}px;
 
       ${only('desktop')} {
-        width: 350px;
+        min-width: 350px;
       }
 
       ${down('mobile')} {
-        width: 200px;
+        min-width: 200px;
       }
     }
   }
