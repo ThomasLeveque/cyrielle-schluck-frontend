@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NextButton: React.FC<React.SVGAttributes<SVGElement>> = React.memo((svgProps) => {
+const NextButton: React.FC<{ disabled: boolean } & React.SVGAttributes<SVGElement>> = React.memo((svgProps) => {
   return (
     <svg width="25px" height="61px" viewBox="0 0 25 61" {...svgProps}>
       <title>Group 8</title>

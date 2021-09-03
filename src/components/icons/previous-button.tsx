@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PreviousButton: React.FC<React.SVGAttributes<SVGElement>> = React.memo((svgProps) => {
+const PreviousButton: React.FC<{ disabled: boolean } & React.SVGAttributes<SVGElement>> = React.memo((svgProps) => {
   return (
     <svg width="25px" height="61px" viewBox="0 0 25 61" {...svgProps}>
       <g id="Mobile" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
