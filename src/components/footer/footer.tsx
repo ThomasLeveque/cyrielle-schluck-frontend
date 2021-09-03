@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
     }
 
     const nextProjectSlug = projects[nextProjectIndex].slug;
-    router.push(`/${nextProjectSlug}`);
+    router.push(`/${nextProjectSlug}`, undefined, { scroll: false });
   };
 
   const handlePreviousProject = (): void => {
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
     }
 
     const nextProjectSlug = projects[nextProjectIndex].slug;
-    router.push(`/${nextProjectSlug}`);
+    router.push(`/${nextProjectSlug}`, undefined, { scroll: false });
   };
 
   return (

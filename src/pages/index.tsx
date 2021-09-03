@@ -53,7 +53,7 @@ const HomePage: NextPage = () => {
   const theme = useContext(ThemeContext);
 
   const gotoAboutMe = (): void => {
-    router.push('/plus-sur-moi');
+    router.push('/plus-sur-moi', undefined, { scroll: false });
   };
 
   const firstTitleMobileAnimation = useAnimation();
