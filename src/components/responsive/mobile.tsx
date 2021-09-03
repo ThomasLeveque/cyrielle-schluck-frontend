@@ -10,11 +10,11 @@ export const generateIsMobileMediaQuery = (
   }
 > => ({ maxWidth: +theme.breakpoints.tablet.replace('px', '') - 1 });
 
-const Mobile: React.FC<any> = ({ children }) => {
+const Mobile: React.FC = ({ children }) => {
   const theme = useContext(ThemeContext);
 
   const isMobile = useMediaQuery(generateIsMobileMediaQuery(theme));
-  return isMobile ? children : null;
+  return isMobile ? <>{children}</> : null;
 };
 
 export default Mobile;

@@ -7,7 +7,7 @@ interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({ text, ...props }) => {
-  const subTextRef = useRef<HTMLElement>(null);
+  const subTextRef = useRef<HTMLDivElement>(null);
   const [buttonWidth, setButtonWidth] = useState<number>(0);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ text, ...props }) => {
       <div className="text">
         <span>{text}</span>
       </div>
-      <div className="sub-text" ref={subTextRef as any}>
+      <div className="sub-text" ref={subTextRef}>
         {text}
       </div>
     </CustomButtonStyles>
