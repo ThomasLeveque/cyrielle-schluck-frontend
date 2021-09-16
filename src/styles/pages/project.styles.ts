@@ -17,6 +17,10 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
     align-items: center;
     min-height: ${(props) => `calc(100vh - ${props.theme.vars.footerHeight}px)`};
 
+    ${down('tablet')} {
+      margin-bottom: ${(props) => props.theme.vars.xlSpace}px;
+    }
+
     &::after {
       content: '';
       z-index: -1;
@@ -83,7 +87,7 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
 
     .header-image {
       width: 100%;
-      margin-bottom: ${(props) => props.theme.vars.lSpace}px;
+      margin-bottom: 75px;
 
       .img {
         width: 800px;
