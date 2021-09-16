@@ -6,7 +6,7 @@ interface CustomButtonStylesProps {
 }
 
 const buttonTransition = css`
-  transition: 0.4s ease-out;
+  transition: 0.4s cubic-bezier(0, 0.05, 0.25, 0.95);
 `;
 
 export const CustomButtonStyles = styled.button<CustomButtonStylesProps>`
