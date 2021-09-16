@@ -18,7 +18,7 @@ const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe }) => {
 
   const minScrollY = 100;
   const maxScrollY = 280;
-  const maxScaleH1 = 0.6;
+  const maxScaleH1 = 0.56;
   const maxYH1 = -100;
   const maxYDesc = maxYH1 - theme.vars.xlSpace + theme.vars.lSpace;
 
