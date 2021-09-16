@@ -47,7 +47,7 @@ const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe }) => {
             <span className="color-gray">Cyrielle</span>,
           </motion.div>
           <motion.div variants={itemVariants}>
-            Designer UI<span className="color-gray">/</span>UX
+            Product designer
             <span className="color-gray">.</span>
           </motion.div>
         </HeadingStyles>

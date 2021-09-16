@@ -72,13 +72,7 @@ const AboutMePage: NextPage = () => {
   return (
     <Layout>
       <NextSeo {...SEO} />
-      <AboutMeStyles
-        as={motion.div}
-        initial="initial"
-        animate="animate"
-        variants={stagger}
-        className="secure-bottom-space"
-      >
+      <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger} className="secure-bottom-space">
         {aboutMe.image && (
           <motion.div variants={itemVariants}>
             <MyImage
@@ -95,7 +89,7 @@ const AboutMePage: NextPage = () => {
             <span className="color-gray">Cyrielle</span>,
           </motion.div>
           <motion.div variants={itemVariants}>
-            Designer UI<span className="color-gray">/</span>UX<span className="color-gray">.</span>
+            Product designer<span className="color-gray">.</span>
           </motion.div>
         </HeadingStyles>
         <motion.div className="with-text-list" variants={itemVariants}>
@@ -106,10 +100,7 @@ const AboutMePage: NextPage = () => {
         {aboutMe.recos.length > 0 && <RecoList recos={aboutMe.recos} />}
         <motion.div variants={itemVariants} className="buttons">
           <CustomButton onClick={handleCVReveal} text="Voir mon cv" />
-          <CustomButton
-            onClick={() => downloadResource(cvUrl, 'Cyrielle-Schluck-CV')}
-            text="Télécharger mon cv"
-          />
+          <CustomButton onClick={() => downloadResource(cvUrl, 'Cyrielle-Schluck-CV')} text="Télécharger mon cv" />
         </motion.div>
       </AboutMeStyles>
     </Layout>

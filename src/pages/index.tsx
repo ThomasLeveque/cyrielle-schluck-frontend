@@ -82,22 +82,13 @@ const HomePage: NextPage = () => {
           <HomeInfosDesktop gotoAboutMe={gotoAboutMe} />
         </Desktop>
         <NotDesktop>
-          <motion.header
-            className="home-infos-not-desktop-header"
-            initial="initial"
-            animate="animate"
-            ref={firstTitleMobileRef}
-          >
+          <motion.header className="home-infos-not-desktop-header" initial="initial" animate="animate" ref={firstTitleMobileRef}>
             <HeadingStyles mb={theme.vars.lSpace} fontSize={70}>
               <motion.div variants={itemVariantsDelay} animate={firstTitleMobileAnimation}>
                 <span className="color-gray">Cyrielle</span>,
               </motion.div>
-              <motion.div
-                variants={itemVariantsDelay}
-                animate={firstTitleMobileAnimation}
-                custom={staggerChildrenDefault}
-              >
-                Designer UI<span className="color-gray">/</span>UX
+              <motion.div variants={itemVariantsDelay} animate={firstTitleMobileAnimation} custom={staggerChildrenDefault}>
+                Product designer
                 <span className="color-gray">.</span>
               </motion.div>
             </HeadingStyles>
@@ -109,15 +100,10 @@ const HomePage: NextPage = () => {
               letterSpacing={1}
               mb={theme.vars.lSpace}
             >
-              Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de
-              mon travail ergonomique et graphique afin de lui assurer la meilleure expérience
-              possible.
+              Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon travail ergonomique et graphique afin
+              de lui assurer la meilleure expérience possible.
             </PStyles>
-            <motion.div
-              variants={itemVariantsDelay}
-              animate={firstTitleMobileAnimation}
-              custom={staggerChildrenDefault * 3}
-            >
+            <motion.div variants={itemVariantsDelay} animate={firstTitleMobileAnimation} custom={staggerChildrenDefault * 3}>
               <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
             </motion.div>
           </motion.header>
