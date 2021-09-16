@@ -9,15 +9,15 @@ export const NavLinkAStyles = styled.a`
   cursor: pointer;
 
   ${up('desktop')} {
-    &:hover {
+    &:hover,
+    &:not(.active):focus {
       span {
         transform: translateX(100%);
       }
     }
   }
 
-  &.active,
-  &:focus {
+  &.active {
     span {
       background-color: ${(props) => props.theme.colors.mainColor};
     }
