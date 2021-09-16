@@ -55,6 +55,14 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
   }
 
+  input:focus,
+  textarea:focus,
+  select:focus,
+  a:focus,
+  button:focus {
+    outline: none;
+  }
+
   body {
     font-family: ${(props) => props.theme.fonts.mainFont};
     font-size: ${(props) => props.theme.vars.bodyFontSize}px;
@@ -120,17 +128,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .secure-bottom-space {
-    padding-bottom: ${(props) =>
-      math(`${props.theme.vars.xlSpace}px + ${props.theme.vars.footerHeight}px`)};
+    padding-bottom: ${(props) => math(`${props.theme.vars.xlSpace}px + ${props.theme.vars.footerHeight}px`)};
 
     ${down('tablet')} {
-      padding-bottom: ${(props) =>
-        math(`${props.theme.vars.lSpace}px + ${props.theme.vars.footerHeight}px`)};
+      padding-bottom: ${(props) => math(`${props.theme.vars.lSpace}px + ${props.theme.vars.footerHeight}px`)};
     }
 
     ${down('mobile')} {
-      padding-bottom: ${(props) =>
-        math(`${props.theme.vars.mSpace}px + ${props.theme.vars.footerHeight}px`)};
+      padding-bottom: ${(props) => math(`${props.theme.vars.mSpace}px + ${props.theme.vars.footerHeight}px`)};
     }
   }
 

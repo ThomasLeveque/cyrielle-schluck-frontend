@@ -28,8 +28,15 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
     align-items: center;
     justify-content: space-between;
 
+    &:hover,
+    &:focus {
+      .img {
+        transform: translateX(-20px);
+      }
+    }
+
     .data {
-      padding: 0 ${(props) => props.theme.vars.mSpace}px;
+      padding: 0 60px 0 ${(props) => props.theme.vars.mSpace}px;
       min-width: 350px;
 
       ${only('desktop')} {
@@ -63,6 +70,7 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
     .img {
       min-width: 400px;
       margin-right: ${(props) => props.theme.vars.mSpace}px;
+      transition: 0.3s ease-out;
 
       ${only('desktop')} {
         min-width: 350px;

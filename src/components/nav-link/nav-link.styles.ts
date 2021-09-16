@@ -16,7 +16,8 @@ export const NavLinkAStyles = styled.a`
     }
   }
 
-  &.active {
+  &.active,
+  &:focus {
     span {
       background-color: ${(props) => props.theme.colors.mainColor};
     }

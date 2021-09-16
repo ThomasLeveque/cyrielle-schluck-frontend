@@ -21,7 +21,8 @@ export const CustomButtonStyles = styled.button<CustomButtonStylesProps>`
   max-width: 100%;
 
   ${up('desktop')} {
-    &:hover {
+    &:hover,
+    &:focus {
       .text {
         transform: translateX(-100%);
 
