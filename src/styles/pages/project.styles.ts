@@ -15,13 +15,14 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: ${(props) => `calc(100vh - ${props.theme.vars.footerHeight}px)`};
 
     &::after {
       content: '';
       z-index: -1;
       position: absolute;
       top: 0;
-      bottom: ${(props) => props.theme.vars.xlSpace}px;
+      bottom: 0;
       width: 100vw;
       display: block;
       background-color: ${(props) => fixHexaColor(props.bgColor)};
@@ -82,6 +83,7 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
 
     .header-image {
       width: 100%;
+      margin-bottom: ${(props) => props.theme.vars.lSpace}px;
 
       .img {
         width: 800px;
