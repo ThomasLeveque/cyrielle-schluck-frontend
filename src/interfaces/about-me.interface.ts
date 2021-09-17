@@ -2,8 +2,9 @@ import { Image } from './image.interface';
 
 export interface AboutMe {
   image: Image;
+  name: string;
+  title: string;
   desc: string;
-  cv: Image;
   recos: Reco[];
 }
 

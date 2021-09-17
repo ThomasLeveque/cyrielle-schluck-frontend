@@ -12,12 +12,7 @@ import ProjectSteps from '@components/project-steps/project-steps';
 import Layout from '@components/layout/layout';
 import { ProjectData, ProjectsData, Project } from '@interfaces/project.interface';
 import { initializeApollo } from '@lib/apolloClient';
-import {
-  delayStaggerChildrenVariants,
-  itemVariants,
-  itemXVariants,
-} from '@animations/global.animation';
-import { ALL_PROJECTS_QUERY } from '.';
+import { delayStaggerChildrenVariants, itemVariants, itemXVariants } from '@animations/global.animation';
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile, { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 import MyImage from '@components/my-image/my-image';
@@ -122,12 +117,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
     <Layout>
       <NextSeo {...SEO} />
       <ProjectStyles bgColor={project.color} className="secure-bottom-space">
-        <motion.header
-          animate="animate"
-          initial="initial"
-          variants={delayStaggerChildrenVariants}
-          className="full-width page-header"
-        >
+        <motion.header animate="animate" initial="initial" variants={delayStaggerChildrenVariants} className="full-width page-header">
           <div className="header-texts">
             <motion.div variants={itemXVariants} custom={-20} className="header-texts-headings">
               <HeadingStyles
@@ -165,13 +155,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
                 )}
               </NotMobile>
               <Mobile>
-                <HeadingStyles
-                  as="h1"
-                  fontSize={40}
-                  lineHeight={1.3}
-                  mb={0}
-                  color={theme.colors[project.textsColor]}
-                >
+                <HeadingStyles as="h1" fontSize={40} lineHeight={1.3} mb={0} color={theme.colors[project.textsColor]}>
                   {project.name}
                 </HeadingStyles>
               </Mobile>
@@ -234,15 +218,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async (): Promise<
-  GetStaticPathsResult<{ projectSlug: string }>
-> => {
+export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult<{ projectSlug: string }>> => {
   const apolloClient = initializeApollo();
 
   const {
     data: { projects },
   } = await apolloClient.query<ProjectsData>({
-    query: ALL_PROJECTS_QUERY,
+    query: ALL_PROJECTS_SLUG_QUERY,
   });
 
   const paths = projects.map((project: Project) => ({

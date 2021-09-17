@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { gql, useQuery } from '@apollo/client';
@@ -8,7 +8,6 @@ import { motion, useAnimation } from 'framer-motion';
 
 import Layout from '@components/layout/layout';
 import { initializeApollo } from '@lib/apolloClient';
-import { Project, ProjectsData } from '@interfaces/project.interface';
 import CustomButton from '@components/custom-button/custom-button';
 import ProjectList from '@components/project-list/project-list';
 import { itemVariants, stagger } from '@animations/global.animation';
@@ -19,35 +18,47 @@ import NotDesktop from '@components/responsive/not-desktop';
 import { IndexStyles } from '@styles/pages/index.styles';
 import { PStyles } from '@styles/texts/p.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
+import { Home, HomeData } from '@interfaces/home.interface';
 
-export const ALL_PROJECTS_QUERY = gql`
+export const HOME_QUERY = gql`
   query {
-    projects {
-      id
+    home {
       name
-      shortDesc
-      mobileName
-      description
-      color
-      slug
-      textsColor
-      image {
-        width
-        height
-        url
-        alternativeText
-      }
-      category {
-        name
-        slug
+      title
+      desc
+      projectList {
+        ... on ComponentBlockProjectItem {
+          project {
+            id
+            name
+            shortDesc
+            mobileName
+            description
+            color
+            slug
+            textsColor
+            image {
+              width
+              height
+              url
+              alternativeText
+            }
+            category {
+              name
+              slug
+            }
+          }
+        }
       }
     }
   }
 `;
 
 const HomePage: NextPage = () => {
-  const { data, loading } = useQuery<ProjectsData>(ALL_PROJECTS_QUERY);
-  const projects = data?.projects as Project[];
+  const { data, loading } = useQuery<HomeData>(HOME_QUERY);
+  const home = data?.home as Home;
+
+  const projects = useMemo(() => home.projectList.map((p) => p.project), [home.projectList]);
 
   const router = useRouter();
   const theme = useContext(ThemeContext);
@@ -78,16 +89,15 @@ const HomePage: NextPage = () => {
           <motion.header className="home-infos-not-desktop-header" initial="initial" animate="animate" variants={stagger} ref={observe}>
             <HeadingStyles mb={theme.vars.lSpace} fontSize={70}>
               <motion.div variants={itemVariants}>
-                <span className="color-gray">Cyrielle</span>,
+                <span className="color-gray">{home.name}</span>,
               </motion.div>
               <motion.div variants={itemVariants}>
-                Product designer
+                {home.title}
                 <span className="color-gray">.</span>
               </motion.div>
             </HeadingStyles>
             <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.lSpace}>
-              Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon travail ergonomique et graphique afin
-              de lui assurer la meilleure expérience possible.
+              {home.desc}
             </PStyles>
             <motion.div variants={itemVariants}>
               <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
@@ -104,7 +114,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
-    query: ALL_PROJECTS_QUERY,
+    query: HOME_QUERY,
   });
 
   return {

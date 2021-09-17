@@ -29,10 +29,9 @@ const ABOUT_ME_QUERY = gql`
         url
         alternativeText
       }
+      name
+      title
       desc
-      cv {
-        url
-      }
       recos {
         ... on ComponentBlockReco {
           id
@@ -86,10 +85,10 @@ const AboutMePage: NextPage = () => {
         )}
         <HeadingStyles mb={theme.vars.lSpace}>
           <motion.div variants={itemVariants}>
-            <span className="color-gray">Cyrielle</span>,
+            <span className="color-gray">{aboutMe.name}</span>,
           </motion.div>
           <motion.div variants={itemVariants}>
-            Product designer<span className="color-gray">.</span>
+            {aboutMe.title}<span className="color-gray">.</span>
           </motion.div>
         </HeadingStyles>
         <motion.div className="with-text-list" variants={itemVariants}>

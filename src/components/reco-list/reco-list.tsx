@@ -23,7 +23,7 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
     threshold: 0.6,
     unobserveOnEnter: true,
   });
-  console.log(inView);
+
   const reco: Reco | null = useMemo(() => (inView ? recos[activeRecoIndex] : null), [activeRecoIndex, inView, recos]);
 
   const getNextRecoIndex = useCallback(

@@ -1,4 +1,4 @@
-import { Variants } from 'framer-motion'
+import { Variants } from 'framer-motion';
 
 export const transition = { duration: 0.4, ease: 'easeOut' };
 export const staggerChildrenDefault = 0.1;
