@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useMemo, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ThemeContext } from 'styled-components';
-import { useInView } from 'react-intersection-observer';
+import useInView from 'react-cool-inview';
 import { rgba } from 'polished';
 
 import RecoItem from '@components/reco-item/reco-item';
@@ -19,11 +19,11 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
   const theme = useContext(ThemeContext);
   const [activeRecoIndex, setActiveRecoIndex] = useState<number>(0);
   const letterStagger = 0.03;
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
+  const { observe, inView } = useInView({
+    threshold: 0.6,
+    unobserveOnEnter: true,
   });
-
+  console.log(inView);
   const reco: Reco | null = useMemo(() => (inView ? recos[activeRecoIndex] : null), [activeRecoIndex, inView, recos]);
 
   const getNextRecoIndex = useCallback(
@@ -36,23 +36,23 @@ const RecoList: React.FC<RecoListProps> = ({ recos }) => {
     [recos]
   );
 
-  const getIntervalTime = useCallback((): number => {
-    return letterStagger * 1000 * recos[activeRecoIndex].text.length + 5000;
-  }, [letterStagger, recos, activeRecoIndex]);
-
   useEffect(() => {
     if (!inView) {
       return;
     }
-    const intervalTime = getIntervalTime();
-    const interval = setInterval(() => {
+
+    const intervalTime = letterStagger * 1000 * recos[activeRecoIndex].text.length + 5000;
+
+    const updateActiveReco = () => {
       setActiveRecoIndex(getNextRecoIndex);
-    }, intervalTime);
-    return () => clearInterval(interval);
-  }, [getIntervalTime, inView, getNextRecoIndex]);
+    };
+
+    const removeTimeout = setTimeout(() => requestAnimationFrame(updateActiveReco), intervalTime);
+    return () => clearTimeout(removeTimeout);
+  }, [activeRecoIndex, recos, inView, getNextRecoIndex]);
 
   return (
-    <RecoListStyles as={motion.section} ref={ref} initial="initial" animate="animate" variants={itemVariants}>
+    <RecoListStyles as={motion.section} ref={observe} initial="initial" animate="animate" variants={itemVariants}>
       <div className="border border-top"></div>
       <div className="border border-left"></div>
       <div className="border border-bottom"></div>

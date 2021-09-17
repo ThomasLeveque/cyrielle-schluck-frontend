@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
-import { useInView } from 'react-intersection-observer';
+import useInView from 'react-cool-inview';
 import { motion, useAnimation } from 'framer-motion';
 
 import Layout from '@components/layout/layout';
@@ -11,7 +11,7 @@ import { initializeApollo } from '@lib/apolloClient';
 import { Project, ProjectsData } from '@interfaces/project.interface';
 import CustomButton from '@components/custom-button/custom-button';
 import ProjectList from '@components/project-list/project-list';
-import { itemVariantsDelay, staggerChildrenDefault } from '@animations/global.animation';
+import { itemVariants, stagger } from '@animations/global.animation';
 import Desktop from '@components/responsive/desktop';
 import HomeInfosDesktop from '@components/home-infos-desktop/home-infos-desktop';
 import NotDesktop from '@components/responsive/not-desktop';
@@ -57,18 +57,11 @@ const HomePage: NextPage = () => {
   };
 
   const firstTitleMobileAnimation = useAnimation();
-  const { ref: firstTitleMobileRef, inView: firstTitleMobileInView } = useInView({
-    threshold: 0.4,
-    triggerOnce: true,
-    trackVisibility: true,
-    delay: 100,
+  const { observe } = useInView({
+    threshold: 0.6,
+    unobserveOnEnter: true,
+    onEnter: () => firstTitleMobileAnimation.start('animate'),
   });
-
-  useEffect(() => {
-    if (firstTitleMobileInView) {
-      firstTitleMobileAnimation.start('animate');
-    }
-  }, [firstTitleMobileAnimation, firstTitleMobileInView]);
 
   if (loading) {
     return <Layout>Loading...</Layout>;
@@ -82,28 +75,21 @@ const HomePage: NextPage = () => {
           <HomeInfosDesktop gotoAboutMe={gotoAboutMe} />
         </Desktop>
         <NotDesktop>
-          <motion.header className="home-infos-not-desktop-header" initial="initial" animate="animate" ref={firstTitleMobileRef}>
+          <motion.header className="home-infos-not-desktop-header" initial="initial" animate="animate" variants={stagger} ref={observe}>
             <HeadingStyles mb={theme.vars.lSpace} fontSize={70}>
-              <motion.div variants={itemVariantsDelay} animate={firstTitleMobileAnimation}>
+              <motion.div variants={itemVariants}>
                 <span className="color-gray">Cyrielle</span>,
               </motion.div>
-              <motion.div variants={itemVariantsDelay} animate={firstTitleMobileAnimation} custom={staggerChildrenDefault}>
+              <motion.div variants={itemVariants}>
                 Product designer
                 <span className="color-gray">.</span>
               </motion.div>
             </HeadingStyles>
-            <PStyles
-              as={motion.p}
-              variants={itemVariantsDelay}
-              animate={firstTitleMobileAnimation}
-              custom={staggerChildrenDefault * 2}
-              letterSpacing={1}
-              mb={theme.vars.lSpace}
-            >
+            <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.lSpace}>
               Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon travail ergonomique et graphique afin
               de lui assurer la meilleure expérience possible.
             </PStyles>
-            <motion.div variants={itemVariantsDelay} animate={firstTitleMobileAnimation} custom={staggerChildrenDefault * 3}>
+            <motion.div variants={itemVariants}>
               <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
             </motion.div>
           </motion.header>

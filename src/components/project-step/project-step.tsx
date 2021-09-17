@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { rgba } from 'polished';
 import ReactMarkdown from 'react-markdown';
 import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import useInView from 'react-cool-inview';
 
 import StepItems from '@components/step-items/step-items';
 import { itemVariants } from '@animations/global.animation';
@@ -20,21 +20,16 @@ interface ProjectStepProps {
 const ProjectStep: React.FC<ProjectStepProps> = ({ projectStep }) => {
   const theme = useContext(ThemeContext);
   const projectStepAnimation = useAnimation();
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
+  const { observe } = useInView<HTMLElement>({
+    threshold: 0.6,
+    unobserveOnEnter: true,
+    onEnter: () => projectStepAnimation.start('animate'),
   });
-
-  useEffect(() => {
-    if (inView) {
-      projectStepAnimation.start('animate');
-    }
-  }, [projectStepAnimation, inView]);
 
   return (
     <ProjectStepStyles bgColor={projectStep.bgColor}>
       <motion.header
-        ref={ref}
+        ref={observe}
         animate={projectStepAnimation}
         initial="initial"
         variants={itemVariants}

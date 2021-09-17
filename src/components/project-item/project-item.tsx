@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import { ThemeContext } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
-import { useInView } from 'react-intersection-observer';
+import useInView from 'react-cool-inview';
 import { motion } from 'framer-motion';
 import { rgba } from 'polished';
 
@@ -25,16 +25,16 @@ interface ProjectItemProps {
 const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
   const theme = useContext(ThemeContext);
 
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
+  const { observe, inView } = useInView<HTMLLIElement>({
+    unobserveOnEnter: true,
+    threshold: 0.75,
   });
 
   const projectItemImageUrl = fixImgUrl(project.image.url);
 
   return (
     <ProjectItemStyles
-      ref={ref}
+      ref={observe}
       as={motion.li}
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 20 }}
@@ -57,13 +57,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
               {project.category?.name}
             </HeadingStyles>
             <NotMobile>
-              <HeadingStyles
-                as="h3"
-                fontSize={30}
-                lineHeight={1.4}
-                mb={theme.vars.xsSpace}
-                color={theme.colors[project.textsColor]}
-              >
+              <HeadingStyles as="h3" fontSize={30} lineHeight={1.4} mb={theme.vars.xsSpace} color={theme.colors[project.textsColor]}>
                 {project.name}
               </HeadingStyles>
               <PStyles
@@ -88,13 +82,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
                   color={theme.colors[project.textsColor]}
                 />
               ) : (
-                <HeadingStyles
-                  as="h3"
-                  fontSize={30}
-                  lineHeight={1.4}
-                  mb={theme.vars.xsSpace}
-                  color={theme.colors[project.textsColor]}
-                >
+                <HeadingStyles as="h3" fontSize={30} lineHeight={1.4} mb={theme.vars.xsSpace} color={theme.colors[project.textsColor]}>
                   {project.name}
                 </HeadingStyles>
               )}

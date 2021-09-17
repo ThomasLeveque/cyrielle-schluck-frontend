@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
-import { useInView } from 'react-intersection-observer';
+import useInView from 'react-cool-inview';
 import { motion, useAnimation } from 'framer-motion';
 
 import ItemImages from '@components/item-images/item-images';
@@ -17,21 +17,16 @@ interface StepItemProps {
 const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
   const theme = useContext(ThemeContext);
   const stepItemAnimation = useAnimation();
-  const { ref, inView } = useInView({
-    rootMargin: '-150px 0px',
-    triggerOnce: true,
+  const { observe } = useInView<HTMLElement>({
+    rootMargin: '-250px 0px',
+    unobserveOnEnter: true,
+    onEnter: () => stepItemAnimation.start('animate'),
   });
-
-  useEffect(() => {
-    if (inView) {
-      stepItemAnimation.start('animate');
-    }
-  }, [stepItemAnimation, inView]);
 
   return (
     <StepItemStyles
       as={motion.article}
-      ref={ref}
+      ref={observe}
       animate={stepItemAnimation}
       initial="initial"
       variants={itemVariants}
@@ -41,13 +36,7 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
     >
       {stepItem.title && (
         <motion.header className="step-item-header">
-          <PStyles
-            as="h5"
-            fontSize={12}
-            lineHeight={1.25}
-            mb={theme.vars.xsSpace}
-            color={theme.colors.myBlack}
-          >
+          <PStyles as="h5" fontSize={12} lineHeight={1.25} mb={theme.vars.xsSpace} color={theme.colors.myBlack}>
             {stepItem.title}
           </PStyles>
           <hr />
