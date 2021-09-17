@@ -1,7 +1,9 @@
+import { Variants } from 'framer-motion'
+
 export const transition = { duration: 0.4, ease: 'easeOut' };
 export const staggerChildrenDefault = 0.1;
 
-export const itemVariants = {
+export const itemVariants: Variants = {
   initial: (yValue: number) => ({
     opacity: 0,
     y: yValue || 20,
@@ -13,7 +15,7 @@ export const itemVariants = {
   },
 };
 
-export const itemVariantsDelay = {
+export const itemVariantsDelay: Variants = {
   initial: {
     opacity: 0,
     y: 20,
@@ -25,7 +27,7 @@ export const itemVariantsDelay = {
   }),
 };
 
-export const itemXVariants = {
+export const itemXVariants: Variants = {
   initial: (xValue: number) => ({
     opacity: 0,
     x: xValue || 20,
@@ -37,7 +39,7 @@ export const itemXVariants = {
   },
 };
 
-export const delayStaggerChildrenVariants = {
+export const delayStaggerChildrenVariants: Variants = {
   initial: (yValue: number) => ({
     opacity: 0,
     y: yValue || 20,
@@ -49,7 +51,7 @@ export const delayStaggerChildrenVariants = {
   },
 };
 
-export const letterVariants = {
+export const letterVariants: Variants = {
   initial: {
     opacity: 0,
   },
@@ -59,7 +61,7 @@ export const letterVariants = {
   },
 };
 
-export const stagger = {
+export const stagger: Variants = {
   animate: (staggerValue: number) => ({
     transition: {
       staggerChildren: staggerValue || staggerChildrenDefault,
