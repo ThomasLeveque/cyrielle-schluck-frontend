@@ -8,12 +8,14 @@ import CustomButton from '@components/custom-button/custom-button';
 import { HomeInfosDesktopStyles } from './home-infos-desktop.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { PStyles } from '@styles/texts/p.styles';
+import { Home } from '@interfaces/home.interface';
 
 interface HomeInfosDesktopProps {
   gotoAboutMe: () => void;
+  home: Home;
 }
 
-const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe }) => {
+const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe, home }) => {
   const theme = useContext(ThemeContext);
 
   const minScrollY = 100;
@@ -44,17 +46,16 @@ const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe }) => {
       <motion.div key="mainInfos" animate="animate" initial="initial" variants={stagger}>
         <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
           <motion.div variants={itemVariants}>
-            <span className="color-gray">Cyrielle</span>,
+            <span className="color-gray">{home.name}</span>,
           </motion.div>
           <motion.div variants={itemVariants}>
-            Product designer
+            {home.title}
             <span className="color-gray">.</span>
           </motion.div>
         </HeadingStyles>
         <motion.div style={{ y: yDesc }}>
           <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.xlSpace}>
-            Designer UI & UX avec plus de 3 ans d’expérience, je mets l’utilisateur au centre de mon travail ergonomique et graphique afin
-            de lui assurer la meilleure expérience possible.
+            {home.desc}
           </PStyles>
           <motion.div variants={itemVariants}>
             <CustomButton text="En savoir plus" onClick={gotoAboutMe} />

@@ -83,7 +83,7 @@ const HomePage: NextPage = () => {
     <Layout>
       <IndexStyles>
         <Desktop>
-          <HomeInfosDesktop gotoAboutMe={gotoAboutMe} />
+          <HomeInfosDesktop gotoAboutMe={gotoAboutMe} home={home} />
         </Desktop>
         <NotDesktop>
           <motion.header className="home-infos-not-desktop-header" initial="initial" animate="animate" variants={stagger} ref={observe}>
