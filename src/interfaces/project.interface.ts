@@ -23,8 +23,8 @@ export interface Project {
 
 export interface ProjectStep {
   id: string;
-  title: string;
-  subtitle: string;
+  title?: string;
+  subtitle?: string;
   description?: string;
   bgColor?: string;
   stepItems: StepItem[];
