@@ -32,6 +32,7 @@ export const HOME_QUERY = gql`
             id
             name
             shortDesc
+            itemFormatedName
             mobileName
             description
             color

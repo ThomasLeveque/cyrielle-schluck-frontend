@@ -57,9 +57,21 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
               {project.category?.name}
             </HeadingStyles>
             <NotMobile>
-              <HeadingStyles as="h3" fontSize={30} lineHeight={1.4} mb={theme.vars.xsSpace} color={theme.colors[project.textsColor]}>
-                {project.name}
-              </HeadingStyles>
+              {project.itemFormatedName ? (
+                <HeadingStyles
+                  source={project.itemFormatedName}
+                  as={ReactMarkdown}
+                  escapeHtml={false}
+                  fontSize={30}
+                  lineHeight={1.4}
+                  mb={theme.vars.xsSpace}
+                  color={theme.colors[project.textsColor]}
+                />
+              ) : (
+                <HeadingStyles as="h3" fontSize={30} lineHeight={1.4} mb={theme.vars.xsSpace} color={theme.colors[project.textsColor]}>
+                  {project.name}
+                </HeadingStyles>
+              )}
               <PStyles
                 source={fixhyphens(project.shortDesc)}
                 as={ReactMarkdown}
@@ -74,6 +86,16 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
                 <HeadingStyles
                   className="mobile-name"
                   source={project.mobileName}
+                  as={ReactMarkdown}
+                  escapeHtml={false}
+                  fontSize={30}
+                  lineHeight={1.4}
+                  mb={theme.vars.xsSpace}
+                  color={theme.colors[project.textsColor]}
+                />
+              ) : project.itemFormatedName ? (
+                <HeadingStyles
+                  source={project.itemFormatedName}
                   as={ReactMarkdown}
                   escapeHtml={false}
                   fontSize={30}
