@@ -1,17 +1,18 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useQuery, gql } from '@apollo/client';
 
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile from '@components/responsive/mobile';
-import { buttonYVariants, buttonXVariants, buttonTransition } from '@animations/footer.animation';
 import { Project, ProjectsData } from '@interfaces/project.interface';
 
 import NextButton from '@components/icons/next-button';
 import PrevButton from '@components/icons/previous-button';
+import { transition } from '@animations/global.animation';
 
 import { FooterStyles } from './footer.styles';
+import useInView from 'react-cool-inview';
 
 export const ALL_PROJECTS_SLUG_QUERY = gql`
   query {
@@ -20,6 +21,10 @@ export const ALL_PROJECTS_SLUG_QUERY = gql`
     }
   }
 `;
+
+const buttonTransition = { ...transition, delay: 0.15 };
+const buttonY = 10;
+const buttonX = 10;
 
 const Footer: React.FC = () => {
   const router = useRouter();
@@ -53,20 +58,27 @@ const Footer: React.FC = () => {
     router.push(`/${nextProjectSlug}`, undefined, { scroll: false });
   };
 
+  const { observe, inView } = useInView<HTMLDivElement>();
+
   return (
     <FooterStyles>
-      <AnimatePresence>
+      {projectSlug && <div className="toggle-footer-detector" ref={observe} />}
+      <motion.div
+        className="footer-content"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: inView ? 0 : 1, y: inView ? 60 : 0 }}
+        transition={transition}
+      >
         {projectSlug && (
-          <React.Fragment key="prevButtonWrapper">
+          <>
             <Mobile>
               <motion.button
-                key="prevMobileButton"
-                variants={buttonXVariants}
-                custom={-5}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={buttonTransition}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: inView ? 0 : 1,
+                  x: inView ? -buttonX : 0,
+                  transition: buttonTransition,
+                }}
                 onClick={handlePreviousProject}
               >
                 <PrevButton />
@@ -74,32 +86,32 @@ const Footer: React.FC = () => {
             </Mobile>
             <NotMobile>
               <motion.button
-                key="prevNotMobileButton"
-                variants={buttonYVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={buttonTransition}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: inView ? 0 : 1,
+                  y: inView ? buttonY : 0,
+                  transition: buttonTransition,
+                }}
                 onClick={handlePreviousProject}
               >
                 {'< PROJET PRÉCÉDENT'}
               </motion.button>
             </NotMobile>
-          </React.Fragment>
+          </>
         )}
         <p>
           <span>Contactez-moi : </span>cyrielle.schluck@gmail.com
         </p>
         {projectSlug && (
-          <React.Fragment key="nextButtonWrapper">
+          <>
             <Mobile>
               <motion.button
-                key="nextMobileButton"
-                variants={buttonXVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={buttonTransition}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: inView ? 0 : 1,
+                  x: inView ? buttonX : 0,
+                  transition: buttonTransition,
+                }}
                 onClick={handlePreviousProject}
               >
                 <NextButton />
@@ -107,20 +119,20 @@ const Footer: React.FC = () => {
             </Mobile>
             <NotMobile>
               <motion.button
-                key="nextNotMobileButton"
-                variants={buttonYVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={buttonTransition}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: inView ? 0 : 1,
+                  y: inView ? buttonY : 0,
+                  transition: buttonTransition,
+                }}
                 onClick={handleNextProject}
               >
                 {'PROJET SUIVANT >'}
               </motion.button>
             </NotMobile>
-          </React.Fragment>
+          </>
         )}
-      </AnimatePresence>
+      </motion.div>
     </FooterStyles>
   );
 };
