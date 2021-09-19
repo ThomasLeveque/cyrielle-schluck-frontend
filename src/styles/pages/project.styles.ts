@@ -15,7 +15,6 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: ${(props) => `calc(100vh - ${props.theme.vars.footerHeight}px)`};
 
     ${down('tablet')} {
       margin-bottom: ${(props) => props.theme.vars.xlSpace}px;
@@ -26,7 +25,7 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
       z-index: -1;
       position: absolute;
       top: 0;
-      bottom: 0;
+      bottom: clamp(70px, 20vw, 200px);
       width: 100vw;
       display: block;
       background-color: ${(props) => fixHexaColor(props.bgColor)};
@@ -87,7 +86,6 @@ export const ProjectStyles = styled.div<ProjectStylesProps>`
 
     .header-image {
       width: 100%;
-      margin-bottom: 75px;
 
       .img {
         width: 800px;
