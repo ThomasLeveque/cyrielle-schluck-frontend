@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { down, only } from 'styled-breakpoints';
+import { down, only, up } from 'styled-breakpoints';
 
 import { fixHexaColor } from '@utils/color.util';
 
@@ -28,10 +28,12 @@ export const ProjectItemStyles = styled.li<ProjectItemStylesProps>`
     align-items: center;
     justify-content: space-between;
 
-    &:hover,
-    &:focus {
-      .img {
-        transform: translateX(-20px);
+    ${up('desktop')} {
+      &:hover,
+      &:focus {
+        .img {
+          transform: translateX(-20px);
+        }
       }
     }
 
