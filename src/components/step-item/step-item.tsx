@@ -5,7 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 
 import ItemImages from '@components/item-images/item-images';
 import { StepItem as StepItemType } from '@interfaces/project.interface';
-import { itemVariants } from '@animations/global.animation';
+import { itemVariantsDelay } from '@animations/global.animation';
 
 import { StepItemStyles } from './step-item.styles';
 import { PStyles } from '@styles/texts/p.styles';
@@ -18,7 +18,7 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
   const theme = useContext(ThemeContext);
   const stepItemAnimation = useAnimation();
   const { observe } = useInView<HTMLElement>({
-    rootMargin: '-250px 0px',
+    rootMargin: '-100px 0px',
     unobserveOnEnter: true,
     onEnter: () => stepItemAnimation.start('animate'),
   });
@@ -29,14 +29,20 @@ const StepItem: React.FC<StepItemProps> = ({ stepItem }) => {
       ref={observe}
       animate={stepItemAnimation}
       initial="initial"
-      variants={itemVariants}
-      custom={40}
+      variants={itemVariantsDelay}
+      custom={{ delay: 0.1, yValue: 40 }}
       className="row"
       grid={stepItem.grid}
     >
       {stepItem.title && (
         <motion.header className="step-item-header">
-          <PStyles as="h5" fontSize={12} lineHeight={1.25} mb={theme.vars.xsSpace} color={theme.colors.myBlack}>
+          <PStyles
+            as="h5"
+            fontSize={12}
+            lineHeight={1.25}
+            mb={theme.vars.xsSpace}
+            color={theme.colors.myBlack}
+          >
             {stepItem.title}
           </PStyles>
           <hr />

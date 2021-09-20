@@ -16,11 +16,11 @@ export const itemVariants: Variants = {
 };
 
 export const itemVariantsDelay: Variants = {
-  initial: {
+  initial: ({ yValue }) => ({
     opacity: 0,
-    y: 20,
-  },
-  animate: (delay: number) => ({
+    y: yValue || 20,
+  }),
+  animate: ({ delay }) => ({
     opacity: 1,
     y: 0,
     transition: { ...transition, delay: delay || 0 },
