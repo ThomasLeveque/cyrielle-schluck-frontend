@@ -4,7 +4,9 @@ export interface Home {
   name: string;
   title: string;
   desc: string;
-  projectList: { project: Project }[];
+  printTitle: string;
+  printDesc: string;
+  superCategoryList: { projectList: { project: Project }[]; superCategory: 'web' | 'print' }[];
 }
 
 export interface HomeData {

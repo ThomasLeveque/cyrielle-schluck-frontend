@@ -7,16 +7,19 @@ import { ProjectListStyles } from './project-list.styles';
 
 interface ProjectListProps {
   projects: Project[];
+  className?: string;
 }
 
-const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
-  return (
-    <ProjectListStyles className="secure-bottom-space">
-      {projects.map((project: Project) => (
-        <ProjectItem project={project} key={project.slug} />
-      ))}
-    </ProjectListStyles>
-  );
-};
+const ProjectList = React.forwardRef<HTMLUListElement, ProjectListProps>(
+  ({ projects, className }, ref) => {
+    return (
+      <ProjectListStyles className={className} ref={ref}>
+        {projects.map((project: Project) => (
+          <ProjectItem project={project} key={project.slug} />
+        ))}
+      </ProjectListStyles>
+    );
+  }
+);
 
 export default ProjectList;

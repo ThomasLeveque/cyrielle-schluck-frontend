@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { motion, transform, useTransform, useViewportScroll } from 'framer-motion';
+import { AnimatePresence, motion, transform, useTransform, useViewportScroll } from 'framer-motion';
 import { ThemeContext } from 'styled-components';
+import { IntersectionObserverEntryV2 } from 'react-cool-inview';
 
 import { itemVariants, stagger } from '@animations/global.animation';
 import CustomButton from '@components/custom-button/custom-button';
@@ -13,14 +14,24 @@ import { Home } from '@interfaces/home.interface';
 interface HomeInfosDesktopProps {
   gotoAboutMe: () => void;
   home: Home;
+  printProjectsInView: boolean;
+  printProjectsEntry: IntersectionObserverEntryV2 | undefined;
 }
 
-const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe, home }) => {
+const infosExit = { opacity: 0, transition: { duration: 0.4, ease: 'easeIn' } };
+
+export const maxScaleH1 = 0.56;
+
+const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({
+  gotoAboutMe,
+  home,
+  printProjectsInView,
+  printProjectsEntry,
+}) => {
   const theme = useContext(ThemeContext);
 
   const minScrollY = 100;
   const maxScrollY = 280;
-  const maxScaleH1 = 0.56;
   const maxYH1 = -100;
   const maxYDesc = maxYH1 - theme.vars.xlSpace + theme.vars.lSpace;
 
@@ -43,25 +54,67 @@ const HomeInfosDesktop: React.FC<HomeInfosDesktopProps> = ({ gotoAboutMe, home }
 
   return (
     <HomeInfosDesktopStyles>
-      <motion.div key="mainInfos" animate="animate" initial="initial" variants={stagger}>
-        <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
-          <motion.div variants={itemVariants}>
-            <span className="color-gray">{home.name}</span>,
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            {home.title}
-            <span className="color-gray">.</span>
-          </motion.div>
-        </HeadingStyles>
-        <motion.div style={{ y: yDesc }}>
-          <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.xlSpace}>
-            {home.desc}
-          </PStyles>
-          <motion.div variants={itemVariants}>
-            <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
-          </motion.div>
-        </motion.div>
-      </motion.div>
+      {printProjectsEntry && (
+        <AnimatePresence exitBeforeEnter>
+          {printProjectsInView ? (
+            <motion.div
+              key="printInfos"
+              className="print-infos"
+              animate="animate"
+              initial="initial"
+              exit={infosExit}
+              variants={stagger}
+            >
+              <HeadingStyles as={motion.h1} variants={itemVariants}>
+                {home.printTitle}
+              </HeadingStyles>
+              <PStyles
+                as={motion.p}
+                variants={itemVariants}
+                letterSpacing={1}
+                mb={theme.vars.lSpace}
+              >
+                {home.printDesc}
+              </PStyles>
+              <motion.div variants={itemVariants}>
+                <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
+              </motion.div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="mainInfos"
+              className="main-infos"
+              animate="animate"
+              initial="initial"
+              exit={infosExit}
+              variants={stagger}
+            >
+              <HeadingStyles as={motion.h1} style={{ scale: scaleH1, y: yH1 }}>
+                <motion.div variants={itemVariants}>
+                  <span className="color-gray">{home.name}</span>,
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  {home.title}
+                  <span className="color-gray">.</span>
+                </motion.div>
+              </HeadingStyles>
+              <motion.div style={{ y: yDesc }}>
+                <PStyles
+                  as={motion.p}
+                  variants={itemVariants}
+                  letterSpacing={1}
+                  mb={theme.vars.lSpace}
+                >
+                  {home.desc}
+                </PStyles>
+                <motion.div variants={itemVariants}>
+                  <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </HomeInfosDesktopStyles>
   );
 };
