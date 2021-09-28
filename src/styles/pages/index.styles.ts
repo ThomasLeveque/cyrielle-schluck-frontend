@@ -12,6 +12,14 @@ export const IndexStyles = styled.div`
   }
 
   header.home-infos-not-desktop-header {
+    &.print {
+      margin-top: ${(props) => props.theme.vars.xlSpace}px;
+
+      ${down('mobile')} {
+        margin-top: ${(props) => props.theme.vars.lSpace}px;
+      }
+    }
+
     h1,
     h2 {
       ${down('mobile')} {
@@ -28,7 +36,8 @@ export const IndexStyles = styled.div`
     }
   }
 
-  ul {
+  .desktop-projects,
+  .mobile-projects {
     width: 60%;
     padding-left: ${(props) => props.theme.vars.xlSpace}px;
 
@@ -54,6 +63,12 @@ export const IndexStyles = styled.div`
     ${down('tablet')} {
       width: 100%;
       padding-left: 0;
+    }
+  }
+
+  .desktop-projects {
+    .print-projects {
+      margin-top: ${(props) => props.theme.vars.xxlSpace}px;
     }
   }
 `;

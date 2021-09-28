@@ -26,27 +26,32 @@ export const HOME_QUERY = gql`
       name
       title
       desc
-      projectList {
-        ... on ComponentBlockProjectItem {
-          project {
-            id
-            name
-            shortDesc
-            itemFormatedName
-            mobileName
-            description
-            color
-            slug
-            textsColor
-            image {
-              width
-              height
-              url
-              alternativeText
-            }
-            category {
+      printTitle
+      printDesc
+      superCategoryList {
+        ... on ComponentBlockSuperCategoryBlock {
+          superCategory
+          projectList {
+            project {
+              id
               name
+              shortDesc
+              itemFormatedName
+              mobileName
+              description
+              color
               slug
+              textsColor
+              image {
+                width
+                height
+                url
+                alternativeText
+              }
+              categories {
+                slug
+                name
+              }
             }
           }
         }
@@ -59,7 +64,21 @@ const HomePage: NextPage = () => {
   const { data, loading } = useQuery<HomeData>(HOME_QUERY);
   const home = data?.home as Home;
 
-  const projects = useMemo(() => home.projectList.map((p) => p.project), [home.projectList]);
+  const webProjects = useMemo(
+    () =>
+      home.superCategoryList
+        .find((c) => c.superCategory === 'web')
+        ?.projectList.map((p) => p.project),
+    [home.superCategoryList]
+  );
+
+  const printProjects = useMemo(
+    () =>
+      home.superCategoryList
+        .find((c) => c.superCategory === 'print')
+        ?.projectList.map((p) => p.project),
+    [home.superCategoryList]
+  );
 
   const router = useRouter();
   const theme = useContext(ThemeContext);
@@ -69,10 +88,26 @@ const HomePage: NextPage = () => {
   };
 
   const firstTitleMobileAnimation = useAnimation();
-  const { observe } = useInView({
-    threshold: 0.6,
+  const secondTitleMobileAnimation = useAnimation();
+
+  const { observe: firstTitleObserve } = useInView({
+    threshold: 0.5,
     unobserveOnEnter: true,
     onEnter: () => firstTitleMobileAnimation.start('animate'),
+  });
+
+  const { observe: secondTitleObserve } = useInView({
+    threshold: 0.5,
+    unobserveOnEnter: true,
+    onEnter: () => secondTitleMobileAnimation.start('animate'),
+  });
+
+  const {
+    observe: printProjectsObserve,
+    entry: printProjectsEntry,
+    inView: printProjectsInView,
+  } = useInView({
+    threshold: 0.3,
   });
 
   if (loading) {
@@ -84,10 +119,31 @@ const HomePage: NextPage = () => {
     <Layout>
       <IndexStyles>
         <Desktop>
-          <HomeInfosDesktop gotoAboutMe={gotoAboutMe} home={home} />
+          <HomeInfosDesktop
+            gotoAboutMe={gotoAboutMe}
+            home={home}
+            printProjectsInView={printProjectsInView}
+            printProjectsEntry={printProjectsEntry}
+          />
+          <div className="desktop-projects secure-bottom-space">
+            {webProjects && <ProjectList projects={webProjects} />}
+            {printProjects && (
+              <ProjectList
+                ref={printProjectsObserve}
+                className="print-projects"
+                projects={printProjects}
+              />
+            )}
+          </div>
         </Desktop>
         <NotDesktop>
-          <motion.header className="home-infos-not-desktop-header" initial="initial" animate="animate" variants={stagger} ref={observe}>
+          <motion.header
+            className="home-infos-not-desktop-header"
+            initial="initial"
+            animate={firstTitleMobileAnimation}
+            variants={stagger}
+            ref={firstTitleObserve}
+          >
             <HeadingStyles mb={theme.vars.lSpace} fontSize={70}>
               <motion.div variants={itemVariants}>
                 <span className="color-gray">{home.name}</span>,
@@ -104,8 +160,28 @@ const HomePage: NextPage = () => {
               <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
             </motion.div>
           </motion.header>
+          {webProjects && <ProjectList className="mobile-projects" projects={webProjects} />}
+          <motion.header
+            className="home-infos-not-desktop-header print"
+            initial="initial"
+            animate={secondTitleMobileAnimation}
+            variants={stagger}
+            ref={secondTitleObserve}
+          >
+            <HeadingStyles mb={theme.vars.lSpace} fontSize={70}>
+              <motion.div variants={itemVariants}>{home.printTitle}</motion.div>
+            </HeadingStyles>
+            <PStyles as={motion.p} variants={itemVariants} letterSpacing={1} mb={theme.vars.lSpace}>
+              {home.printDesc}
+            </PStyles>
+            <motion.div variants={itemVariants}>
+              <CustomButton text="En savoir plus" onClick={gotoAboutMe} />
+            </motion.div>
+          </motion.header>
+          {printProjects && (
+            <ProjectList className="mobile-projects secure-bottom-space" projects={printProjects} />
+          )}
         </NotDesktop>
-        <ProjectList projects={projects} />
       </IndexStyles>
     </Layout>
   );

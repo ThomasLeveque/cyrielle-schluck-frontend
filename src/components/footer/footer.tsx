@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
       {projectSlug && <div className="toggle-footer-detector" ref={observe} />}
       <motion.div
         className="footer-content"
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: projectSlug ? 0 : 1, y: projectSlug ? 60 : 0 }}
         animate={{ opacity: inView ? 0 : 1, y: inView ? 60 : 0 }}
         transition={transition}
       >

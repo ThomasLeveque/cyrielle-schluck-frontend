@@ -73,6 +73,7 @@ export const GlobalStyles = createGlobalStyle`
 
   img {
     display: block;
+    object-fit: contain;
   }
 
   hr {
@@ -128,14 +129,17 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .secure-bottom-space {
-    padding-bottom: ${(props) => math(`${props.theme.vars.xlSpace}px + ${props.theme.vars.footerHeight}px`)};
+    padding-bottom: ${(props) =>
+      math(`${props.theme.vars.xlSpace}px + ${props.theme.vars.footerHeight}px`)};
 
     ${down('tablet')} {
-      padding-bottom: ${(props) => math(`${props.theme.vars.lSpace}px + ${props.theme.vars.footerHeight}px`)};
+      padding-bottom: ${(props) =>
+        math(`${props.theme.vars.lSpace}px + ${props.theme.vars.footerHeight}px`)};
     }
 
     ${down('mobile')} {
-      padding-bottom: ${(props) => math(`${props.theme.vars.mSpace}px + ${props.theme.vars.footerHeight}px`)};
+      padding-bottom: ${(props) =>
+        math(`${props.theme.vars.mSpace}px + ${props.theme.vars.footerHeight}px`)};
     }
   }
 

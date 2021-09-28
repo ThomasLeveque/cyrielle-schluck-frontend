@@ -45,17 +45,19 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <div className="data">
-            <HeadingStyles
-              as="h4"
-              fontSize={18}
-              lineHeight={1.15}
-              mb={10}
-              isUppercase
-              color={rgba(theme.colors.black, 0.15)}
-              fontFamily={theme.fonts.mainFont}
-            >
-              {project.category?.name}
-            </HeadingStyles>
+            {project.categories.length && (
+              <HeadingStyles
+                as="h4"
+                fontSize={18}
+                lineHeight={1.15}
+                mb={10}
+                isUppercase
+                color={rgba(theme.colors.black, 0.15)}
+                fontFamily={theme.fonts.mainFont}
+              >
+                {project.categories[0].name}
+              </HeadingStyles>
+            )}
             <NotMobile>
               {project.itemFormatedName ? (
                 <HeadingStyles
@@ -68,7 +70,13 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
                   color={theme.colors[project.textsColor]}
                 />
               ) : (
-                <HeadingStyles as="h3" fontSize={30} lineHeight={1.4} mb={theme.vars.xsSpace} color={theme.colors[project.textsColor]}>
+                <HeadingStyles
+                  as="h3"
+                  fontSize={30}
+                  lineHeight={1.4}
+                  mb={theme.vars.xsSpace}
+                  color={theme.colors[project.textsColor]}
+                >
                   {project.name}
                 </HeadingStyles>
               )}
@@ -104,7 +112,13 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
                   color={theme.colors[project.textsColor]}
                 />
               ) : (
-                <HeadingStyles as="h3" fontSize={30} lineHeight={1.4} mb={theme.vars.xsSpace} color={theme.colors[project.textsColor]}>
+                <HeadingStyles
+                  as="h3"
+                  fontSize={30}
+                  lineHeight={1.4}
+                  mb={theme.vars.xsSpace}
+                  color={theme.colors[project.textsColor]}
+                >
                   {project.name}
                 </HeadingStyles>
               )}

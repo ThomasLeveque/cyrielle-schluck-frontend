@@ -14,7 +14,7 @@ export interface Project {
   description: string;
   slug: string;
   textsColor: textsColorType;
-  category?: Category;
+  categories: Category[];
   image: Image;
   mobileImage: Image;
   color: string;
