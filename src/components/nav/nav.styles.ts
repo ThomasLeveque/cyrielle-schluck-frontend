@@ -22,11 +22,10 @@ export const NavStyles = styled.nav<NavStylesProps>`
   }
 
   a {
-    color: ${(props) => props.theme.colors[props.textsColor] || props.theme.colors.myBlack};
+    color: ${(props) => props.theme.colors[props.textsColor]};
 
     span {
-      background-color: ${(props) =>
-        props.theme.colors[props.textsColor] || props.theme.colors.myBlack};
+      background-color: ${(props) => props.theme.colors[props.textsColor]};
     }
 
     &:not(:first-of-type) {
