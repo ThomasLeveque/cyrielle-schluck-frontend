@@ -14,6 +14,7 @@ import Nav from '@components/nav/nav';
 import Footer from '@components/footer/footer';
 
 import { GlobalStyles } from '@styles/global.styles';
+import { textsColorType } from '@interfaces/project.interface';
 
 const handleExitComplete = (): void => {
   if (typeof window !== 'undefined') {
@@ -23,13 +24,14 @@ const handleExitComplete = (): void => {
 
 const MyApp = ({ Component, pageProps, router }: AppProps): JSX.Element => {
   const apolloClient = useApollo(pageProps.initialApolloState);
+  const textsColor: textsColorType = pageProps?.textsColor ?? 'myBlack';
 
   return (
     <ThemeProvider theme={myTheme}>
       <GlobalStyles />
       <DefaultSeo {...SEO} />
       <ApolloProvider client={apolloClient}>
-        <Nav textsColor={pageProps.textsColor} />
+        <Nav textsColor={textsColor} />
         <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
           <Component key={router.asPath} {...pageProps} />
         </AnimatePresence>

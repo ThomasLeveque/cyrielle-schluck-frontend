@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { GetStaticProps, GetStaticPaths, GetStaticPathsResult, NextPage } from 'next';
 import { NextSeo, NextSeoProps } from 'next-seo';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
 import { rgba } from 'polished';
 import { motion } from 'framer-motion';
@@ -20,80 +20,18 @@ import {
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile, { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 import MyImage from '@components/my-image/my-image';
-import { ALL_PROJECTS_SLUG_QUERY } from '@components/footer/footer';
 import { fixImgUrl } from '@utils/env-url.util';
 
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { ProjectStyles } from '@styles/pages/project.styles';
 import { PStyles } from '@styles/texts/p.styles';
-
-const PROJECT_QUERY = gql`
-  query GetProject($projectSlug: String!) {
-    projectBySlug(slug: $projectSlug) {
-      id
-      name
-      isShortName
-      formatedName
-      shortDesc
-      description
-      color
-      slug
-      textsColor
-      image {
-        width
-        height
-        url
-        alternativeText
-      }
-      mobileImage {
-        width
-        height
-        url
-        alternativeText
-      }
-      categories {
-        name
-        slug
-      }
-      projectSteps {
-        ... on ComponentBlockProjectStep {
-          id
-          title
-          subtitle
-          description
-          bgColor
-          stepItems {
-            id
-            title
-            grid
-            itemImages {
-              id
-              size
-              grid
-              mobileGrid
-              isSwipable
-              tabletGrid
-              topSpace
-              mobileTopSpace
-              customGridSize
-              image {
-                width
-                height
-                url
-                alternativeText
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import { ALL_PROJECTS_SLUG_QUERY, PROJECT_QUERY } from '@lib/gqlQueries';
 
 interface ProjectPageProps {
   projectSlug: string;
 }
 
+// Get this Props from getStaticProps down in the page
 const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
   const theme = useContext(ThemeContext);
 
@@ -227,6 +165,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
+      // Use as props below inside the actual page
       projectSlug: params?.projectSlug,
       // Used in _app.js and passed to the Nav component
       textsColor: data.projectBySlug.textsColor,

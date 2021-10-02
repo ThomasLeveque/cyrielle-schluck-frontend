@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import NotMobile from '@components/responsive/not-mobile';
 import Mobile from '@components/responsive/mobile';
@@ -13,14 +13,7 @@ import { transition } from '@animations/global.animation';
 
 import { FooterStyles } from './footer.styles';
 import useInView from 'react-cool-inview';
-
-export const ALL_PROJECTS_SLUG_QUERY = gql`
-  query {
-    projects {
-      slug
-    }
-  }
-`;
+import { ALL_PROJECTS_SLUG_QUERY } from '@lib/gqlQueries';
 
 const buttonTransition = { ...transition, delay: 0.15 };
 const buttonY = 10;
@@ -30,7 +23,9 @@ const Footer: React.FC = () => {
   const router = useRouter();
   const { projectSlug } = router.query;
 
-  const { data } = useQuery<ProjectsData>(ALL_PROJECTS_SLUG_QUERY);
+  // Skip the query if we are not on the project page
+  // Because the static ALL_PROJECTS_SLUG_QUERY is only fired on project page getStaticProps
+  const { data } = useQuery<ProjectsData>(ALL_PROJECTS_SLUG_QUERY, { skip: !Boolean(projectSlug) });
   const projects = data?.projects as Project[];
 
   const currentProject = projects?.find((project: Project) => project.slug === projectSlug);

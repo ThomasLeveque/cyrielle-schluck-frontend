@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from 'next';
 import { NextSeo, NextSeoProps } from 'next-seo';
 import { ThemeContext } from 'styled-components';
 import { motion } from 'framer-motion';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { initializeApollo } from '@lib/apolloClient';
 import ReactMarkdown from 'react-markdown';
 import { useMediaQuery } from 'react-responsive';
@@ -21,28 +21,7 @@ import { generateIsMobileMediaQuery } from '@components/responsive/mobile';
 import { AboutMeStyles } from '@styles/pages/plus-sur-moi.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { PStyles } from '@styles/texts/p.styles';
-
-const ABOUT_ME_QUERY = gql`
-  query {
-    aboutMe {
-      image {
-        url
-        alternativeText
-      }
-      name
-      title
-      desc
-      recos {
-        ... on ComponentBlockReco {
-          id
-          text
-          source
-          sourceUrl
-        }
-      }
-    }
-  }
-`;
+import { ABOUT_ME_QUERY } from '@lib/gqlQueries';
 
 const AboutMePage: NextPage = () => {
   const { data, loading } = useQuery<AboutMeData>(ABOUT_ME_QUERY);
@@ -71,7 +50,13 @@ const AboutMePage: NextPage = () => {
   return (
     <Layout>
       <NextSeo {...SEO} />
-      <AboutMeStyles as={motion.div} initial="initial" animate="animate" variants={stagger} className="secure-bottom-space">
+      <AboutMeStyles
+        as={motion.div}
+        initial="initial"
+        animate="animate"
+        variants={stagger}
+        className="secure-bottom-space"
+      >
         {aboutMe.image && (
           <motion.div variants={itemVariants}>
             <MyImage
@@ -88,7 +73,8 @@ const AboutMePage: NextPage = () => {
             <span className="color-gray">{aboutMe.name}</span>,
           </motion.div>
           <motion.div variants={itemVariants}>
-            {aboutMe.title}<span className="color-gray">.</span>
+            {aboutMe.title}
+            <span className="color-gray">.</span>
           </motion.div>
         </HeadingStyles>
         <motion.div className="with-text-list" variants={itemVariants}>
@@ -99,7 +85,10 @@ const AboutMePage: NextPage = () => {
         {aboutMe.recos.length > 0 && <RecoList recos={aboutMe.recos} />}
         <motion.div variants={itemVariants} className="buttons">
           <CustomButton onClick={handleCVReveal} text="Voir mon cv" />
-          <CustomButton onClick={() => downloadResource(cvUrl, 'Cyrielle-Schluck-CV')} text="Télécharger mon cv" />
+          <CustomButton
+            onClick={() => downloadResource(cvUrl, 'Cyrielle-Schluck-CV')}
+            text="Télécharger mon cv"
+          />
         </motion.div>
       </AboutMeStyles>
     </Layout>

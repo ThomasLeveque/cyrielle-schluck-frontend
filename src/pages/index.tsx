@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { ThemeContext } from 'styled-components';
 import useInView from 'react-cool-inview';
 import { motion, useAnimation } from 'framer-motion';
@@ -19,46 +19,7 @@ import { IndexStyles } from '@styles/pages/index.styles';
 import { PStyles } from '@styles/texts/p.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { Home, HomeData } from '@interfaces/home.interface';
-
-export const HOME_QUERY = gql`
-  query {
-    home {
-      name
-      title
-      desc
-      printTitle
-      printDesc
-      superCategoryList {
-        ... on ComponentBlockSuperCategoryBlock {
-          superCategory
-          projectList {
-            project {
-              id
-              name
-              shortDesc
-              itemFormatedName
-              mobileName
-              description
-              color
-              slug
-              textsColor
-              image {
-                width
-                height
-                url
-                alternativeText
-              }
-              categories {
-                slug
-                name
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import { HOME_QUERY } from '@lib/gqlQueries';
 
 const HomePage: NextPage = () => {
   const { data, loading } = useQuery<HomeData>(HOME_QUERY);
