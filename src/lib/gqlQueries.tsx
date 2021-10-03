@@ -71,6 +71,23 @@ export const ALL_PROJECTS_SLUG_QUERY = gql`
   }
 `;
 
+export const HOME_PROJECTS_SLUG_QUERY = gql`
+  query {
+    home {
+      superCategoryList {
+        ... on ComponentBlockSuperCategoryBlock {
+          superCategory
+          projectList {
+            project {
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const HOME_QUERY = gql`
   query {
     home {

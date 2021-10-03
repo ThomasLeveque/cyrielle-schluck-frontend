@@ -1,4 +1,6 @@
-import { Project } from './project.interface';
+import { Project, ProjectSlug } from './project.interface';
+
+type SuperCategory = 'web' | 'print';
 
 export interface Home {
   name: string;
@@ -6,7 +8,15 @@ export interface Home {
   desc: string;
   printTitle: string;
   printDesc: string;
-  superCategoryList: { projectList: { project: Project }[]; superCategory: 'web' | 'print' }[];
+  superCategoryList: { projectList: { project: Project }[]; superCategory: SuperCategory }[];
+}
+
+export interface HomeProjectsSlug {
+  superCategoryList: { projectList: { project: ProjectSlug }[]; superCategory: SuperCategory }[];
+}
+
+export interface HomeDataProjectsSlug {
+  home: HomeProjectsSlug;
 }
 
 export interface HomeData {

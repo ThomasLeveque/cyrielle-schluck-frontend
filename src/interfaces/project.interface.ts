@@ -54,6 +54,12 @@ export interface ProjectsData {
   projects: Project[];
 }
 
+export type ProjectSlug = Pick<Project, 'slug'>;
+
+export interface ProjectsSlugData {
+  projects: ProjectSlug[];
+}
+
 export interface ProjectData {
   projectBySlug: Project;
 }

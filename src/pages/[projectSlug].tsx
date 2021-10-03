@@ -10,7 +10,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import ProjectSteps from '@components/project-steps/project-steps';
 import Layout from '@components/layout/layout';
-import { ProjectData, ProjectsData, Project } from '@interfaces/project.interface';
+import { ProjectData, Project, ProjectsSlugData } from '@interfaces/project.interface';
 import { initializeApollo } from '@lib/apolloClient';
 import {
   delayStaggerChildrenVariants,
@@ -25,7 +25,8 @@ import { fixImgUrl } from '@utils/env-url.util';
 import { HeadingStyles } from '@styles/texts/heading.styles';
 import { ProjectStyles } from '@styles/pages/project.styles';
 import { PStyles } from '@styles/texts/p.styles';
-import { ALL_PROJECTS_SLUG_QUERY, PROJECT_QUERY } from '@lib/gqlQueries';
+import { ALL_PROJECTS_SLUG_QUERY, HOME_PROJECTS_SLUG_QUERY, PROJECT_QUERY } from '@lib/gqlQueries';
+import { HomeDataProjectsSlug } from '@interfaces/home.interface';
 
 interface ProjectPageProps {
   projectSlug: string;
@@ -67,7 +68,7 @@ const ProjectPage: NextPage<ProjectPageProps> = ({ projectSlug }) => {
         >
           <div className="header-texts">
             <motion.div variants={itemXVariants} custom={-20} className="header-texts-headings">
-              {project.categories.length && (
+              {project.categories.length > 0 && (
                 <HeadingStyles
                   as="h2"
                   fontSize={28}
@@ -160,7 +161,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     variables: { projectSlug: params?.projectSlug },
   });
 
-  await apolloClient.query({ query: ALL_PROJECTS_SLUG_QUERY });
+  // Populate static data for the Footer component
+  await apolloClient.query<HomeDataProjectsSlug>({ query: HOME_PROJECTS_SLUG_QUERY });
 
   return {
     props: {
@@ -181,11 +183,11 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<
 
   const {
     data: { projects },
-  } = await apolloClient.query<ProjectsData>({
+  } = await apolloClient.query<ProjectsSlugData>({
     query: ALL_PROJECTS_SLUG_QUERY,
   });
 
-  const paths = projects.map((project: Project) => ({
+  const paths = projects.map((project) => ({
     params: { projectSlug: project.slug },
   }));
 

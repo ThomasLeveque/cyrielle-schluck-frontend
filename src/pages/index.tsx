@@ -18,27 +18,27 @@ import NotDesktop from '@components/responsive/not-desktop';
 import { IndexStyles } from '@styles/pages/index.styles';
 import { PStyles } from '@styles/texts/p.styles';
 import { HeadingStyles } from '@styles/texts/heading.styles';
-import { Home, HomeData } from '@interfaces/home.interface';
+import { HomeData } from '@interfaces/home.interface';
 import { HOME_QUERY } from '@lib/gqlQueries';
 
 const HomePage: NextPage = () => {
   const { data, loading } = useQuery<HomeData>(HOME_QUERY);
-  const home = data?.home as Home;
+  const home = data?.home;
 
   const webProjects = useMemo(
     () =>
-      home.superCategoryList
+      home?.superCategoryList
         .find((c) => c.superCategory === 'web')
-        ?.projectList.map((p) => p.project),
-    [home.superCategoryList]
+        ?.projectList.map((p) => p.project) ?? [],
+    [home?.superCategoryList]
   );
 
   const printProjects = useMemo(
     () =>
-      home.superCategoryList
+      home?.superCategoryList
         .find((c) => c.superCategory === 'print')
-        ?.projectList.map((p) => p.project),
-    [home.superCategoryList]
+        ?.projectList.map((p) => p.project) ?? [],
+    [home?.superCategoryList]
   );
 
   const router = useRouter();
@@ -71,7 +71,7 @@ const HomePage: NextPage = () => {
     threshold: 0.3,
   });
 
-  if (loading) {
+  if (loading || !home) {
     return <Layout>Loading...</Layout>;
   }
 

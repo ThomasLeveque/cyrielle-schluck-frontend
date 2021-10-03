@@ -45,7 +45,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project }) => {
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <div className="data">
-            {project.categories.length && (
+            {project.categories.length > 0 && (
               <HeadingStyles
                 as="h4"
                 fontSize={18}
